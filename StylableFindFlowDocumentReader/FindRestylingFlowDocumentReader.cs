@@ -37,9 +37,18 @@ namespace StylableFindFlowDocumentReader
 
         protected override void OnFindCommand()
         {
+            DoWork();
+        }
+
+        private void DoWork(bool invokeBaseOnFindCommand = true)
+        {
             bool removing = _shimFindToolbarHost != null;
             IsShowingFindToolbar = !removing;
-            base.OnFindCommand();
+            if(invokeBaseOnFindCommand)
+            {
+                base.OnFindCommand();
+            }
+            
             if (Document == null || !IsFindEnabled)
             {
                 return;
@@ -128,19 +137,8 @@ namespace StylableFindFlowDocumentReader
                 _ = Keyboard.Focus(findTextBox);
             });
 
-        protected virtual void DoDispatch(Action action)
-        {
-            if (Dispatcher.CheckAccess())
-            {
-                action();
-            }
-            else
-            {
-#pragma warning disable VSTHRD001 // Avoid legacy thread switching APIs
-                _ = Dispatcher.BeginInvoke(action, DispatcherPriority.Background);
-#pragma warning restore VSTHRD001 // Avoid legacy thread switching APIs
-            }
-        }
+        protected virtual void DoDispatch(Action action) 
+            => _ = Dispatcher.BeginInvoke(action, DispatcherPriority.Background);
 
         protected virtual void MoveHostProperties(Decorator originalDecorator, Decorator replacementDecorator, bool resetting)
         {
@@ -180,6 +178,11 @@ namespace StylableFindFlowDocumentReader
             }
 
             base.OnKeyDown(e);
+            if(e.Key == Key.F3 && _shimFindToolbarHost == null)
+            {
+                DoWork(false);
+                return;
+            }
             if (e.Key != Key.Escape || _shimFindToolbarHost == null || !IsFindEnabled)
             {
                 return;

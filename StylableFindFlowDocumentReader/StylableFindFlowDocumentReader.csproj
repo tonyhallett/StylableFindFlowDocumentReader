@@ -4,5 +4,19 @@
     <UseWPF>true</UseWPF>
     <Authors>TonyHUK</Authors>
     <Description>A FlowDocumentReader with stylable Find area.</Description>
+    <Copyright>Copyright © 2025 Tony Hallett</Copyright>
+    <RepositoryUrl>https://github.com/tonyhallett/StylableFindFlowDocumentReader.git</RepositoryUrl>
+    <PackageTags>FlowDocumentReader;Find;style;stylable</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/tonyhallett/StylableFindFlowDocumentReader</PackageProjectUrl>
+    <Title>Stylable Find FlowDocumentReader</Title>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>
