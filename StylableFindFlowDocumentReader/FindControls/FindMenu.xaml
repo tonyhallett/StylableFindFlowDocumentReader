@@ -111,6 +111,19 @@
                       </PriorityBinding>
                     </Setter.Value>
                   </Setter>
+                  <Setter TargetName="FindOptionsIcon" Property="Fill">
+                    <Setter.Value>
+                      <PriorityBinding>
+                        <Binding
+                          Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
+                          Path="DropDownGlyphMouseOver"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                        <Binding
+                          Path="DropDownStateGlyph"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                      </PriorityBinding>
+                    </Setter.Value>
+                  </Setter>
                 </Trigger>
                 <Trigger Property="UIElement.IsKeyboardFocused" Value="true">
                   <Setter TargetName="TrimBorder" Property="Background">
@@ -139,18 +152,105 @@
                       </PriorityBinding>
                     </Setter.Value>
                   </Setter>
+                  <Setter TargetName="FindOptionsIcon" Property="Fill">
+                    <Setter.Value>
+                      <PriorityBinding>
+                        <Binding
+                          Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
+                          Path="DropDownGlyphKeyboardFocused"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                        <Binding
+                          Path="DropDownStateGlyph"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                      </PriorityBinding>
+                    </Setter.Value>
+                  </Setter>
                 </Trigger>
                 <MultiTrigger>
                   <MultiTrigger.Conditions>
                     <Condition Property="UIElement.IsMouseOver" Value="true" />
                     <Condition Property="UIElement.IsKeyboardFocused" Value="true" />
                   </MultiTrigger.Conditions>
-                  <Setter TargetName="TrimBorder" Property="Background" Value="Yellow" />
-                  <Setter TargetName="TrimBorder" Property="BorderBrush" Value="Yellow" />
+                  <Setter TargetName="TrimBorder" Property="Background">
+                    <Setter.Value>
+                      <PriorityBinding>
+                        <Binding
+                          Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
+                          Path="DropDownBackgroundMouseOverFocused"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                        <Binding
+                          Path="DropDownStateBackground"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                      </PriorityBinding>
+                    </Setter.Value>
+                  </Setter>
+                  <Setter TargetName="TrimBorder" Property="BorderBrush">
+                    <Setter.Value>
+                      <PriorityBinding>
+                        <Binding
+                          Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
+                          Path="DropDownBorderMouseOverFocused"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                        <Binding
+                          Path="DropDownStateBorder"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                      </PriorityBinding>
+                    </Setter.Value>
+                  </Setter>
+                  <Setter TargetName="FindOptionsIcon" Property="Fill">
+                    <Setter.Value>
+                      <PriorityBinding>
+                        <Binding
+                          Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
+                          Path="DropDownGlyphMouseOverFocused"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                        <Binding
+                          Path="DropDownStateGlyph"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                      </PriorityBinding>
+                    </Setter.Value>
+                  </Setter>
                 </MultiTrigger>
                 <Trigger Property="MenuItem.IsPressed" Value="true">
-                  <Setter TargetName="TrimBorder" Property="Background" Value="Yellow" />
-                  <Setter TargetName="TrimBorder" Property="BorderBrush" Value="Yellow" />
+                  <Setter TargetName="TrimBorder" Property="Background">
+                    <Setter.Value>
+                      <PriorityBinding>
+                        <Binding
+                          Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
+                          Path="DropDownBackgroundPressed"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                        <Binding
+                          Path="DropDownStateBackground"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                      </PriorityBinding>
+                    </Setter.Value>
+                  </Setter>
+                  <Setter TargetName="TrimBorder" Property="BorderBrush">
+                    <Setter.Value>
+                      <PriorityBinding>
+                        <Binding
+                          Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
+                          Path="DropDownBorderPressed"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                        <Binding
+                          Path="DropDownStateBorder"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                      </PriorityBinding>
+                    </Setter.Value>
+                  </Setter>
+                  <Setter TargetName="FindOptionsIcon" Property="Fill">
+                    <Setter.Value>
+                      <PriorityBinding>
+                        <Binding
+                          Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
+                          Path="DropDownGlyphPressed"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                        <Binding
+                          Path="DropDownStateGlyph"
+                          RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
+                      </PriorityBinding>
+                    </Setter.Value>
+                  </Setter>
                 </Trigger>
               </ControlTemplate.Triggers>
             </ControlTemplate>

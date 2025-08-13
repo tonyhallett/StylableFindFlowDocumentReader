@@ -10,15 +10,20 @@
   Width="800"
   Height="450"
   mc:Ignorable="d">
-  <Grid>
-    <sys:FindRestylingFlowDocumentReader>
+    <Grid>
+        <sys:FindRestylingFlowDocumentReader x:Name="FindRestylingFlowDocumentReader">
+            <sys:FindRestylingFlowDocumentReader.InputBindings>
+                <KeyBinding Command="ApplicationCommands.Find" Modifiers="Ctrl" Key="F" />
+                <KeyBinding Command="NavigationCommands.NextPage" Modifiers="Ctrl" Key="N" />
+                <KeyBinding Command="NavigationCommands.PreviousPage" Modifiers="Ctrl" Key="P" />
+            </sys:FindRestylingFlowDocumentReader.InputBindings>
       <sys:FindRestylingFlowDocumentReader.Document>
         <FlowDocument>
           <Paragraph>
             <Run
               Text="This is a simple example of a FlowDocumentReader with a stylable Find area." />
           </Paragraph>
-        </FlowDocument>
+         </FlowDocument>
       </sys:FindRestylingFlowDocumentReader.Document>
       <sys:FindRestylingFlowDocumentReader.FindToolbarContent>
         <Border
@@ -40,6 +45,7 @@
               DropDownGlyphDisabledBrush="Gray"
               DropDownStateBackground="Red"
               DropDownStateBorder="Yellow"
+              DropDownStateGlyph="Black"
               MenuBackground="Black"
               MenuBorder="Lime"
               MenuItemBackground="DeepPink"

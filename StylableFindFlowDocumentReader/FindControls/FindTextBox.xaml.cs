@@ -62,8 +62,6 @@ namespace StylableFindFlowDocumentReader
         public static readonly DependencyProperty HintOpacityProperty =
             DependencyProperty.Register(nameof(HintOpacity), typeof(double), typeof(FindTextBox), new PropertyMetadata(0.7));
 
-
-
         public double TextBoxWidth
         {
             get { return (double)GetValue(TextBoxWidthProperty); }

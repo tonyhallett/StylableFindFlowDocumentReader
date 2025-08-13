@@ -11,6 +11,7 @@ namespace StylableFindFlowDocumentReader
     {
         private Decorator _originalFindToolBarHost;
         private FindToolBarShimDecorator _shimFindToolbarHost;
+        private KeyCommandHandler _keyHandler;
 
         public static readonly DependencyProperty FindToolbarContentProperty =
             DependencyProperty.Register(
@@ -23,6 +24,16 @@ namespace StylableFindFlowDocumentReader
         {
             get => (FrameworkElement)GetValue(FindToolbarContentProperty);
             set => SetValue(FindToolbarContentProperty, value);
+        }
+
+        public FindRestylingFlowDocumentReader()
+        {
+            Loaded += (sender, e) => _keyHandler = new KeyCommandHandler(this);
+            Unloaded += (sender, e) =>
+            {
+                _keyHandler?.Detach();
+                _keyHandler = null;
+            };
         }
 
         public override void OnApplyTemplate()
@@ -155,7 +166,7 @@ namespace StylableFindFlowDocumentReader
             {
                 return;
             }
-
+            
             switch (e.Key)
             {
                 case Key.Escape:
