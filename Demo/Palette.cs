@@ -25,5 +25,9 @@ namespace Demo
         public Brush SelectedGlyphBackground { get; set; }
         public Brush SelectedGlyphBorder { get; set; }
         public Brush SelectedGlyphBrush { get; set; }
+
+        public Brush TooltipBackground { get; set; }
+        public Brush TooltipForeground { get; set; }
+        public Brush TooltipBorder { get; set; }
     }
 }

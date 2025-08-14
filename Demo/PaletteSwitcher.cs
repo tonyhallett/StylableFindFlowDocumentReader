@@ -32,7 +32,10 @@ namespace Demo
             MenuItemHoverBorderBrush = Brushes.DodgerBlue,
             SelectedGlyphBrush = Brushes.RoyalBlue,
             SelectedGlyphBackground = Brushes.LightSkyBlue,
-            SelectedGlyphBorder = Brushes.DarkBlue
+            SelectedGlyphBorder = Brushes.DarkBlue,
+            TooltipBackground = Brushes.LightBlue,
+            TooltipForeground = Brushes.DarkBlue,
+            TooltipBorder = Brushes.DarkBlue,
         };
         private Palette rightPalette = new Palette { 
             MainBackground = Brushes.DeepPink,
@@ -53,7 +56,10 @@ namespace Demo
             MenuItemHoverBorderBrush= Brushes.DeepPink,
             SelectedGlyphBrush = Brushes.MistyRose,
             SelectedGlyphBackground = Brushes.HotPink,
-            SelectedGlyphBorder = Brushes.LightPink
+            SelectedGlyphBorder = Brushes.LightPink,
+            TooltipBackground = Brushes.LightPink,
+            TooltipForeground = Brushes.DeepPink,
+            TooltipBorder = Brushes.DeepPink,
         };
         private PaletteSwitcher()
         {

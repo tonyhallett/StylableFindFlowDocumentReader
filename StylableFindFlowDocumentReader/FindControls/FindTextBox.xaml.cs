@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace StylableFindFlowDocumentReader
 {
@@ -64,6 +65,7 @@ namespace StylableFindFlowDocumentReader
 
         public FindTextBox()
         {
+            this.Foreground = Brushes.Black;
             InitializeComponent();
         }
     }

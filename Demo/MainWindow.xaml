@@ -12,7 +12,14 @@
   Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainBackground}"
   Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
   mc:Ignorable="d">
-  <Window.Resources />
+  <Window.Resources>
+    <Style
+      TargetType="ToolTip">
+      <Setter Property="Background" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.TooltipBackground}" />
+      <Setter Property="Foreground" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.TooltipForeground}" />
+      <Setter Property="BorderBrush" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.TooltipBorder}" />
+    </Style>
+  </Window.Resources>
   <DockPanel
     LastChildFill="True">
     <StackPanel
@@ -156,11 +163,11 @@
           <Border
             Margin="5,1,0,1"
             Padding="0"
+            Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Background}"
             BorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Border}"
             BorderThickness="1"
             SnapsToDevicePixels="true">
             <StackPanel
-              Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Background}"
               Orientation="Horizontal">
               <sfdr:FindTextBox
                 Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Text}"

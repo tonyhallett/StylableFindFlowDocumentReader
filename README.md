@@ -34,8 +34,10 @@ Controls are provided for the parts of the find toolbar and are pretty much the 
 
 FindToolbar - replicates the actual find toolbar.  Just add your controls inside.
 
-FindTextBox is a TextBox and a hint Label.  If you provide your own you need to bind to the FindToolBarViewModel FindText as well as
+FindTextBox is a TextBox and a hint Label, both with Transparent Background.  If you provide your own you need to bind to the FindToolBarViewModel FindText as well as
 setting `x:Name="findTextBox"`
+
+
 
 Dependency properties.
 | Property | Default value |
@@ -46,8 +48,7 @@ Dependency properties.
 | HintOpacity | 0.7 |
 | HintFontStyle | FontStyles.Italic |
 | TextBoxWidth | 183 |
-| Background | Default |
-| Foreground | Default |
+| Foreground | Brushes.Black| 
 
 FindNextPreviousButtons.  If you provide your own you need to bind to the FindToolBarViewModel NextCommand and PreviousCommand.
 
