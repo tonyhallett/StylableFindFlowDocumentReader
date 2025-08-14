@@ -151,13 +151,13 @@ namespace StylableFindFlowDocumentReader
         protected virtual void DoDispatch(Action action) 
             => _ = Dispatcher.BeginInvoke(action, DispatcherPriority.Background);
 
-        protected virtual void MoveHostProperties(Decorator originalDecorator, Decorator replacementDecorator, bool resetting)
+        private void MoveHostProperties(Decorator originalDecorator, Decorator replacementDecorator, bool resetting)
         {
             Decorator fromDecorator = resetting ? replacementDecorator : originalDecorator;
             Decorator toDecorator = resetting ? originalDecorator : replacementDecorator;
-            toDecorator.VerticalAlignment = fromDecorator.VerticalAlignment;
-            toDecorator.HorizontalAlignment = fromDecorator.HorizontalAlignment;
             toDecorator.Visibility = fromDecorator.Visibility;
+            KeyboardNavigation.SetTabNavigation(toDecorator, KeyboardNavigation.GetTabNavigation(fromDecorator));
+            FocusManager.SetIsFocusScope(toDecorator, FocusManager.GetIsFocusScope(fromDecorator));
         }
 
         protected override void OnKeyDown(KeyEventArgs e)

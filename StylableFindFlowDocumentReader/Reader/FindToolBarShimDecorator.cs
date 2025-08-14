@@ -12,6 +12,9 @@ namespace StylableFindFlowDocumentReader
 
         public FindToolBarShimDecorator(Decorator originalDecorator, FrameworkElement findToolbarContent)
         {
+            HorizontalAlignment = HorizontalAlignment.Left;
+            VerticalAlignment = VerticalAlignment.Center;
+
             _findToolBar = originalDecorator.Child as ToolBar;
             _originalDecorator = originalDecorator;
             _findToolBarWrapper = new FindToolbarWrapper(_findToolBar);
