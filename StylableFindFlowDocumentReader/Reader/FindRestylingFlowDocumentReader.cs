@@ -10,6 +10,7 @@ namespace StylableFindFlowDocumentReader
     public class FindRestylingFlowDocumentReader : FlowDocumentReader
     {
         private Decorator _originalFindToolBarHost;
+        private Decorator _contentHost;
         private FindToolBarShimDecorator _shimFindToolbarHost;
         private KeyCommandHandler _keyHandler;
 
@@ -19,6 +20,37 @@ namespace StylableFindFlowDocumentReader
                 typeof(FrameworkElement),
                 typeof(FindRestylingFlowDocumentReader),
                 new PropertyMetadata(null));
+
+        public ScrollBarVisibility VerticalScrollbarVisibility
+        {
+            get { return (ScrollBarVisibility)GetValue(VerticalScrollbarVisibilityProperty); }
+            set { SetValue(VerticalScrollbarVisibilityProperty, value); }
+        }
+
+        public static readonly DependencyProperty VerticalScrollbarVisibilityProperty =
+            DependencyProperty.Register(nameof(VerticalScrollbarVisibility), typeof(ScrollBarVisibility), typeof(FindRestylingFlowDocumentReader), new PropertyMetadata(ScrollBarVisibility.Visible, VerticalScrollbarVisibilityChanged));
+
+        private static void VerticalScrollbarVisibilityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            (d as FindRestylingFlowDocumentReader).TrySetVerticalScrollbarVisibility((ScrollBarVisibility)e.NewValue);
+        }
+
+        private void TrySetVerticalScrollbarVisibility(ScrollBarVisibility scrollBarVisibility)
+        {
+            if(_contentHost != null && ViewingMode == FlowDocumentReaderViewingMode.Scroll)
+            {
+                SetVerticalScrollbarVisibility(scrollBarVisibility);
+            }
+        }
+
+        private void SetVerticalScrollbarVisibility(ScrollBarVisibility scrollBarVisibility)
+        {
+            var flowDocumentScrollViewer = _contentHost.Child as FlowDocumentScrollViewer;
+            if (flowDocumentScrollViewer != null)
+            {
+                flowDocumentScrollViewer.VerticalScrollBarVisibility = scrollBarVisibility;
+            }
+        }
 
         public FrameworkElement FindToolbarContent
         {
@@ -40,6 +72,7 @@ namespace StylableFindFlowDocumentReader
         {
             base.OnApplyTemplate();
             _originalFindToolBarHost = GetTemplateChild("PART_FindToolBarHost") as Decorator;
+             _contentHost = GetTemplateChild("PART_ContentHost") as Decorator;
         }
 
         public bool IsShowingFindToolbar { get; private set; }
@@ -78,7 +111,7 @@ namespace StylableFindFlowDocumentReader
 
             if (FindToolbarContent != null)
             {
-                SetShimFindToolBarHost(_originalFindToolBarHost);
+                SetShimFindToolBarHost();
             }
             else
             {
@@ -89,7 +122,7 @@ namespace StylableFindFlowDocumentReader
         private void Restore()
         {
             _originalFindToolBarHost.Child = null;
-            MoveHostProperties(_originalFindToolBarHost, _shimFindToolbarHost, true);
+            MoveHostProperties(true);
             _shimFindToolbarHost.ResetOriginalDecorator();
             ResetOriginalToolbarHost();
             _shimFindToolbarHost = null;
@@ -111,11 +144,12 @@ namespace StylableFindFlowDocumentReader
             }
         }
 
-        private void SetShimFindToolBarHost(Decorator originalToolbarHost)
+        private void SetShimFindToolBarHost()
         {
-            _shimFindToolbarHost = new FindToolBarShimDecorator(originalToolbarHost, FindToolbarContent);
+            _shimFindToolbarHost = new FindToolBarShimDecorator(_originalFindToolBarHost, FindToolbarContent);
             FindToolBarHostField.SetValue(this, _shimFindToolbarHost);
-            MoveHostProperties(originalToolbarHost, _shimFindToolbarHost, false);
+            CopyHostProperties(_originalFindToolBarHost, _shimFindToolbarHost);
+            MoveHostProperties(false);
             ReadyTextBox();
         }
 
@@ -151,10 +185,16 @@ namespace StylableFindFlowDocumentReader
         protected virtual void DoDispatch(Action action) 
             => _ = Dispatcher.BeginInvoke(action, DispatcherPriority.Background);
 
-        private void MoveHostProperties(Decorator originalDecorator, Decorator replacementDecorator, bool resetting)
+        protected void CopyHostProperties(Decorator originalHost,Decorator replacementHost)
         {
-            Decorator fromDecorator = resetting ? replacementDecorator : originalDecorator;
-            Decorator toDecorator = resetting ? originalDecorator : replacementDecorator;
+            replacementHost.HorizontalAlignment = originalHost.HorizontalAlignment;
+            replacementHost.VerticalAlignment = originalHost.VerticalAlignment;
+        }
+
+        private void MoveHostProperties(bool resetting)
+        {
+            Decorator fromDecorator = resetting ? _shimFindToolbarHost : _originalFindToolBarHost;
+            Decorator toDecorator = resetting ? _originalFindToolBarHost : _shimFindToolbarHost;
             toDecorator.Visibility = fromDecorator.Visibility;
             KeyboardNavigation.SetTabNavigation(toDecorator, KeyboardNavigation.GetTabNavigation(fromDecorator));
             FocusManager.SetIsFocusScope(toDecorator, FocusManager.GetIsFocusScope(fromDecorator));
@@ -339,6 +379,15 @@ namespace StylableFindFlowDocumentReader
             }
 
             element.Style = style;
+        }
+
+        protected override void SwitchViewingModeCore(FlowDocumentReaderViewingMode viewingMode)
+        {
+            base.SwitchViewingModeCore(viewingMode);
+            if(viewingMode == FlowDocumentReaderViewingMode.Scroll)
+            {
+                TrySetVerticalScrollbarVisibility(VerticalScrollbarVisibility);
+            }
         }
     }
 }

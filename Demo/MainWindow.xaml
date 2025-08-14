@@ -5,61 +5,188 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:local="clr-namespace:Demo"
-  xmlns:sys="clr-namespace:StylableFindFlowDocumentReader;assembly=StylableFindFlowDocumentReader"
+  xmlns:sfdr="clr-namespace:StylableFindFlowDocumentReader;assembly=StylableFindFlowDocumentReader"
   Title="MainWindow"
   Width="800"
   Height="450"
+  Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainBackground}"
+  Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
   mc:Ignorable="d">
-    <Grid>
-        <sys:FindRestylingFlowDocumentReader x:Name="FindRestylingFlowDocumentReader">
-            <sys:FindRestylingFlowDocumentReader.InputBindings>
-                <KeyBinding Command="ApplicationCommands.Find" Modifiers="Ctrl" Key="F" />
-                <KeyBinding Command="NavigationCommands.NextPage" Modifiers="Ctrl" Key="N" />
-                <KeyBinding Command="NavigationCommands.PreviousPage" Modifiers="Ctrl" Key="P" />
-            </sys:FindRestylingFlowDocumentReader.InputBindings>
-      <sys:FindRestylingFlowDocumentReader.Document>
-        <FlowDocument>
+  <Window.Resources />
+  <DockPanel
+    LastChildFill="True">
+    <StackPanel
+      DockPanel.Dock="Top"
+      Margin="5"
+      Orientation="Horizontal">
+      <StackPanel.Resources>
+        <Style
+          x:Key="radioButtonFocusVisualStryle">
+          <Setter Property="Control.Template">
+            <Setter.Value>
+              <ControlTemplate>
+                <Rectangle
+                  Margin="19,0,0,0"
+                  SnapsToDevicePixels="true"
+                  Stroke="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
+                  StrokeDashArray="1 2"
+                  StrokeThickness="1" />
+              </ControlTemplate>
+            </Setter.Value>
+          </Setter>
+        </Style>
+        <Style
+          TargetType="{x:Type RadioButton}">
+          <Setter Property="Control.Background" Value="Transparent" />
+          <Setter Property="Control.BorderBrush" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}" />
+          <Setter Property="Control.Foreground" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}" />
+          <Setter Property="Control.BorderThickness" Value="2" />
+          <Setter Property="Control.FocusVisualStyle" Value="{StaticResource radioButtonFocusVisualStryle}" />
+          <Setter Property="Control.Template">
+            <Setter.Value>
+              <ControlTemplate
+                TargetType="{x:Type RadioButton}">
+                <Grid x:Name="templateRoot"
+                  Background="Transparent"
+                  SnapsToDevicePixels="true">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                      Width="Auto" />
+                    <ColumnDefinition
+                      Width="*" />
+                  </Grid.ColumnDefinitions>
+                  <Border x:Name="radioButtonBorder"
+                    Margin="1,1,2,1"
+                    HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                    VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                    Background="{TemplateBinding Control.Background}"
+                    BorderBrush="{TemplateBinding Control.BorderBrush}"
+                    BorderThickness="{TemplateBinding Control.BorderThickness}"
+                    CornerRadius="100">
+                    <Grid x:Name="markGrid"
+                      Margin="2">
+                      <Ellipse x:Name="optionMark"
+                        MinWidth="6"
+                        MinHeight="6"
+                        Fill="{TemplateBinding Control.Foreground}"
+                        Opacity="0" />
+                    </Grid>
+                  </Border>
+                  <ContentPresenter x:Name="contentPresenter"
+                    Grid.Column="1"
+                    Margin="{TemplateBinding Control.Padding}"
+                    HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                    VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                    Focusable="false"
+                    RecognizesAccessKey="true"
+                    SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                </Grid>
+                <ControlTemplate.Triggers>
+                  <Trigger Property="ContentControl.HasContent" Value="true">
+
+                    <Setter Property="Control.Padding" Value="4,-1,0,0" />
+                  </Trigger>
+
+                  <Trigger Property="ToggleButton.IsChecked" Value="true">
+                    <Setter TargetName="optionMark" Property="UIElement.Opacity" Value="1" />
+                  </Trigger>
+                  <Trigger Property="ToggleButton.IsChecked" Value="{x:Null}">
+                    <Setter TargetName="optionMark" Property="UIElement.Opacity" Value="0.56" />
+                  </Trigger>
+                </ControlTemplate.Triggers>
+              </ControlTemplate>
+            </Setter.Value>
+          </Setter>
+        </Style>
+      </StackPanel.Resources>
+      <RadioButton
+        Content="Blue"
+        IsChecked="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=LeftPaletteSelected}" />
+      <RadioButton
+        Margin="5,0,0,0"
+        Content="Pink"
+        IsChecked="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=RightPaletteSelected}" />
+    </StackPanel>
+    <sfdr:FindRestylingFlowDocumentReader x:Name="FindRestylingFlowDocumentReader"
+      Grid.Row="1"
+      Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainBackground}"
+      Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
+      BorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
+      BorderThickness="1"
+      SelectionBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
+      VerticalScrollbarVisibility="Hidden">
+      <sfdr:FindRestylingFlowDocumentReader.Resources>
+        <Style
+          TargetType="FlowDocumentScrollViewer">
+          <Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
+        </Style>
+      </sfdr:FindRestylingFlowDocumentReader.Resources>
+      <sfdr:FindRestylingFlowDocumentReader.InputBindings>
+        <KeyBinding
+          Key="F"
+          Command="ApplicationCommands.Find"
+          Modifiers="Ctrl" />
+        <KeyBinding
+          Key="N"
+          Command="NavigationCommands.NextPage"
+          Modifiers="Ctrl" />
+        <KeyBinding
+          Key="P"
+          Command="NavigationCommands.PreviousPage"
+          Modifiers="Ctrl" />
+      </sfdr:FindRestylingFlowDocumentReader.InputBindings>
+      <sfdr:FindRestylingFlowDocumentReader.Document>
+        <FlowDocument
+          Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainBackground}"
+          Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
+          IsHyphenationEnabled="True"
+          IsOptimalParagraphEnabled="True">
           <Paragraph>
             <Run
               Text="This is a simple example of a FlowDocumentReader with a stylable Find area." />
           </Paragraph>
-         </FlowDocument>
-      </sys:FindRestylingFlowDocumentReader.Document>
-      <sys:FindRestylingFlowDocumentReader.FindToolbarContent>
-        <Border
-          Margin="5,1,0,1"
-          Padding="0"
-          BorderBrush="Pink"
-          BorderThickness="5"
-          SnapsToDevicePixels="true">
-          <StackPanel
-            Background="LightGray"
-            Orientation="Horizontal">
-            <sys:FindTextBox
-              Foreground="Black"
-              HintText="Do it" />
-            <sys:FindNextPreviousButtons
-              Foreground="Blue" />
-            <sys:FindMenu
-              DropDownGlyphBrush="Lime"
-              DropDownGlyphDisabledBrush="Gray"
-              DropDownStateBackground="Red"
-              DropDownStateBorder="Yellow"
-              DropDownStateGlyph="Black"
-              MenuBackground="Black"
-              MenuBorder="Lime"
-              MenuItemBackground="DeepPink"
-              MenuItemBorderBrush="White"
-              MenuItemForeground="White"
-              MenuItemHoverBackground="Orange"
-              MenuItemHoverBorderBrush="Black"
-              MenuItemHoverForeground="Black"
-              SelectedGlyphBackground="DeepPink"
-              SelectedGlyphBorder="White"
-              SelectedGlyphBrush="White" />
-          </StackPanel>
-        </Border>
-      </sys:FindRestylingFlowDocumentReader.FindToolbarContent>
-    </sys:FindRestylingFlowDocumentReader>
-  </Grid>
+          <Paragraph>
+            <Run
+              Text="etc etc etc etc etc etc etc" />
+          </Paragraph>
+        </FlowDocument>
+      </sfdr:FindRestylingFlowDocumentReader.Document>
+      <sfdr:FindRestylingFlowDocumentReader.FindToolbarContent>
+        <sfdr:FindToolBar>
+          <Border
+            Margin="5,1,0,1"
+            Padding="0"
+            BorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Border}"
+            BorderThickness="1"
+            SnapsToDevicePixels="true">
+            <StackPanel
+              Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Background}"
+              Orientation="Horizontal">
+              <sfdr:FindTextBox
+                Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Text}"
+                HintText="Do it" />
+              <sfdr:FindNextPreviousButtons
+                Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.PrevNext}" />
+              <sfdr:FindMenu
+                DropDownGlyphBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownGlyphBrush}"
+                DropDownStateBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateBackground}"
+                DropDownStateBorder="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateBorder}"
+                DropDownStateGlyph="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateGlyph}"
+                MenuBackground="Black"
+                MenuBorder="Lime"
+                MenuItemBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemBackground}"
+                MenuItemBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemBorderBrush}"
+                MenuItemForeground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemForeground}"
+                MenuItemHoverBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHoverBackground}"
+                MenuItemHoverBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHoverBorderBrush}"
+                MenuItemHoverForeground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHoverForeground}"
+                SelectedGlyphBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBackground}"
+                SelectedGlyphBorder="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBorder}"
+                SelectedGlyphBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBrush}" />
+            </StackPanel>
+          </Border>
+        </sfdr:FindToolBar>
+      </sfdr:FindRestylingFlowDocumentReader.FindToolbarContent>
+    </sfdr:FindRestylingFlowDocumentReader>
+  </DockPanel>
 </Window>

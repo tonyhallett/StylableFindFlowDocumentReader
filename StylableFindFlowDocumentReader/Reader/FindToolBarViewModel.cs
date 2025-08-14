@@ -125,7 +125,14 @@ namespace StylableFindFlowDocumentReader
 
                 _isSearchUp = value;
                 OnPropertyChanged(nameof(IsSearchUp));
+                OnPropertyChanged(nameof(IsSearchDown));
             }
+        }
+
+        public bool IsSearchDown
+        {
+            get => !IsSearchUp;
+            
         }
 
         public ICommand NextCommand { get; }

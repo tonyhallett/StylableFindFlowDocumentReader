@@ -32,7 +32,10 @@ There are two ways to use this control.
 
 Controls are provided for the parts of the find toolbar and are pretty much the same as the original.
 
-FindTextBox is a TextBox and a hint Label.  If you provide your own you need to bind to the FindToolBarViewModel FindText.
+FindToolbar - replicates the actual find toolbar.  Just add your controls inside.
+
+FindTextBox is a TextBox and a hint Label.  If you provide your own you need to bind to the FindToolBarViewModel FindText as well as
+setting `x:Name="findTextBox"`
 
 Dependency properties.
 | Property | Default value |
@@ -43,8 +46,8 @@ Dependency properties.
 | HintOpacity | 0.7 |
 | HintFontStyle | FontStyles.Italic |
 | TextBoxWidth | 183 |
-| Background | Brushes.Transparent |
-| Foreground | Brushes.Black |
+| Background | Default |
+| Foreground | Default |
 
 FindNextPreviousButtons.  If you provide your own you need to bind to the FindToolBarViewModel NextCommand and PreviousCommand.
 
@@ -54,7 +57,10 @@ Dependency properties.
 | ShowTooltips | true |
 | FindNextTooltip | "Find Next" |
 | FindPreviousTooltip | "Find Previous" |
-| Foreground ( icon colour ) | Brushes.Black |
+| Foreground ( icon colour ) | Default |
+
+The FindToolBarViewModel also has IsSearchUp and IsSearchDown properties if you want to style your own buttons.
+
 
 FindMenu. If you provide your own your MenuItem options need to bind to the FindToolBarViewModel properties:
 MatchWholeWord
@@ -127,3 +133,18 @@ This fills the gap - specify a KeyBinding in the XAML - e.g
 </FindRestylingFlowDocumentReader.InputBindings>
 ```
 Also supports ``NavigationCommands.LastPage`` and ``NavigationCommands.FirstPage``.
+
+## Protected methods
+
+The FindRestylingFlowDocumentReader has some protected methods that can be overridden.
+
+To function, the PART_FindToolBarHost, which by default is 
+```xaml
+<Border x:Name="PART_FindToolBarHost" VerticalAlignment="Center"
+        HorizontalAlignment="Left" Visibility="Collapsed"/>
+```
+has to be replaced with another decorator that has a conditional `Child` property.
+When called for WPF rendering, the `Child` property is the original host with child the FindToolbarContent.
+If the wrapping decorator needs properties then override CopyHostProperties.
+
+`DoDispatch` used for focusing the textbox when the toolbar is shown. Defaults to `Dispatcher.BeginInvoke(action, DispatcherPriority.Background)`
