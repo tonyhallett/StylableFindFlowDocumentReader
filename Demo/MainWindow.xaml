@@ -116,8 +116,6 @@
     </StackPanel>
     <sfdr:FindRestylingFlowDocumentReader x:Name="FindRestylingFlowDocumentReader"
       Grid.Row="1"
-      Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainBackground}"
-      Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
       BorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
       BorderThickness="1"
       SelectionBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
@@ -143,11 +141,7 @@
           Modifiers="Ctrl" />
       </sfdr:FindRestylingFlowDocumentReader.InputBindings>
       <sfdr:FindRestylingFlowDocumentReader.Document>
-        <FlowDocument
-          Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainBackground}"
-          Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
-          IsHyphenationEnabled="True"
-          IsOptimalParagraphEnabled="True">
+        <FlowDocument>
           <Paragraph>
             <Run
               Text="This is a simple example of a FlowDocumentReader with a stylable Find area." />
