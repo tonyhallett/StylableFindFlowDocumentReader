@@ -8,24 +8,6 @@ namespace StylableFindFlowDocumentReader
     /// </summary>
     public partial class FindTextBox : UserControl
     {
-        public double LabelOpacity
-        {
-            get { return (double)GetValue(LabelOpacityProperty); }
-            set { SetValue(LabelOpacityProperty, value); }
-        }
-
-        public static readonly DependencyProperty LabelOpacityProperty =
-            DependencyProperty.Register(nameof(LabelOpacity), typeof(double), typeof(FindTextBox), new PropertyMetadata(0.7));
-
-        public FontStyle LabelFontStyle
-        {
-            get { return (FontStyle)GetValue(LabelFontStyleProperty); }
-            set { SetValue(LabelFontStyleProperty, value); }
-        }
-
-        public static readonly DependencyProperty LabelFontStyleProperty =
-            DependencyProperty.Register(nameof(LabelFontStyle), typeof(FontStyle), typeof(FindTextBox), new PropertyMetadata(FontStyles.Italic));
-
         public bool ShowTooltip
         {
             get { return (bool)GetValue(ShowTooltipProperty); }
@@ -61,6 +43,15 @@ namespace StylableFindFlowDocumentReader
 
         public static readonly DependencyProperty HintOpacityProperty =
             DependencyProperty.Register(nameof(HintOpacity), typeof(double), typeof(FindTextBox), new PropertyMetadata(0.7));
+
+        public FontStyle HintFontStyle
+        {
+            get { return (FontStyle)GetValue(HintFontStyleProperty); }
+            set { SetValue(HintFontStyleProperty, value); }
+        }
+
+        public static readonly DependencyProperty HintFontStyleProperty =
+            DependencyProperty.Register(nameof(HintFontStyle), typeof(FontStyle), typeof(FindTextBox), new PropertyMetadata(FontStyles.Italic));
 
         public double TextBoxWidth
         {
