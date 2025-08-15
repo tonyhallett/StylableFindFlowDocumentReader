@@ -12,21 +12,21 @@ namespace Demo
 
         public Brush DropDownGlyphBrush { get; set; }
         public Brush DropDownStateBackground { get; set; }
-        public Brush DropDownStateBorder { get; set; }
-        public Brush DropDownStateGlyph { get; set; }
+        public Brush DropDownStateBorderBrush { get; set; }
+        public Brush DropDownStateGlyphBrush { get; set; }
 
         public Brush MenuItemBackground { get; set; }
         public Brush MenuItemBorderBrush { get; set; }
         public Brush MenuItemForeground { get; set; }
         public Brush MenuBackground { get; set; }
-        public Brush MenuBorder { get; set; }
+        public Brush MenuBorderBrush { get; set; }
 
         public Brush MenuItemHighlightedBackground { get; set; }
         public Brush MenuItemHighlightedBorderBrush { get; set; }
         public Brush MenuItemHighlightedForeground { get; set; }
 
         public Brush SelectedGlyphBackground { get; set; }
-        public Brush SelectedGlyphBorder { get; set; }
+        public Brush SelectedGlyphBorderBrush { get; set; }
         public Brush SelectedGlyphBrush { get; set; }
 
         public Brush TooltipBackground { get; set; }

@@ -29,14 +29,14 @@ namespace StylableFindFlowDocumentReader
         public static readonly DependencyProperty MenuBackgroundProperty =
             DependencyProperty.Register(nameof(MenuBackground), typeof(Brush), typeof(FindMenu));
 
-        public Brush MenuBorder
+        public Brush MenuBorderBrush
         {
-            get { return (Brush)GetValue(MenuBorderProperty); }
-            set { SetValue(MenuBorderProperty, value); }
+            get { return (Brush)GetValue(MenuBorderBrushProperty); }
+            set { SetValue(MenuBorderBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty MenuBorderProperty =
-            DependencyProperty.Register(nameof(MenuBorder), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty MenuBorderBrushProperty =
+            DependencyProperty.Register(nameof(MenuBorderBrush), typeof(Brush), typeof(FindMenu));
 
         #region Selected menu item
         public Brush SelectedGlyphBrush
@@ -57,14 +57,14 @@ namespace StylableFindFlowDocumentReader
         public static readonly DependencyProperty SelectedGlyphBackgroundProperty =
             DependencyProperty.Register(nameof(SelectedGlyphBackground), typeof(Brush), typeof(FindMenu));
 
-        public Brush SelectedGlyphBorder
+        public Brush SelectedGlyphBorderBrush
         {
-            get { return (Brush)GetValue(SelectedGlyphBorderProperty); }
-            set { SetValue(SelectedGlyphBorderProperty, value); }
+            get { return (Brush)GetValue(SelectedGlyphBorderBrushProperty); }
+            set { SetValue(SelectedGlyphBorderBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty SelectedGlyphBorderProperty =
-            DependencyProperty.Register(nameof(SelectedGlyphBorder), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty SelectedGlyphBorderBrushProperty =
+            DependencyProperty.Register(nameof(SelectedGlyphBorderBrush), typeof(Brush), typeof(FindMenu));
         #endregion
 
         #region Menu item
@@ -134,50 +134,50 @@ namespace StylableFindFlowDocumentReader
         public static readonly DependencyProperty DropDownGlyphBrushProperty =
             DependencyProperty.Register(nameof(DropDownGlyphBrush), typeof(Brush), typeof(FindMenu));
 
-        public Brush DropDownGlyphMouseOver
+        public Brush DropDownGlyphMouseOverBrush
         {
-            get { return (Brush)GetValue(DropDownGlyphMouseOverProperty); }
-            set { SetValue(DropDownGlyphMouseOverProperty, value); }
+            get { return (Brush)GetValue(DropDownGlyphMouseOverBrushProperty); }
+            set { SetValue(DropDownGlyphMouseOverBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty DropDownGlyphMouseOverProperty =
-            DependencyProperty.Register(nameof(DropDownGlyphMouseOver), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty DropDownGlyphMouseOverBrushProperty =
+            DependencyProperty.Register(nameof(DropDownGlyphMouseOverBrush), typeof(Brush), typeof(FindMenu));
 
-        public Brush DropDownGlyphKeyboardFocused
+        public Brush DropDownGlyphFocusedBrush
         {
-            get { return (Brush)GetValue(DropDownGlyphKeyboardFocusedProperty); }
-            set { SetValue(DropDownGlyphKeyboardFocusedProperty, value); }
+            get { return (Brush)GetValue(DropDownGlyphFocusedBrushProperty); }
+            set { SetValue(DropDownGlyphFocusedBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty DropDownGlyphKeyboardFocusedProperty =
-            DependencyProperty.Register(nameof(DropDownGlyphKeyboardFocused), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty DropDownGlyphFocusedBrushProperty =
+            DependencyProperty.Register(nameof(DropDownGlyphFocusedBrush), typeof(Brush), typeof(FindMenu));
 
-        public Brush DropDownGlyphMouseOverFocused
+        public Brush DropDownGlyphMouseOverFocusedBrush
         {
-            get { return (Brush)GetValue(DropDownGlyphMouseOverFocusedProperty); }
-            set { SetValue(DropDownGlyphMouseOverFocusedProperty, value); }
+            get { return (Brush)GetValue(DropDownGlyphMouseOverFocusedBrushProperty); }
+            set { SetValue(DropDownGlyphMouseOverFocusedBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty DropDownGlyphMouseOverFocusedProperty =
-            DependencyProperty.Register(nameof(DropDownGlyphMouseOverFocused), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty DropDownGlyphMouseOverFocusedBrushProperty =
+            DependencyProperty.Register(nameof(DropDownGlyphMouseOverFocusedBrush), typeof(Brush), typeof(FindMenu));
 
-        public Brush DropDownGlyphPressed
+        public Brush DropDownGlyphPressedBrush
         {
-            get { return (Brush)GetValue(DropDownGlyphPressedProperty); }
-            set { SetValue(DropDownGlyphPressedProperty, value); }
+            get { return (Brush)GetValue(DropDownGlyphPressedBrushProperty); }
+            set { SetValue(DropDownGlyphPressedBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty DropDownGlyphPressedProperty =
-            DependencyProperty.Register(nameof(DropDownGlyphPressed), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty DropDownGlyphPressedBrushProperty =
+            DependencyProperty.Register(nameof(DropDownGlyphPressedBrush), typeof(Brush), typeof(FindMenu));
 
-        public Brush DropDownStateGlyph
+        public Brush DropDownStateGlyphBrush
         {
-            get { return (Brush)GetValue(DropDownStateGlyphProperty); }
-            set { SetValue(DropDownStateGlyphProperty, value); }
+            get { return (Brush)GetValue(DropDownStateGlyphBrushProperty); }
+            set { SetValue(DropDownStateGlyphBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty DropDownStateGlyphProperty =
-            DependencyProperty.Register(nameof(DropDownStateGlyph), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty DropDownStateGlyphBrushProperty =
+            DependencyProperty.Register(nameof(DropDownStateGlyphBrush), typeof(Brush), typeof(FindMenu));
 
         public Brush DropDownGlyphDisabledBrush
         {
@@ -218,14 +218,14 @@ namespace StylableFindFlowDocumentReader
         public static readonly DependencyProperty DropDownBackgroundMouseOverProperty =
             DependencyProperty.Register(nameof(DropDownBackgroundMouseOver), typeof(Brush), typeof(FindMenu));
 
-        public Brush DropDownBackgroundKeyboardFocused
+        public Brush DropDownBackgroundFocused
         {
-            get { return (Brush)GetValue(DropDownBackgroundKeyboardFocusedProperty); }
-            set { SetValue(DropDownBackgroundKeyboardFocusedProperty, value); }
+            get { return (Brush)GetValue(DropDownBackgroundFocusedProperty); }
+            set { SetValue(DropDownBackgroundFocusedProperty, value); }
         }
 
-        public static readonly DependencyProperty DropDownBackgroundKeyboardFocusedProperty =
-            DependencyProperty.Register(nameof(DropDownBackgroundKeyboardFocused), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty DropDownBackgroundFocusedProperty =
+            DependencyProperty.Register(nameof(DropDownBackgroundFocused), typeof(Brush), typeof(FindMenu));
 
         public Brush DropDownBackgroundMouseOverFocused
         {
@@ -236,50 +236,50 @@ namespace StylableFindFlowDocumentReader
         public static readonly DependencyProperty DropDownBackgroundMouseOverFocusedProperty =
             DependencyProperty.Register(nameof(DropDownBackgroundMouseOverFocused), typeof(Brush), typeof(FindMenu));
 
-        public Brush DropDownStateBorder
+        public Brush DropDownStateBorderBrush
         {
-            get { return (Brush)GetValue(DropDownStateBorderProperty); }
-            set { SetValue(DropDownStateBorderProperty, value); }
+            get { return (Brush)GetValue(DropDownStateBorderBrushProperty); }
+            set { SetValue(DropDownStateBorderBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty DropDownStateBorderProperty =
-            DependencyProperty.Register(nameof(DropDownStateBorder), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty DropDownStateBorderBrushProperty =
+            DependencyProperty.Register(nameof(DropDownStateBorderBrush), typeof(Brush), typeof(FindMenu));
 
-        public Brush DropDownBorderPressed
+        public Brush DropDownBorderPressedBrush
         {
-            get { return (Brush)GetValue(DropDownBorderPressedProperty); }
-            set { SetValue(DropDownBorderPressedProperty, value); }
+            get { return (Brush)GetValue(DropDownBorderPressedBrushProperty); }
+            set { SetValue(DropDownBorderPressedBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty DropDownBorderPressedProperty =
-            DependencyProperty.Register(nameof(DropDownBorderPressed), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty DropDownBorderPressedBrushProperty =
+            DependencyProperty.Register(nameof(DropDownBorderPressedBrush), typeof(Brush), typeof(FindMenu));
 
-        public Brush DropDownBorderMouseOver
+        public Brush DropDownBorderMouseOverBrush
         {
-            get { return (Brush)GetValue(DropDownBorderMouseOverProperty); }
-            set { SetValue(DropDownBorderMouseOverProperty, value); }
+            get { return (Brush)GetValue(DropDownBorderMouseOverBrushProperty); }
+            set { SetValue(DropDownBorderMouseOverBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty DropDownBorderMouseOverProperty =
-            DependencyProperty.Register(nameof(DropDownBorderMouseOver), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty DropDownBorderMouseOverBrushProperty =
+            DependencyProperty.Register(nameof(DropDownBorderMouseOverBrush), typeof(Brush), typeof(FindMenu));
 
-        public Brush DropDownBorderKeyboardFocused
+        public Brush DropDownBorderFocusedBrush
         {
-            get { return (Brush)GetValue(DropDownBorderKeyboardFocusedProperty); }
-            set { SetValue(DropDownBorderKeyboardFocusedProperty, value); }
+            get { return (Brush)GetValue(DropDownBorderFocusedBrushProperty); }
+            set { SetValue(DropDownBorderFocusedBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty DropDownBorderKeyboardFocusedProperty =
-            DependencyProperty.Register(nameof(DropDownBorderKeyboardFocused), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty DropDownBorderFocusedBrushProperty =
+            DependencyProperty.Register(nameof(DropDownBorderFocusedBrush), typeof(Brush), typeof(FindMenu));
 
-        public Brush DropDownBorderMouseOverFocused
+        public Brush DropDownBorderMouseOverFocusedBrush
         {
-            get { return (Brush)GetValue(DropDownBorderMouseOverFocusedProperty); }
-            set { SetValue(DropDownBorderMouseOverFocusedProperty, value); }
+            get { return (Brush)GetValue(DropDownBorderMouseOverFocusedBrushProperty); }
+            set { SetValue(DropDownBorderMouseOverFocusedBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty DropDownBorderMouseOverFocusedProperty =
-            DependencyProperty.Register(nameof(DropDownBorderMouseOverFocused), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty DropDownBorderMouseOverFocusedBrushProperty =
+            DependencyProperty.Register(nameof(DropDownBorderMouseOverFocusedBrush), typeof(Brush), typeof(FindMenu));
 
         #region Tooltip
         public string DropDownTooltip

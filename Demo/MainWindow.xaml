@@ -173,18 +173,18 @@
               <sfdr:FindMenu
                 DropDownGlyphBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownGlyphBrush}"
                 DropDownStateBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateBackground}"
-                DropDownStateBorder="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateBorder}"
-                DropDownStateGlyph="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateGlyph}"
+                DropDownStateBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateBorderBrush}"
+                DropDownStateGlyphBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateGlyphBrush}"
                 MenuBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuBackground}"
-                MenuBorder="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuBorder}"
+                MenuBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuBorderBrush}"
                 MenuItemBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemBackground}"
                 MenuItemBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemBorderBrush}"
                 MenuItemForeground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemForeground}"
                 MenuItemHighlightedBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHighlightedBackground}"
                 MenuItemHighlightedBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHighlightedBorderBrush}"
-                MenuItemHHighlightedForeground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHighlightedForeground}"
+                MenuItemHighlightedForeground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHighlightedForeground}"
                 SelectedGlyphBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBackground}"
-                SelectedGlyphBorder="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBorder}"
+                SelectedGlyphBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBorderBrush}"
                 SelectedGlyphBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBrush}" />
             </StackPanel>
           </Border>

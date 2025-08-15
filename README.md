@@ -82,7 +82,7 @@ IsPressed trigger.
 | Property | Default value |
 | --- | --- |
 | MenuBackground | null |
-| MenuBorder | null |
+| MenuBorderBrush | null |
 | MenuItemBackground | null |
 | MenuItemHighlightedBackground | null |
 | MenuItemForeground | null |
@@ -91,24 +91,24 @@ IsPressed trigger.
 | MenuItemHighlightedBorderBrush | null |
 | SelectedGlyphBrush | null |
 | SelectedGlyphBackground | null |
-| SelectedGlyphBorder | null |
+| SelectedGlyphBorderBrush | null |
 | DropDownGlyphBrush | null |
-| DropDownGlyphMouseOver | null |
-| DropDownGlyphKeyboardFocused | null |
-| DropDownGlyphMouseOverFocused | null |
-| DropDownGlyphPressed | null |
-| DropDownStateGlyph | null |
+| DropDownGlyphMouseOverBrush | null |
+| DropDownGlyphFocusedBrush | null |
+| DropDownGlyphMouseOverFocusedBrush | null |
+| DropDownGlyphPressedBrush | null |
+| DropDownStateGlyphBrush | null |
 | DropDownGlyphDisabledBrush | null |
 | DropDownStateBackground | null |
 | DropDownBackgroundPressed | null |
 | DropDownBackgroundMouseOver | null |
-| DropDownBackgroundKeyboardFocused | null |
+| DropDownBackgroundFocused | null |
 | DropDownBackgroundMouseOverFocused | null |
-| DropDownStateBorder | null |
-| DropDownBorderPressed | null |
-| DropDownBorderMouseOver | null |
-| DropDownBorderKeyboardFocused | null |
-| DropDownBorderMouseOverFocused | null |
+| DropDownStateBorderBrush | null |
+| DropDownBorderPressedBrush | null |
+| DropDownBorderMouseOverBrush | null |
+| DropDownBorderFocusedBrush | null |
+| DropDownBorderMouseOverFocusedBrush | null |
 | DropDownTooltip | "Find..." |
 | ShowDropDownTooltip | true |
 

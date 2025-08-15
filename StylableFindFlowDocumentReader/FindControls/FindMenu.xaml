@@ -64,7 +64,7 @@
                       <Border
                         Name="SubMenuBorder"
                         Background="{Binding RelativeSource={RelativeSource AncestorType=local:FindMenu}, Path=MenuBackground}"
-                        BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=local:FindMenu}, Path=MenuBorder}"
+                        BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=local:FindMenu}, Path=MenuBorderBrush}"
                         BorderThickness="1" />
                       <ScrollViewer
                         Margin="1"
@@ -103,10 +103,10 @@
                       <PriorityBinding>
                         <Binding
                           Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
-                          Path="DropDownBorderMouseOver"
+                          Path="DropDownBorderMouseOverBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                         <Binding
-                          Path="DropDownStateBorder"
+                          Path="DropDownStateBorderBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                       </PriorityBinding>
                     </Setter.Value>
@@ -116,10 +116,10 @@
                       <PriorityBinding>
                         <Binding
                           Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
-                          Path="DropDownGlyphMouseOver"
+                          Path="DropDownGlyphMouseOverBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                         <Binding
-                          Path="DropDownStateGlyph"
+                          Path="DropDownStateGlyphBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                       </PriorityBinding>
                     </Setter.Value>
@@ -131,7 +131,7 @@
                       <PriorityBinding>
                         <Binding
                           Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
-                          Path="DropDownBackgroundKeyboardFocused"
+                          Path="DropDownBackgroundFocusedBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                         <Binding
                           Path="DropDownStateBackground"
@@ -144,10 +144,10 @@
                       <PriorityBinding>
                         <Binding
                           Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
-                          Path="DropDownBorderKeyboardFocused"
+                          Path="DropDownBorderFocusedBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                         <Binding
-                          Path="DropDownStateBorder"
+                          Path="DropDownStateBorderBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                       </PriorityBinding>
                     </Setter.Value>
@@ -157,10 +157,10 @@
                       <PriorityBinding>
                         <Binding
                           Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
-                          Path="DropDownGlyphKeyboardFocused"
+                          Path="DropDownGlyphFocusedBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                         <Binding
-                          Path="DropDownStateGlyph"
+                          Path="DropDownStateGlyphBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                       </PriorityBinding>
                     </Setter.Value>
@@ -189,10 +189,10 @@
                       <PriorityBinding>
                         <Binding
                           Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
-                          Path="DropDownBorderMouseOverFocused"
+                          Path="DropDownBorderMouseOverFocusedBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                         <Binding
-                          Path="DropDownStateBorder"
+                          Path="DropDownStateBorderBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                       </PriorityBinding>
                     </Setter.Value>
@@ -202,10 +202,10 @@
                       <PriorityBinding>
                         <Binding
                           Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
-                          Path="DropDownGlyphMouseOverFocused"
+                          Path="DropDownGlyphMouseOverFocusedBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                         <Binding
-                          Path="DropDownStateGlyph"
+                          Path="DropDownStateGlyphBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                       </PriorityBinding>
                     </Setter.Value>
@@ -230,10 +230,10 @@
                       <PriorityBinding>
                         <Binding
                           Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
-                          Path="DropDownBorderPressed"
+                          Path="DropDownBorderPressedBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                         <Binding
-                          Path="DropDownStateBorder"
+                          Path="DropDownStateBorderBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                       </PriorityBinding>
                     </Setter.Value>
@@ -243,10 +243,10 @@
                       <PriorityBinding>
                         <Binding
                           Converter="{StaticResource ResourceKey=NullToUnsetValueConverter}"
-                          Path="DropDownGlyphPressed"
+                          Path="DropDownGlyphPressedBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                         <Binding
-                          Path="DropDownStateGlyph"
+                          Path="DropDownStateGlyphBrush"
                           RelativeSource="{RelativeSource AncestorType=local:FindMenu}" />
                       </PriorityBinding>
                     </Setter.Value>
@@ -301,7 +301,7 @@
               HorizontalAlignment="Center"
               VerticalAlignment="Center"
               Background="{Binding RelativeSource={RelativeSource AncestorType=local:FindMenu}, Path=SelectedGlyphBackground}"
-              BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=local:FindMenu}, Path=SelectedGlyphBorder}"
+              BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=local:FindMenu}, Path=SelectedGlyphBorderBrush}"
               BorderThickness="1"
               ClipToBounds="false"
               Visibility="Hidden">
