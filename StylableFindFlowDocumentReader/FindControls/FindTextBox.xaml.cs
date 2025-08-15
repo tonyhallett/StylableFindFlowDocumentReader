@@ -9,6 +9,29 @@ namespace StylableFindFlowDocumentReader
     /// </summary>
     public partial class FindTextBox : UserControl
     {
+        static FindTextBox()
+        {
+            SelectionBrushProperty = TextBox.SelectionBrushProperty.AddOwner(typeof(FindTextBox));
+
+            SelectionOpacityProperty = TextBox.SelectionOpacityProperty.AddOwner(typeof(FindTextBox));
+        }
+
+        // SelectionBrush
+        public static readonly DependencyProperty SelectionBrushProperty;
+        public Brush SelectionBrush
+        {
+            get => (Brush)GetValue(SelectionBrushProperty);
+            set => SetValue(SelectionBrushProperty, value);
+        }
+
+        // SelectionOpacity
+        public static readonly DependencyProperty SelectionOpacityProperty;
+        public double SelectionOpacity
+        {
+            get => (double)GetValue(SelectionOpacityProperty);
+            set => SetValue(SelectionOpacityProperty, value);
+        }
+
         public bool ShowTooltip
         {
             get { return (bool)GetValue(ShowTooltipProperty); }

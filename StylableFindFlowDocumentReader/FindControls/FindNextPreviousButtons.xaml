@@ -51,6 +51,7 @@
     </StackPanel.Resources>
     <Button
       Command="{Binding PreviousCommand}"
+      FocusVisualStyle="{Binding ElementName=fnpbs, Path=FocusVisualStyle}"
       ToolTip="{Binding ElementName=fnpbs, Path=FindPreviousTooltip}"
       ToolTipService.IsEnabled="{Binding ElementName=fnpbs, Path=ShowTooltips}"
       ToolTipService.ShowOnDisabled="true">
@@ -67,6 +68,7 @@
 
     <Button
       Command="{Binding NextCommand}"
+      FocusVisualStyle="{Binding ElementName=fnpbs, Path=FocusVisualStyle}"
       ToolTip="{Binding ElementName=fnpbs, Path=FindNextTooltip}"
       ToolTipService.IsEnabled="{Binding ElementName=fnpbs, Path=ShowTooltips}"
       ToolTipService.ShowOnDisabled="true">

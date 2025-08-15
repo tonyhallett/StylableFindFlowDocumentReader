@@ -9,22 +9,26 @@
   Title="MainWindow"
   Width="800"
   Height="450"
-  FontFamily="{DynamicResource fontFamily}"
   Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainBackground}"
   Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
+  FontFamily="{DynamicResource fontFamily}"
   mc:Ignorable="d">
   <Window.Resources>
-    <FontFamily x:Key="fontFamily">Bauhaus 93</FontFamily>
+    <FontFamily
+      x:Key="fontFamily">
+      Bauhaus 93
+    </FontFamily>
     <Style
       TargetType="ToolTip">
       <Setter Property="Background" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.TooltipBackground}" />
       <Setter Property="Foreground" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.TooltipForeground}" />
       <Setter Property="BorderBrush" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.TooltipBorder}" />
-      <Setter Property="FontFamily" Value="Bauhaus 93"/>
-        </Style>
-        <Style TargetType="MenuItem">
-            <Setter Property="FontFamily" Value="Bauhaus 93"/>
-        </Style>
+      <Setter Property="FontFamily" Value="Bauhaus 93" />
+    </Style>
+    <Style
+      TargetType="MenuItem">
+      <Setter Property="FontFamily" Value="Bauhaus 93" />
+    </Style>
   </Window.Resources>
   <DockPanel
     LastChildFill="True">
@@ -147,12 +151,13 @@
           Modifiers="Ctrl" />
       </sfdr:FindRestylingFlowDocumentReader.InputBindings>
       <sfdr:FindRestylingFlowDocumentReader.Document>
-        <FlowDocument FontFamily="{StaticResource fontFamily}">
-                    <Paragraph>
-                        <Run
+        <FlowDocument
+          FontFamily="{StaticResource fontFamily}">
+          <Paragraph>
+            <Run
               Text="This is a simple example of a FlowDocumentReader with a stylable Find area." />
-                    </Paragraph>
-                </FlowDocument>
+          </Paragraph>
+        </FlowDocument>
       </sfdr:FindRestylingFlowDocumentReader.Document>
       <sfdr:FindRestylingFlowDocumentReader.FindToolbarContent>
         <sfdr:FindToolBar>
@@ -166,8 +171,10 @@
             <StackPanel
               Orientation="Horizontal">
               <sfdr:FindTextBox
+                Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Background}"
                 Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Text}"
-                HintText="Do it" />
+                HintText="Do it"
+                SelectionBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainBackground}" />
               <sfdr:FindNextPreviousButtons
                 Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.PrevNext}" />
               <sfdr:FindMenu

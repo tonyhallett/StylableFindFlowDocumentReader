@@ -48,7 +48,10 @@ Dependency properties.
 | HintOpacity | 0.7 |
 | HintFontStyle | FontStyles.Italic |
 | TextBoxWidth | 183 |
-| Foreground | Brushes.Black| 
+| Foreground | SystemColors.ControlTextBrush| 
+| Background | null ( for the caret ) |
+| SelectionBrush | TextBox.SelectionBrushProperty |
+| SelectionOpacity | TextBox.SelectionOpacityProperty |
 
 FindNextPreviousButtons.  If you provide your own you need to bind to the FindToolBarViewModel NextCommand and PreviousCommand.
 

@@ -16,6 +16,22 @@
       <local:DifferenceConverter
         x:Key="DifferenceConverter" />
     </Grid.Resources>
+    <TextBox x:Name="findTextBox"
+      Width="{Binding ElementName=ftb, Path=TextBoxWidth}"
+      Margin="0"
+      Padding="0"
+      HorizontalAlignment="Left"
+      VerticalAlignment="Center"
+      Background="{Binding ElementName=ftb, Path=Background}"
+      Foreground="{Binding ElementName=ftb, Path=Foreground}"
+      AllowDrop="True"
+      BorderThickness="0"
+      SelectionBrush="{Binding ElementName=ftb, Path=SelectionBrush}"
+      SelectionOpacity="{Binding ElementName=ftb, Path=SelectionOpacity}"
+      Text="{Binding FindText, UpdateSourceTrigger=PropertyChanged}"
+      ToolTip="{Binding ElementName=ftb, Path=Tooltip}"
+      ToolTipService.IsEnabled="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:FindTextBox}}, Path=ShowTooltip}"
+      ToolTipService.ShowOnDisabled="true" />
 
     <!--  Label acts as placeholder  -->
     <Label
@@ -24,27 +40,12 @@
       Padding="0,0,0,0"
       HorizontalAlignment="Left"
       VerticalAlignment="Center"
-      Background="Transparent"
+      Background="{Binding ElementName=ftb, Path=Background}"
       Foreground="{Binding ElementName=ftb, Path=Foreground}"
       Content="{Binding ElementName=ftb, Path=HintText}"
       FontStyle="{Binding ElementName=ftb, Path=HintFontStyle}"
       IsHitTestVisible="False"
       Opacity="{Binding ElementName=ftb, Path=HintOpacity}"
       Visibility="{Binding FindText, Converter={StaticResource ResourceKey=HintTextVisibilityConverter}}" />
-
-    <TextBox x:Name="findTextBox"
-      Width="{Binding ElementName=ftb, Path=TextBoxWidth}"
-      Margin="0"
-      Padding="0"
-      HorizontalAlignment="Left"
-      VerticalAlignment="Center"
-      Background="Transparent"
-      Foreground="{Binding ElementName=ftb, Path=Foreground}"
-      AllowDrop="True"
-      BorderThickness="0"
-      Text="{Binding FindText, UpdateSourceTrigger=PropertyChanged}"
-      ToolTip="{Binding ElementName=ftb, Path=Tooltip}"
-      ToolTipService.IsEnabled="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:FindTextBox}}, Path=ShowTooltip}"
-      ToolTipService.ShowOnDisabled="true" />
   </Grid>
 </UserControl>

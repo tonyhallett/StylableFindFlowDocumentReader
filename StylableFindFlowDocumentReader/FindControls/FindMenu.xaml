@@ -29,6 +29,7 @@
         <Setter Property="FrameworkElement.Margin" Value="0,0,1,0" />
         <Setter Property="Control.Padding" Value="0" />
         <Setter Property="Control.BorderBrush" Value="Transparent" />
+        <Setter Property="FocusVisualStyle" Value="{Binding RelativeSource={RelativeSource AncestorType=local:FindMenu}, Path=DropDownFocusVisualStyle}" />
         <Setter Property="Control.Template">
           <Setter.Value>
             <ControlTemplate
@@ -343,9 +344,9 @@
             <Setter TargetName="Icon" Property="UIElement.Visibility" Value="Collapsed" />
           </Trigger>
           <Trigger Property="MenuItem.IsHighlighted" Value="true">
-            <Setter TargetName="templateRoot" Property="Border.Background" Value="{Binding RelativeSource={RelativeSource AncestorType=local:FindMenu}, Path=MenuItemHoverBackground}" />
-            <Setter TargetName="templateRoot" Property="Border.BorderBrush" Value="{Binding RelativeSource={RelativeSource AncestorType=local:FindMenu}, Path=MenuItemHoverBorderBrush}" />
-            <Setter TargetName="templateRoot" Property="TextElement.Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType=local:FindMenu}, Path=MenuItemHoverForeground}" />
+            <Setter TargetName="templateRoot" Property="Border.Background" Value="{Binding RelativeSource={RelativeSource AncestorType=local:FindMenu}, Path=MenuItemHighlightedBackground}" />
+            <Setter TargetName="templateRoot" Property="Border.BorderBrush" Value="{Binding RelativeSource={RelativeSource AncestorType=local:FindMenu}, Path=MenuItemHighlightedBorderBrush}" />
+            <Setter TargetName="templateRoot" Property="TextElement.Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType=local:FindMenu}, Path=MenuItemHighlightedForeground}" />
           </Trigger>
           <Trigger Property="UIElement.IsEnabled" Value="false">
             <Setter TargetName="templateRoot" Property="TextElement.Foreground" Value="Gray" />

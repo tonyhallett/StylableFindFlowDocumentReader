@@ -104,6 +104,11 @@ namespace StylableFindFlowDocumentReader
                 return;
             }
 
+            ShimOrStyle();
+        }
+
+        private void ShimOrStyle()
+        {
             if (!(_originalFindToolBarHost.Child is ToolBar findToolBar))
             {
                 return;

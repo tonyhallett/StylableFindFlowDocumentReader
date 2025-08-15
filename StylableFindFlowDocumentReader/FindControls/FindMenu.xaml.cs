@@ -272,6 +272,16 @@ namespace StylableFindFlowDocumentReader
         public static readonly DependencyProperty DropDownBorderFocusedBrushProperty =
             DependencyProperty.Register(nameof(DropDownBorderFocusedBrush), typeof(Brush), typeof(FindMenu));
 
+        public Style DropDownFocusVisualStyle
+        {
+            get { return (Style)GetValue(DropDownFocusVisualStyleProperty); }
+            set { SetValue(DropDownFocusVisualStyleProperty, value); }
+        }
+
+        public static readonly DependencyProperty DropDownFocusVisualStyleProperty =
+            DependencyProperty.Register(nameof(DropDownFocusVisualStyle), typeof(Style), typeof(FindMenu), new PropertyMetadata(null));
+
+
         public Brush DropDownBorderMouseOverFocusedBrush
         {
             get { return (Brush)GetValue(DropDownBorderMouseOverFocusedBrushProperty); }
