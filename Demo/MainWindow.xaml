@@ -9,16 +9,22 @@
   Title="MainWindow"
   Width="800"
   Height="450"
+  FontFamily="{DynamicResource fontFamily}"
   Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainBackground}"
   Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
   mc:Ignorable="d">
   <Window.Resources>
+    <FontFamily x:Key="fontFamily">Bauhaus 93</FontFamily>
     <Style
       TargetType="ToolTip">
       <Setter Property="Background" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.TooltipBackground}" />
       <Setter Property="Foreground" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.TooltipForeground}" />
       <Setter Property="BorderBrush" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.TooltipBorder}" />
-    </Style>
+      <Setter Property="FontFamily" Value="Bauhaus 93"/>
+        </Style>
+        <Style TargetType="MenuItem">
+            <Setter Property="FontFamily" Value="Bauhaus 93"/>
+        </Style>
   </Window.Resources>
   <DockPanel
     LastChildFill="True">
@@ -141,16 +147,12 @@
           Modifiers="Ctrl" />
       </sfdr:FindRestylingFlowDocumentReader.InputBindings>
       <sfdr:FindRestylingFlowDocumentReader.Document>
-        <FlowDocument>
-          <Paragraph>
-            <Run
+        <FlowDocument FontFamily="{StaticResource fontFamily}">
+                    <Paragraph>
+                        <Run
               Text="This is a simple example of a FlowDocumentReader with a stylable Find area." />
-          </Paragraph>
-          <Paragraph>
-            <Run
-              Text="etc etc etc etc etc etc etc" />
-          </Paragraph>
-        </FlowDocument>
+                    </Paragraph>
+                </FlowDocument>
       </sfdr:FindRestylingFlowDocumentReader.Document>
       <sfdr:FindRestylingFlowDocumentReader.FindToolbarContent>
         <sfdr:FindToolBar>
@@ -173,14 +175,14 @@
                 DropDownStateBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateBackground}"
                 DropDownStateBorder="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateBorder}"
                 DropDownStateGlyph="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateGlyph}"
-                MenuBackground="Black"
-                MenuBorder="Lime"
+                MenuBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuBackground}"
+                MenuBorder="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuBorder}"
                 MenuItemBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemBackground}"
                 MenuItemBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemBorderBrush}"
                 MenuItemForeground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemForeground}"
-                MenuItemHoverBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHoverBackground}"
-                MenuItemHoverBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHoverBorderBrush}"
-                MenuItemHoverForeground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHoverForeground}"
+                MenuItemHighlightedBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHighlightedBackground}"
+                MenuItemHighlightedBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHighlightedBorderBrush}"
+                MenuItemHHighlightedForeground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHighlightedForeground}"
                 SelectedGlyphBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBackground}"
                 SelectedGlyphBorder="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBorder}"
                 SelectedGlyphBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBrush}" />

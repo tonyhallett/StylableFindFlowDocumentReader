@@ -84,11 +84,11 @@ IsPressed trigger.
 | MenuBackground | null |
 | MenuBorder | null |
 | MenuItemBackground | null |
-| MenuItemHoverBackground | null |
+| MenuItemHighlightedBackground | null |
 | MenuItemForeground | null |
-| MenuItemHoverForeground | null |
+| MenuItemHighlightedForeground | null |
 | MenuItemBorderBrush | null |
-| MenuItemHoverBorderBrush | null |
+| MenuItemHighlightedBorderBrush | null |
 | SelectedGlyphBrush | null |
 | SelectedGlyphBackground | null |
 | SelectedGlyphBorder | null |

@@ -77,14 +77,14 @@ namespace StylableFindFlowDocumentReader
         public static readonly DependencyProperty MenuItemBackgroundProperty =
             DependencyProperty.Register(nameof(MenuItemBackground), typeof(Brush), typeof(FindMenu));
 
-        public Brush MenuItemHoverBackground
+        public Brush MenuItemHighlightedBackground
         {
-            get { return (Brush)GetValue(MenuItemHoverBackgroundProperty); }
-            set { SetValue(MenuItemHoverBackgroundProperty, value); }
+            get { return (Brush)GetValue(MenuItemHighlightedBackgroundProperty); }
+            set { SetValue(MenuItemHighlightedBackgroundProperty, value); }
         }
 
-        public static readonly DependencyProperty MenuItemHoverBackgroundProperty =
-            DependencyProperty.Register(nameof(MenuItemHoverBackground), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty MenuItemHighlightedBackgroundProperty =
+            DependencyProperty.Register(nameof(MenuItemHighlightedBackground), typeof(Brush), typeof(FindMenu));
 
         
         public Brush MenuItemForeground
@@ -96,14 +96,14 @@ namespace StylableFindFlowDocumentReader
         public static readonly DependencyProperty MenuItemForegroundProperty =
             DependencyProperty.Register(nameof(MenuItemForeground), typeof(Brush), typeof(FindMenu));
 
-        public Brush MenuItemHoverForeground
+        public Brush MenuItemHighlightedForeground
         {
-            get { return (Brush)GetValue(MenuItemHoverForegroundProperty); }
-            set { SetValue(MenuItemHoverForegroundProperty, value); }
+            get { return (Brush)GetValue(MenuItemHighlightedForegroundProperty); }
+            set { SetValue(MenuItemHighlightedForegroundProperty, value); }
         }
 
-        public static readonly DependencyProperty MenuItemHoverForegroundProperty =
-            DependencyProperty.Register(nameof(MenuItemHoverForeground), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty MenuItemHighlightedForegroundProperty =
+            DependencyProperty.Register(nameof(MenuItemHighlightedForeground), typeof(Brush), typeof(FindMenu));
 
         public Brush MenuItemBorderBrush
         {
@@ -114,14 +114,14 @@ namespace StylableFindFlowDocumentReader
         public static readonly DependencyProperty MenuItemBorderBrushProperty =
             DependencyProperty.Register(nameof(MenuItemBorderBrush), typeof(Brush), typeof(FindMenu));
 
-        public Brush MenuItemHoverBorderBrush
+        public Brush MenuItemHighlightedBorderBrush
         {
-            get { return (Brush)GetValue(MenuItemHoverBorderBrushProperty); }
-            set { SetValue(MenuItemHoverBorderBrushProperty, value); }
+            get { return (Brush)GetValue(MenuItemHighlightedBorderBrushProperty); }
+            set { SetValue(MenuItemHighlightedBorderBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty MenuItemHoverBorderBrushProperty =
-            DependencyProperty.Register(nameof(MenuItemHoverBorderBrush), typeof(Brush), typeof(FindMenu));
+        public static readonly DependencyProperty MenuItemHighlightedBorderBrushProperty =
+            DependencyProperty.Register(nameof(MenuItemHighlightedBorderBrush), typeof(Brush), typeof(FindMenu));
         #endregion
 
         #region Drop down

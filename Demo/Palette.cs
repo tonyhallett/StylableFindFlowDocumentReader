@@ -18,9 +18,12 @@ namespace Demo
         public Brush MenuItemBackground { get; set; }
         public Brush MenuItemBorderBrush { get; set; }
         public Brush MenuItemForeground { get; set; }
-        public Brush MenuItemHoverBackground { get; set; }
-        public Brush MenuItemHoverBorderBrush { get; set; }
-        public Brush MenuItemHoverForeground { get; set; }
+        public Brush MenuBackground { get; set; }
+        public Brush MenuBorder { get; set; }
+
+        public Brush MenuItemHighlightedBackground { get; set; }
+        public Brush MenuItemHighlightedBorderBrush { get; set; }
+        public Brush MenuItemHighlightedForeground { get; set; }
 
         public Brush SelectedGlyphBackground { get; set; }
         public Brush SelectedGlyphBorder { get; set; }
