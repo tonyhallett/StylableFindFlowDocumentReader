@@ -72,7 +72,7 @@ namespace StylableFindFlowDocumentReader
         {
             base.OnApplyTemplate();
             _originalFindToolBarHost = GetTemplateChild("PART_FindToolBarHost") as Decorator;
-             _contentHost = GetTemplateChild("PART_ContentHost") as Decorator;
+            _contentHost = GetTemplateChild("PART_ContentHost") as Decorator;
         }
 
         public bool IsShowingFindToolbar { get; private set; }

@@ -160,7 +160,7 @@
         </FlowDocument>
       </sfdr:FindRestylingFlowDocumentReader.Document>
       <sfdr:FindRestylingFlowDocumentReader.FindToolbarContent>
-        <sfdr:FindToolBar>
+        <sfdr:FindToolBar AutomationProperties.AutomationId="findToolBar">
           <Border
             Margin="5,1,0,1"
             Padding="0"
