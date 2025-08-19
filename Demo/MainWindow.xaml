@@ -6,7 +6,7 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:local="clr-namespace:Demo"
   xmlns:sfdr="clr-namespace:StylableFindFlowDocumentReader;assembly=StylableFindFlowDocumentReader"
-  Title="MainWindow"
+  Title="Styled Find Toolbar Demo"
   Width="800"
   Height="450"
   Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainBackground}"
@@ -160,7 +160,7 @@
         </FlowDocument>
       </sfdr:FindRestylingFlowDocumentReader.Document>
       <sfdr:FindRestylingFlowDocumentReader.FindToolbarContent>
-        <sfdr:FindToolBar AutomationProperties.AutomationId="findToolBar">
+        <sfdr:FindToolBar AutomationProperties.AutomationId="replacedfindToolBar">
           <Border
             Margin="5,1,0,1"
             Padding="0"

@@ -1,35 +1,40 @@
-﻿using FlaUI.Core.Input;
-using FlaUI.Core.WindowsAPI;
+﻿using UIAutomationHelpers;
 
 namespace UITests
 {
+    [TestFixture(false)]
+    [TestFixture(true)]
     public class ClosedFindToolbarTests : FindToolBarTestsBase
     {
+        public ClosedFindToolbarTests(bool isNormal):base(isNormal) { }
+
         [RequiresThread(ApartmentState.STA)]
         [Test]
-        public void Should_Replace_With_FindToolbarContent_When_Click_Find_Button()
+        public void Should_Show_Find_Toolbar_When_Click_Find_Button()
         {
-            var findButton = DemoAppFinder.FindFindButton(window!);
+            var findButton = ControlFinder.FindFindButton(window!);
             findButton.Click();
-            AssertReplacesWithFindToolbarContent();
+            AssertShowsFindToolbar();
         }
 
         [RequiresThread(ApartmentState.STA)]
         [Test]
-        public void Should_Replace_With_FindToolbarContent_When_Press_F3()
+        public void Should_Show_Find_Toolbar_When_Press_F3()
         {
-            var fdr = window!.FindFirstDescendant(cf => cf.ByAutomationId("FindRestylingFlowDocumentReader"));
+            var fdr = ControlFinder.FindFlowDocument(window!);
             // throws when try to focus...
             fdr!.Click();
-            Keyboard.Type(VirtualKeyShort.F3);
+            Typer.TypeF3();
 
-            AssertReplacesWithFindToolbarContent();
+            AssertShowsFindToolbar();
         }
 
-        private void AssertReplacesWithFindToolbarContent()
+        private void AssertShowsFindToolbar()
         {
-            var findToolbar = DemoAppFinder.FindFindToolbar(window!);
+            var findToolbar = ControlFinder.FindFindToolbar(window!);
             Assert.That(findToolbar, Is.Not.Null, "Find toolbar should not be null");
+            var expectedAutomationId = _isNormal ? "FindToolbar" : "replacedfindToolBar";
+            Assert.That(findToolbar.AutomationId, Is.EqualTo(expectedAutomationId));
         }
     }
 }

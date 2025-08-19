@@ -1,0 +1,19 @@
+﻿<Window x:Class="Normal.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Normal"
+        mc:Ignorable="d"
+        Title="Normal Find Toolbar Demo" Height="450" Width="800">
+    <FlowDocumentReader>
+        <FlowDocumentReader.Document>
+            <FlowDocument>
+                <Paragraph>
+                    <Run
+      Text="This is a simple example of a FlowDocumentReader without a stylable Find area." />
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentReader.Document>
+    </FlowDocumentReader>
+</Window>
