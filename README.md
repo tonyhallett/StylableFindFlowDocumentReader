@@ -121,11 +121,13 @@ The project Demo has the following - where the colours are bound to a blue or pi
 ```xaml
 <Window
     DataContext="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette}"
-```
+``` xmlns:findControls="clr-namespace:StylableFindFlowDocumentReader.FindControls;assembly=StylableFindFlowDocumentReader"
+    xmlns:sfdr="clr-namespace:StylableFindFlowDocumentReader.Reader;assembly=StylableFindFlowDocumentReader"
+```xaml
 
 ```xaml
       <sfdr:FindRestylingFlowDocumentReader.FindToolbarContent>
-        <sfdr:FindToolBar
+        <findControls:FindToolBar
           AutomationProperties.AutomationId="replacedfindToolBar">
           <Border
             Margin="5,1,0,1"
@@ -136,14 +138,14 @@ The project Demo has the following - where the colours are bound to a blue or pi
             SnapsToDevicePixels="true">
             <StackPanel
               Orientation="Horizontal">
-              <sfdr:FindTextBox
+              <findControls:FindTextBox
                 Background="{Binding OriginalDataContext.Background}"
                 Foreground="{Binding OriginalDataContext.Text}"
                 HintText="Do it"
                 SelectionBrush="{Binding OriginalDataContext.MainBackground}" />
-              <sfdr:FindNextPreviousButtons
+              <findControls:FindNextPreviousButtons
                 Foreground="{Binding OriginalDataContext.PrevNext}" />
-              <sfdr:FindMenu
+              <findControls:FindMenu
                 DropDownGlyphBrush="{Binding OriginalDataContext.DropDownGlyphBrush}"
                 DropDownStateBackground="{Binding OriginalDataContext.DropDownStateBackground}"
                 DropDownStateBorderBrush="{Binding OriginalDataContext.DropDownStateBorderBrush}"
@@ -161,7 +163,7 @@ The project Demo has the following - where the colours are bound to a blue or pi
                 SelectedGlyphBrush="{Binding OriginalDataContext.SelectedGlyphBrush}" />
             </StackPanel>
           </Border>
-        </sfdr:FindToolBar>
+        </findControls:FindToolBar>
       </sfdr:FindRestylingFlowDocumentReader.FindToolbarContent>
 ```
 
