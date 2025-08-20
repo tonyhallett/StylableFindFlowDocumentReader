@@ -4,7 +4,7 @@ using System.Windows.Controls;
 namespace StylableFindFlowDocumentReader.FindControls
 {
     /// <summary>
-    /// Interaction logic for FindNextPreviousButtons.xaml
+    /// Interaction logic for FindNextPreviousButtons.xaml.
     /// </summary>
     public partial class FindNextPreviousButtons : UserControl
     {
