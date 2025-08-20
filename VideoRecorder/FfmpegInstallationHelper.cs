@@ -4,10 +4,11 @@ namespace VideoRecorder
 {
     internal static class FfmpegInstallationHelper
     {
-        public async static Task<string> GetFfmpegPathAsync()
+        public static async Task<string> GetFfmpegPathAsync()
         {
             string? ffmpegPath = GetFfmpegPathTBD();
-            // it won't download again if ffmpeg.exe exists in the target folder 
+
+            // it won't download again if ffmpeg.exe exists in the target folder
             // todo create directory in the solution
             ffmpegPath ??= await FlauVideoRecorder.DownloadFFMpeg("C:\\temp");
             return ffmpegPath;

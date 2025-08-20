@@ -10,7 +10,9 @@ namespace StylableFindFlowDocumentReader.Utils
             foreach (StackFrame frame in stackTrace.GetFrames() ?? Array.Empty<StackFrame>())
             {
                 if (frame.GetMethod()?.DeclaringType == typeof(T))
+                {
                     return true;
+                }
             }
 
             return false;

@@ -5,11 +5,14 @@ namespace StylableFindFlowDocumentReader.Utils
 {
     internal static class VisualTreeUtilities
     {
-        public static T FindByName<T>(DependencyObject parent, string name) where T : FrameworkElement
+        public static T FindByName<T>(DependencyObject parent, string name)
+            where T : FrameworkElement
         {
             // Check if parent itself matches
             if (parent is T parentAsT && parentAsT.Name == name)
+            {
                 return parentAsT;
+            }
 
             // Search visual children
             int visualChildrenCount = VisualTreeHelper.GetChildrenCount(parent);
@@ -18,7 +21,9 @@ namespace StylableFindFlowDocumentReader.Utils
                 DependencyObject child = VisualTreeHelper.GetChild(parent, i);
                 T result = FindByName<T>(child, name);
                 if (result != null)
+                {
                     return result;
+                }
             }
 
             // If not found in visual tree, search logical children
@@ -28,7 +33,9 @@ namespace StylableFindFlowDocumentReader.Utils
                 {
                     T result = FindByName<T>(depObj, name);
                     if (result != null)
+                    {
                         return result;
+                    }
                 }
             }
 

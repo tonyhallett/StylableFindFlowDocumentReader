@@ -10,7 +10,9 @@ namespace StylableFindFlowDocumentReader.Utils
         {
             DependencyObject parent = VisualTreeHelper.GetParent(original);
             if (parent == null)
+            {
                 return;
+            }
 
             if (parent is Decorator parentDecorator)
             {
@@ -19,14 +21,20 @@ namespace StylableFindFlowDocumentReader.Utils
             }
 
             if (parent is ContentControl contentControl)
+            {
                 contentControl.Content = replacement;
+            }
 
             if (!(parent is Panel panel))
+            {
                 return;
+            }
 
             int index = panel.Children.IndexOf(original);
             if (index < 0)
+            {
                 return;
+            }
 
             panel.Children.RemoveAt(index); // ❗️disconnect from tree
             panel.Children.Insert(index, replacement); // ✅ safe to reparent now

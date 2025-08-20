@@ -4,7 +4,8 @@ namespace UITests
 {
     [TestFixture(false)]
     [TestFixture(true)]
-    internal sealed class ClosedFindToolbarTests(bool isNormal) : FindToolBarTestsBase(isNormal)
+    internal sealed class ClosedFindToolbarTests(bool isNormal)
+        : FindToolBarTestsBase(isNormal)
     {
         [RequiresThread(ApartmentState.STA)]
         [Test]
@@ -20,7 +21,7 @@ namespace UITests
         public void Should_Show_Find_Toolbar_When_Press_F3()
         {
             FlaUI.Core.AutomationElements.AutomationElement? fdr = ControlFinder.FindFlowDocument(Window);
-            // throws when try to focus...
+
             fdr!.Click();
             Typer.TypeF3();
 

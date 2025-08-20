@@ -15,7 +15,9 @@ namespace StylableFindFlowDocumentReader.KeyCommands
             NavigationCommands.LastPage,
             NavigationCommands.FirstPage,
         };
+
         private static bool IsKeyCommand(ICommand command) => s_keyCommands.Contains(command);
+
         public static KeyCommand TryCreate(KeyBinding kb)
             => !KeyCommand.IsKeyCommand(kb.Command) || !(kb.Gesture is KeyGesture gesture)
                 ? null
@@ -24,6 +26,7 @@ namespace StylableFindFlowDocumentReader.KeyCommands
         private readonly KeyGesture _gesture;
         private readonly object _commandParameter;
         private readonly RoutedUICommand _command;
+
         public KeyCommand(RoutedUICommand command, KeyGesture gesture, object commandParameter)
         {
             _command = command;

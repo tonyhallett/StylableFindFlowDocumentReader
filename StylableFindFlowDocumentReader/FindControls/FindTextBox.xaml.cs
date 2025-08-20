@@ -5,7 +5,7 @@ using System.Windows.Media;
 namespace StylableFindFlowDocumentReader.FindControls
 {
     /// <summary>
-    /// Interaction logic for FindTextBox.xaml
+    /// Interaction logic for FindTextBox.xaml.
     /// </summary>
     public partial class FindTextBox : UserControl
     {
@@ -16,16 +16,16 @@ namespace StylableFindFlowDocumentReader.FindControls
             SelectionOpacityProperty = TextBox.SelectionOpacityProperty.AddOwner(typeof(FindTextBox));
         }
 
-        // SelectionBrush
         public static readonly DependencyProperty SelectionBrushProperty;
+
         public Brush SelectionBrush
         {
             get => (Brush)GetValue(SelectionBrushProperty);
             set => SetValue(SelectionBrushProperty, value);
         }
 
-        // SelectionOpacity
         public static readonly DependencyProperty SelectionOpacityProperty;
+
         public double SelectionOpacity
         {
             get => (double)GetValue(SelectionOpacityProperty);
@@ -84,7 +84,7 @@ namespace StylableFindFlowDocumentReader.FindControls
         }
 
         public static readonly DependencyProperty TextBoxWidthProperty =
-            DependencyProperty.Register(nameof(TextBoxWidth), typeof(double), typeof(FindTextBox), new PropertyMetadata((double)183));
+            DependencyProperty.Register(nameof(TextBoxWidth), typeof(double), typeof(FindTextBox), new PropertyMetadata(183D));
 
         public FindTextBox()
         {

@@ -26,6 +26,7 @@ namespace UIAutomationHelpers
                 Keyboard.Type(key);
             }
         }
+
         public static void TypeShiftTab() => Keyboard.TypeSimultaneously(VirtualKeyShort.SHIFT, VirtualKeyShort.TAB);
 
         public static IEnumerable<Action> TypeWord(string word)

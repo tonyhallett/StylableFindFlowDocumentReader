@@ -38,7 +38,9 @@ namespace StylableFindFlowDocumentReader.Reader
         private void TrySetVerticalScrollbarVisibility(ScrollBarVisibility scrollBarVisibility)
         {
             if (_contentHost == null || ViewingMode != FlowDocumentReaderViewingMode.Scroll)
+            {
                 return;
+            }
 
             SetVerticalScrollbarVisibility(scrollBarVisibility);
         }
@@ -46,7 +48,9 @@ namespace StylableFindFlowDocumentReader.Reader
         private void SetVerticalScrollbarVisibility(ScrollBarVisibility scrollBarVisibility)
         {
             if (!(_contentHost.Child is FlowDocumentScrollViewer flowDocumentScrollViewer))
+            {
                 return;
+            }
 
             flowDocumentScrollViewer.VerticalScrollBarVisibility = scrollBarVisibility;
         }
@@ -85,10 +89,14 @@ namespace StylableFindFlowDocumentReader.Reader
             bool removing = _shimFindToolbarHost != null;
             IsShowingFindToolbar = !removing;
             if (invokeBaseOnFindCommand)
+            {
                 base.OnFindCommand();
+            }
 
             if (Document == null || !IsFindEnabled)
+            {
                 return;
+            }
 
             if (removing)
             {
@@ -102,7 +110,9 @@ namespace StylableFindFlowDocumentReader.Reader
         private void ShimOrStyle()
         {
             if (!(_originalFindToolBarHost.Child is ToolBar findToolBar))
+            {
                 return;
+            }
 
             if (FindToolbarContent != null)
             {
@@ -131,7 +141,9 @@ namespace StylableFindFlowDocumentReader.Reader
             get
             {
                 if (s_findToolBarHostField == null)
+                {
                     s_findToolBarHostField = typeof(FlowDocumentReader).GetField("_findToolBarHost", BindingFlags.Instance | BindingFlags.NonPublic);
+                }
 
                 return s_findToolBarHostField;
             }
@@ -150,12 +162,16 @@ namespace StylableFindFlowDocumentReader.Reader
         {
             TextBox findTextBox = VisualTreeUtilities.FindByName<TextBox>(FindToolbarContent, "findTextBox");
             if (findTextBox == null)
+            {
                 return;
+            }
 
             findTextBox.PreviewKeyDown += (sender, e) =>
             {
                 if (e == null || (e.Key != Key.Return && e.Key != Key.Execute))
+                {
                     return;
+                }
 
                 e.Handled = true;
                 _shimFindToolbarHost.Find();
@@ -192,7 +208,9 @@ namespace StylableFindFlowDocumentReader.Reader
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if (e.Handled)
+            {
                 return;
+            }
 
             switch (e.Key)
             {
@@ -211,7 +229,9 @@ namespace StylableFindFlowDocumentReader.Reader
             }
 
             if (e.Handled)
+            {
                 return;
+            }
 
             base.OnKeyDown(e);
             if (e.Key == Key.F3 && _shimFindToolbarHost == null)
@@ -221,7 +241,9 @@ namespace StylableFindFlowDocumentReader.Reader
             }
 
             if (e.Key != Key.Escape || _shimFindToolbarHost == null || !IsFindEnabled)
+            {
                 return;
+            }
 
             Restore();
         }
@@ -232,7 +254,9 @@ namespace StylableFindFlowDocumentReader.Reader
         {
             RestyleFindToolBar(findToolBar);
             if (!(findToolBar.FindName("FindTextBoxBorder") is Border findTextBorder))
+            {
                 return;
+            }
 
             RestyleFindTextBoxBorder(findTextBorder);
 
@@ -244,13 +268,19 @@ namespace StylableFindFlowDocumentReader.Reader
             var findPreviousButton = findTextBorder.FindName("FindPreviousButton") as Button;
             var findNextButton = findTextBorder.FindName("FindNextButton") as Button;
             if (findPreviousButton != null || findNextButton != null)
+            {
                 RestyleFindButtons(findNextButton, findPreviousButton);
+            }
 
             if (!(findTextBorder.FindName("OptionsMenu") is Menu menu))
+            {
                 return;
+            }
 
             if (!(menu.FindName("OptionsMenuItem") is MenuItem menuItem))
+            {
                 return;
+            }
 
             RestyleOptionsMenu(menu, menuItem);
         }
@@ -266,17 +296,23 @@ namespace StylableFindFlowDocumentReader.Reader
         /// </summary>
         /// <param name="findTextBox">The TextBox to restyle.</param>
         /// <param name="findLabel">The Label to restyle.</param>
-        /// <param name="findGrid">The Grid to restyle</param>
+        /// <param name="findGrid">The Grid to restyle.</param>
         protected virtual void RestyleFindTextControls(TextBox findTextBox, Label findLabel, Grid findGrid)
         {
             if (findTextBox != null)
+            {
                 RestyleFindTextBox(findTextBox);
+            }
 
             if (findLabel != null)
+            {
                 RestyleFindTextLabel(findLabel);
+            }
 
             if (findGrid == null)
+            {
                 return;
+            }
 
             RestyleFindGrid(findGrid);
         }
@@ -337,11 +373,15 @@ namespace StylableFindFlowDocumentReader.Reader
         protected void ApplyRestyle(FrameworkElement element, string styleSuffix = null)
         {
             if (element == null)
+            {
                 return;
+            }
 
             styleSuffix = styleSuffix ?? element.GetType().Name;
             if (!(element.TryFindResource($"findToolBar{styleSuffix}Style") is Style style))
+            {
                 return;
+            }
 
             element.Style = style;
         }
@@ -350,7 +390,9 @@ namespace StylableFindFlowDocumentReader.Reader
         {
             base.SwitchViewingModeCore(viewingMode);
             if (viewingMode != FlowDocumentReaderViewingMode.Scroll)
+            {
                 return;
+            }
 
             TrySetVerticalScrollbarVisibility(VerticalScrollbarVisibility);
         }

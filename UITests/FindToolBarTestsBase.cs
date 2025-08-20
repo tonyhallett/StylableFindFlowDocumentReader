@@ -6,11 +6,15 @@ using UIAutomationHelpers;
 
 namespace UITests
 {
-    internal abstract class FindToolBarTestsBase(bool isNormal) : FlaUITestBase
+    internal abstract class FindToolBarTestsBase(bool isNormal)
+        : FlaUITestBase
     {
         private Window? _window;
+
         protected Window Window => _window!; // For derived classes to access the window directly
+
         private readonly string _projectName = isNormal ? "Normal" : "Demo";
+
         protected bool IsNormal { get; } = isNormal;
 
         protected override VideoRecordingMode VideoRecordingMode => VideoRecordingMode.NoVideo;

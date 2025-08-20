@@ -9,7 +9,6 @@ namespace UIAutomationHelpers
 
         public static string GetSolutionPath()
         {
-
             var directory = new DirectoryInfo(Assembly.GetExecutingAssembly().Location);
             while (directory!.Name != "StylableFindFlowDocumentReader")
             {

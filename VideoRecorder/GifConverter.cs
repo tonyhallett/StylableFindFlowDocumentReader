@@ -4,7 +4,7 @@ namespace VideoRecorder
 {
     internal static class GifConverter
     {
-        public async static Task ConvertAsync(string demoVideoPath, string normalVideoPath)
+        public static async Task ConvertAsync(string demoVideoPath, string normalVideoPath)
         {
             string ffmpegPath = await FfmpegInstallationHelper.GetFfmpegPathAsync();
             ConvertAviToGif(demoVideoPath, ffmpegPath);
@@ -32,7 +32,7 @@ namespace VideoRecorder
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 UseShellExecute = false,
-                CreateNoWindow = true
+                CreateNoWindow = true,
             };
 
             using var process = new Process { StartInfo = processStartInfo };

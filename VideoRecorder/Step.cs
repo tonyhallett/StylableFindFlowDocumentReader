@@ -1,22 +1,11 @@
-﻿using System.Runtime.InteropServices;
-using FlaUI.Core.AutomationElements;
+﻿using FlaUI.Core.AutomationElements;
 
 namespace VideoRecorder
 {
-    internal sealed class Step
+    internal sealed class Step(Action<Window> action, int wait)
     {
-        public Step(Action<Window> action, int wait)
-        {
-            Action = action;
-            Wait = wait;
-        }
-        public Action<Window> Action { get; }
-        public int Wait { get; }
-    }
+        public Action<Window> Action { get; } = action;
 
-    internal static class NativeMethods
-    {
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern bool SetProcessDPIAware();
+        public int Wait { get; } = wait;
     }
 }

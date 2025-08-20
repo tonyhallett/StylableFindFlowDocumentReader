@@ -5,7 +5,7 @@ using System.Windows.Media;
 namespace StylableFindFlowDocumentReader.FindControls
 {
     /// <summary>
-    /// Interaction logic for FindMenu.xaml
+    /// Interaction logic for FindMenu.xaml.
     /// </summary>
     public partial class FindMenu : UserControl
     {
@@ -174,7 +174,7 @@ namespace StylableFindFlowDocumentReader.FindControls
             DependencyProperty.Register(nameof(DropDownGlyphDisabledBrush), typeof(Brush), typeof(FindMenu));
 
         /// <summary>
-        /// Considered as fallback for IsMouseOver, IsKeyboardFocused
+        /// Gets or sets fallback Brush for IsMouseOver, IsKeyboardFocused.
         /// </summary>
         public Brush DropDownStateBackground
         {
@@ -293,6 +293,7 @@ namespace StylableFindFlowDocumentReader.FindControls
         public static readonly DependencyProperty ShowDropDownTooltipProperty =
             DependencyProperty.Register(nameof(ShowDropDownTooltip), typeof(bool), typeof(FindMenu), new PropertyMetadata(true));
         #endregion
+
         #endregion
         public FindMenu() => InitializeComponent();
     }

@@ -6,7 +6,8 @@ namespace UITests
 {
     [TestFixture(false)]
     [TestFixture(true)]
-    internal sealed class OpenedFindToolbarTests(bool isNormal) : FindToolBarTestsBase(isNormal)
+    internal sealed class OpenedFindToolbarTests(bool isNormal)
+        : FindToolBarTestsBase(isNormal)
     {
         private Button? _findButton;
 
@@ -40,7 +41,7 @@ namespace UITests
         }
 
         /*
-            Below is the text 
+            Below is the text
             This is a simple example of a FlowDocumentReader with a stylable Find area.
         */
 
@@ -93,8 +94,7 @@ namespace UITests
 
         [RequiresThread(ApartmentState.STA)]
         [Test]
-        // search down is the default
-        public void Should_Find_Down_When_Enter_First_Pressed()
+        public void Should_Find_Down_When_Enter_First_Pressed() // search down is the default
             => FindsTest("s", "This ", Typer.TypeEnter);
 
         [RequiresThread(ApartmentState.STA)]
@@ -123,7 +123,8 @@ namespace UITests
         public void Menu_Test()
         {
             FocusFindTextAndSetText("Area");
-            Menu findMenu = ControlFinder.FindFindMenu(Window);
+            Menu? findMenu = ControlFinder.FindFindMenu(Window);
+            Assert.That(findMenu, Is.Not.Null, "Find menu should not be null");
             MenuItem rootItem = findMenu.Items[0];
             _ = rootItem.Expand();
             MenuItem matchCaseMenuItem = rootItem.Items[1];
@@ -131,8 +132,9 @@ namespace UITests
 
             Typer.TypeF3();
             Window? findWindow = ControlFinder.FindCannotFindWindow(Window);
-            string message = findWindow!.FindFirstChild(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Text)).AsTextBox()!.Text;
-            Assert.That(message, Is.EqualTo("Searched to the end of this document. Cannot find 'Area'."));
+            TextBox? findWindowTextBox = findWindow!.FindFirstChild(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Text)).AsTextBox();
+            Assert.That(findWindowTextBox, Is.Not.Null, "Find window text box should not be null");
+            Assert.That(findWindowTextBox.Text, Is.EqualTo("Searched to the end of this document. Cannot find 'Area'."));
             findWindow.Close();
         }
 

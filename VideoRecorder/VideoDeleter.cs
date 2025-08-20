@@ -6,7 +6,11 @@
         {
             foreach (string? videoPath in videoPaths)
             {
-                if (string.IsNullOrEmpty(videoPath) || !File.Exists(videoPath)) continue;
+                if (string.IsNullOrEmpty(videoPath) || !File.Exists(videoPath))
+                {
+                    continue;
+                }
+
                 try
                 {
                     File.Delete(videoPath);

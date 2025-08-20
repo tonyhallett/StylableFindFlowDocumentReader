@@ -19,7 +19,8 @@ namespace VideoRecorder
             s_application = ApplicationLauncher.Launch(projectName);
             try
             {
-                s_window = s_application.GetMainWindow(automation)!;
+                Window? mainWindow = s_application.GetMainWindow(automation);
+                s_window = mainWindow!;
                 Thread.Sleep(1000);
                 string videoPath = await StartRecording(projectName, captureSettings);
                 ExecuteSteps(steps);
@@ -65,7 +66,7 @@ namespace VideoRecorder
                 VideoQuality = 6,
                 TargetVideoPath = Path.Combine(videosDirectory, $"{projectName}.avi"),
                 LogMissingFrames = false,
-                ffmpegPath = await FfmpegInstallationHelper.GetFfmpegPathAsync()
+                ffmpegPath = await FfmpegInstallationHelper.GetFfmpegPathAsync(),
             };
 
             s_videoRecorder = new FlauVideoRecorder(
@@ -77,13 +78,11 @@ namespace VideoRecorder
         private static System.Drawing.Rectangle AddSpaceForMenu(System.Drawing.Rectangle windowBounds)
         {
             const int space = 200;
-            return new System.Drawing.Rectangle
-            (
+            return new System.Drawing.Rectangle(
                 windowBounds.X - space,
                 windowBounds.Y - space,
                 windowBounds.Width + (2 * space),
-                windowBounds.Height + (2 * space)
-            );
+                windowBounds.Height + (2 * space));
         }
     }
 }

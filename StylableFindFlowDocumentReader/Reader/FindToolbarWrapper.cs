@@ -45,7 +45,9 @@ namespace StylableFindFlowDocumentReader.Reader
         public FindToolbarWrapper(ToolBar findToolbar)
         {
             if (s_reflectionMembers == null)
+            {
                 s_reflectionMembers = new ReflectionMembers(findToolbar);
+            }
 
             _findToolbar = findToolbar;
         }
