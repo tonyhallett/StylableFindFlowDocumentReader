@@ -13,7 +13,7 @@ namespace Demo
         public static PaletteSwitcher Instance { get; } = new PaletteSwitcher();
 
         private Palette _selectedPalette;
-        private readonly Palette leftPalette = new Palette
+        private readonly Palette _leftPalette = new Palette
         {
             MainBackground = Brushes.DarkBlue,
             MainForeground = Brushes.LightBlue,
@@ -40,7 +40,7 @@ namespace Demo
             TooltipForeground = Brushes.DarkBlue,
             TooltipBorder = Brushes.DarkBlue,
         };
-        private readonly Palette rightPalette = new Palette
+        private readonly Palette _rightPalette = new Palette
         {
             MainBackground = Brushes.DeepPink,
             MainForeground = Brushes.LightPink,
@@ -67,37 +67,39 @@ namespace Demo
             TooltipForeground = Brushes.DeepPink,
             TooltipBorder = Brushes.DeepPink,
         };
-        private PaletteSwitcher() => _selectedPalette = leftPalette;
+        private PaletteSwitcher() => _selectedPalette = _leftPalette;
 
         public Palette SelectedPalette
         {
             get => _selectedPalette;
             set
             {
-                if (_selectedPalette != value)
+                if (_selectedPalette == value)
                 {
-                    _selectedPalette = value;
-                    OnPropertyChanged();
+                    return;
                 }
+
+                _selectedPalette = value;
+                OnPropertyChanged();
             }
         }
 
         public bool LeftPaletteSelected
         {
-            get => _selectedPalette == leftPalette;
+            get => _selectedPalette == _leftPalette;
             set
             {
-                SelectedPalette = value ? leftPalette : rightPalette;
+                SelectedPalette = value ? _leftPalette : _rightPalette;
                 OnPropertyChanged();
             }
         }
 
         public bool RightPaletteSelected
         {
-            get => _selectedPalette == rightPalette;
+            get => _selectedPalette == _rightPalette;
             set
             {
-                SelectedPalette = value ? rightPalette : leftPalette;
+                SelectedPalette = value ? _rightPalette : _leftPalette;
                 OnPropertyChanged();
             }
         }

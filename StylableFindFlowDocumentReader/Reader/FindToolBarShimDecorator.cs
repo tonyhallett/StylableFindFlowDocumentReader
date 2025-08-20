@@ -22,8 +22,6 @@ namespace StylableFindFlowDocumentReader.Reader
             base.Child = _originalDecorator;
         }
 
-        public FindToolBarViewModel ViewModel { get; }
-
         public void Find(bool searchUp)
         {
             _findToolBarWrapper.SetSearchUp(searchUp);

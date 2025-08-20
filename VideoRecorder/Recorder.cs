@@ -76,7 +76,7 @@ namespace VideoRecorder
 
         private static System.Drawing.Rectangle AddSpaceForMenu(System.Drawing.Rectangle windowBounds)
         {
-            int space = 200;
+            const int space = 200;
             return new System.Drawing.Rectangle
             (
                 windowBounds.X - space,

@@ -31,11 +31,11 @@ namespace UIAutomationHelpers
         public static IEnumerable<Action> TypeWord(string word)
             => word.Select(ch =>
             {
-                Action action;
-                // Map char to VirtualKeyShort
                 if (Enum.TryParse($"KEY_{ch.ToString().ToUpper()}", out VirtualKeyShort key))
                 {
-                    action = char.IsUpper(ch) ? (() => Keyboard.TypeSimultaneously(VirtualKeyShort.SHIFT, key)) : (() => Keyboard.Type(key));
+                    Action action = char.IsUpper(ch) ?
+                        (() => Keyboard.TypeSimultaneously(VirtualKeyShort.SHIFT, key))
+                    :   (() => Keyboard.Type(key));
                     return action;
                 }
                 else

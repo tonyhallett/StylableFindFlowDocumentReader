@@ -4,7 +4,7 @@ namespace VideoRecorder
 {
     internal sealed class RecordSteps
     {
-        private static readonly int s_navigationDelay = 500;
+        private const int NavigationDelay = 500;
         public static List<Step> GetSteps()
         {
             List<Step> steps = [
@@ -52,10 +52,10 @@ namespace VideoRecorder
         }
 
         private static List<Step> NavigateToSearchForwardAndPressSteps() => [
-            new(_ => Typer.TypeTab(),s_navigationDelay),
-            new(_ => Typer.TypeTab(),s_navigationDelay),
-            new(_ => Typer.TypeTab(),s_navigationDelay),
-            new(_ => Typer.TypeEnter(),s_navigationDelay)
+            new(_ => Typer.TypeTab(),NavigationDelay),
+            new(_ => Typer.TypeTab(),NavigationDelay),
+            new(_ => Typer.TypeTab(),NavigationDelay),
+            new(_ => Typer.TypeEnter(),NavigationDelay)
         ];
 
         private static List<Step> NavigateToMenuSelectMatchCaseSteps(int numTabs)
@@ -63,11 +63,11 @@ namespace VideoRecorder
             List<Step> steps =
             [
                 ..Enumerable.Range(0,numTabs).Select(_ =>
-                    new Step(_ => Typer.TypeTab(),s_navigationDelay)
+                    new Step(_ => Typer.TypeTab(),NavigationDelay)
                 ),
-                new Step(_ => Typer.TypeEnter(),s_navigationDelay),
-                new Step(_ => Typer.TypeDown(),s_navigationDelay),
-                new Step(_ => Typer.TypeEnter(),s_navigationDelay)
+                new Step(_ => Typer.TypeEnter(),NavigationDelay),
+                new Step(_ => Typer.TypeDown(),NavigationDelay),
+                new Step(_ => Typer.TypeEnter(),NavigationDelay)
             ];
 
             return steps;
