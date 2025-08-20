@@ -32,7 +32,7 @@ namespace UITests
             FlaUI.Core.AutomationElements.AutomationElement? findToolbar = ControlFinder.FindFindToolbar(Window);
             Assert.That(findToolbar, Is.Not.Null, "Find toolbar should not be null");
             string expectedAutomationId = IsNormal ? "FindToolbar" : "replacedfindToolBar";
-            Assert.That(findToolbar.AutomationId, Is.EqualTo(expectedAutomationId));
+            Assert.That(findToolbar!.AutomationId, Is.EqualTo(expectedAutomationId));
         }
     }
 }

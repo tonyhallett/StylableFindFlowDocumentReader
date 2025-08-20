@@ -34,8 +34,8 @@ namespace UIAutomationHelpers
                 if (Enum.TryParse($"KEY_{ch.ToString().ToUpper()}", out VirtualKeyShort key))
                 {
                     Action action = char.IsUpper(ch) ?
-                        (() => Keyboard.TypeSimultaneously(VirtualKeyShort.SHIFT, key))
-                    :   (() => Keyboard.Type(key));
+                        (() => Keyboard.TypeSimultaneously(VirtualKeyShort.SHIFT, key)) :
+                        (() => Keyboard.Type(key));
                     return action;
                 }
                 else
