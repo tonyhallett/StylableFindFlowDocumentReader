@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace StylableFindFlowDocumentReader
+namespace StylableFindFlowDocumentReader.Utils
 {
     internal static class VisualTreeUtilities
     {

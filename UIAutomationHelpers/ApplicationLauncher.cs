@@ -5,10 +5,7 @@ namespace UIAutomationHelpers
 {
     public static class ApplicationLauncher
     {
-        public static Application Launch(string projectName)
-        {
-            return Application.Launch(GetAppPath(projectName));
-        }
+        public static Application Launch(string projectName) => Application.Launch(GetAppPath(projectName));
 
         public static string GetSolutionPath()
         {
@@ -18,39 +15,40 @@ namespace UIAutomationHelpers
             {
                 directory = directory.Parent;
             }
+
             return directory.FullName;
-            //var assemblyDirectoryPath =
-            //    Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            //return new DirectoryInfo(assemblyDirectoryPath!)!.Parent!.Parent!.Parent!.Parent!.FullName;
         }
 
         private static string GetAppPath(string projectName)
         {
-            var root = GetSolutionPath();
-            var bin = Path.Combine(root, projectName, "bin");
+            string root = GetSolutionPath();
+            string bin = Path.Combine(root, projectName, "bin");
             return GetLatest(bin, projectName);
         }
 
-        private static string GetLatest(string binDirectory,string projectName)
+        private static string GetLatest(string binDirectory, string projectName)
         {
-            var debugPath = GetExePath(binDirectory, projectName, true);
-            var releasePath = GetExePath(binDirectory, projectName, false);
-            var debugPathExists = File.Exists(debugPath);
-            var releasePathExists = File.Exists(releasePath);
-            if ((debugPathExists && !releasePathExists))
+            string debugPath = GetExePath(binDirectory, projectName, true);
+            string releasePath = GetExePath(binDirectory, projectName, false);
+            bool debugPathExists = File.Exists(debugPath);
+            bool releasePathExists = File.Exists(releasePath);
+            if (debugPathExists && !releasePathExists)
             {
                 return debugPath;
             }
-            if((!debugPathExists && releasePathExists))
+
+            if (!debugPathExists && releasePathExists)
             {
                 return releasePath;
             }
+
             if (debugPathExists && releasePathExists)
             {
-                var debugTime = File.GetLastWriteTime(debugPath);
-                var releaseTime = File.GetLastWriteTime(releasePath);
+                DateTime debugTime = File.GetLastWriteTime(debugPath);
+                DateTime releaseTime = File.GetLastWriteTime(releasePath);
                 return debugTime > releaseTime ? debugPath : releasePath;
             }
+
             throw new Exception($"Neither {debugPath} nor {releasePath} exists.");
         }
 

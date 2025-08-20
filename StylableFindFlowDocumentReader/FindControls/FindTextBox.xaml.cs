@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace StylableFindFlowDocumentReader
+namespace StylableFindFlowDocumentReader.FindControls
 {
     /// <summary>
     /// Interaction logic for FindTextBox.xaml
@@ -34,8 +34,8 @@ namespace StylableFindFlowDocumentReader
 
         public bool ShowTooltip
         {
-            get { return (bool)GetValue(ShowTooltipProperty); }
-            set { SetValue(ShowTooltipProperty, value); }
+            get => (bool)GetValue(ShowTooltipProperty);
+            set => SetValue(ShowTooltipProperty, value);
         }
 
         public static readonly DependencyProperty ShowTooltipProperty =
@@ -43,8 +43,8 @@ namespace StylableFindFlowDocumentReader
 
         public string Tooltip
         {
-            get { return (string)GetValue(TooltipProperty); }
-            set { SetValue(TooltipProperty, value); }
+            get => (string)GetValue(TooltipProperty);
+            set => SetValue(TooltipProperty, value);
         }
 
         public static readonly DependencyProperty TooltipProperty =
@@ -52,8 +52,8 @@ namespace StylableFindFlowDocumentReader
 
         public string HintText
         {
-            get { return (string)GetValue(HintTextProperty); }
-            set { SetValue(HintTextProperty, value); }
+            get => (string)GetValue(HintTextProperty);
+            set => SetValue(HintTextProperty, value);
         }
 
         public static readonly DependencyProperty HintTextProperty =
@@ -61,8 +61,8 @@ namespace StylableFindFlowDocumentReader
 
         public double HintOpacity
         {
-            get { return (double)GetValue(HintOpacityProperty); }
-            set { SetValue(HintOpacityProperty, value); }
+            get => (double)GetValue(HintOpacityProperty);
+            set => SetValue(HintOpacityProperty, value);
         }
 
         public static readonly DependencyProperty HintOpacityProperty =
@@ -70,8 +70,8 @@ namespace StylableFindFlowDocumentReader
 
         public FontStyle HintFontStyle
         {
-            get { return (FontStyle)GetValue(HintFontStyleProperty); }
-            set { SetValue(HintFontStyleProperty, value); }
+            get => (FontStyle)GetValue(HintFontStyleProperty);
+            set => SetValue(HintFontStyleProperty, value);
         }
 
         public static readonly DependencyProperty HintFontStyleProperty =
@@ -79,8 +79,8 @@ namespace StylableFindFlowDocumentReader
 
         public double TextBoxWidth
         {
-            get { return (double)GetValue(TextBoxWidthProperty); }
-            set { SetValue(TextBoxWidthProperty, value); }
+            get => (double)GetValue(TextBoxWidthProperty);
+            set => SetValue(TextBoxWidthProperty, value);
         }
 
         public static readonly DependencyProperty TextBoxWidthProperty =
@@ -88,7 +88,7 @@ namespace StylableFindFlowDocumentReader
 
         public FindTextBox()
         {
-            this.Foreground = Brushes.Black;
+            Foreground = Brushes.Black;
             InitializeComponent();
         }
     }

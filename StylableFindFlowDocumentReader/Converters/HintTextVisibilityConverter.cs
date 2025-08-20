@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace StylableFindFlowDocumentReader
+namespace StylableFindFlowDocumentReader.Converters
 {
     public sealed class HintTextVisibilityConverter : IValueConverter
     {

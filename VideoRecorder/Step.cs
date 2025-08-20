@@ -3,7 +3,7 @@ using FlaUI.Core.AutomationElements;
 
 namespace VideoRecorder
 {
-    internal class Step
+    internal sealed class Step
     {
         public Step(Action<Window> action, int wait)
         {

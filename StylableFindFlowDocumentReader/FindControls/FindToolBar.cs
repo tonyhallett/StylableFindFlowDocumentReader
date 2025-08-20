@@ -1,15 +1,12 @@
-﻿using System.Windows.Controls;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Controls;
 
-namespace StylableFindFlowDocumentReader
+namespace StylableFindFlowDocumentReader.FindControls
 {
     public class FindToolBar : ToolBar
     {
-        static FindToolBar()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(
+        static FindToolBar() => DefaultStyleKeyProperty.OverrideMetadata(
                 typeof(FindToolBar),
                 new FrameworkPropertyMetadata(typeof(FindToolBar)));
-        }
     }
 }

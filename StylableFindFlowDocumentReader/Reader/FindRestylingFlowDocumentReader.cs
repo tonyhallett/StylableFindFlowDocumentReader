@@ -4,8 +4,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
+using StylableFindFlowDocumentReader.KeyCommands;
+using StylableFindFlowDocumentReader.Utils;
 
-namespace StylableFindFlowDocumentReader
+namespace StylableFindFlowDocumentReader.Reader
 {
     public class FindRestylingFlowDocumentReader : FlowDocumentReader
     {
@@ -23,33 +25,30 @@ namespace StylableFindFlowDocumentReader
 
         public ScrollBarVisibility VerticalScrollbarVisibility
         {
-            get { return (ScrollBarVisibility)GetValue(VerticalScrollbarVisibilityProperty); }
-            set { SetValue(VerticalScrollbarVisibilityProperty, value); }
+            get => (ScrollBarVisibility)GetValue(VerticalScrollbarVisibilityProperty);
+            set => SetValue(VerticalScrollbarVisibilityProperty, value);
         }
 
         public static readonly DependencyProperty VerticalScrollbarVisibilityProperty =
             DependencyProperty.Register(nameof(VerticalScrollbarVisibility), typeof(ScrollBarVisibility), typeof(FindRestylingFlowDocumentReader), new PropertyMetadata(ScrollBarVisibility.Visible, VerticalScrollbarVisibilityChanged));
 
         private static void VerticalScrollbarVisibilityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            (d as FindRestylingFlowDocumentReader).TrySetVerticalScrollbarVisibility((ScrollBarVisibility)e.NewValue);
-        }
+            => (d as FindRestylingFlowDocumentReader).TrySetVerticalScrollbarVisibility((ScrollBarVisibility)e.NewValue);
 
         private void TrySetVerticalScrollbarVisibility(ScrollBarVisibility scrollBarVisibility)
         {
-            if(_contentHost != null && ViewingMode == FlowDocumentReaderViewingMode.Scroll)
-            {
-                SetVerticalScrollbarVisibility(scrollBarVisibility);
-            }
+            if (_contentHost == null || ViewingMode != FlowDocumentReaderViewingMode.Scroll)
+                return;
+
+            SetVerticalScrollbarVisibility(scrollBarVisibility);
         }
 
         private void SetVerticalScrollbarVisibility(ScrollBarVisibility scrollBarVisibility)
         {
-            var flowDocumentScrollViewer = _contentHost.Child as FlowDocumentScrollViewer;
-            if (flowDocumentScrollViewer != null)
-            {
-                flowDocumentScrollViewer.VerticalScrollBarVisibility = scrollBarVisibility;
-            }
+            if (!(_contentHost.Child is FlowDocumentScrollViewer flowDocumentScrollViewer))
+                return;
+
+            flowDocumentScrollViewer.VerticalScrollBarVisibility = scrollBarVisibility;
         }
 
         public FrameworkElement FindToolbarContent
@@ -79,24 +78,17 @@ namespace StylableFindFlowDocumentReader
 
         public void ExecuteFindCommand() => ApplicationCommands.Find.Execute(null, this);
 
-        protected override void OnFindCommand()
-        {
-            DoWork();
-        }
+        protected override void OnFindCommand() => DoWork();
 
         private void DoWork(bool invokeBaseOnFindCommand = true)
         {
             bool removing = _shimFindToolbarHost != null;
             IsShowingFindToolbar = !removing;
-            if(invokeBaseOnFindCommand)
-            {
+            if (invokeBaseOnFindCommand)
                 base.OnFindCommand();
-            }
-            
+
             if (Document == null || !IsFindEnabled)
-            {
                 return;
-            }
 
             if (removing)
             {
@@ -110,9 +102,7 @@ namespace StylableFindFlowDocumentReader
         private void ShimOrStyle()
         {
             if (!(_originalFindToolBarHost.Child is ToolBar findToolBar))
-            {
                 return;
-            }
 
             if (FindToolbarContent != null)
             {
@@ -141,9 +131,7 @@ namespace StylableFindFlowDocumentReader
             get
             {
                 if (s_findToolBarHostField == null)
-                {
                     s_findToolBarHostField = typeof(FlowDocumentReader).GetField("_findToolBarHost", BindingFlags.Instance | BindingFlags.NonPublic);
-                }
 
                 return s_findToolBarHostField;
             }
@@ -162,16 +150,12 @@ namespace StylableFindFlowDocumentReader
         {
             TextBox findTextBox = VisualTreeUtilities.FindByName<TextBox>(FindToolbarContent, "findTextBox");
             if (findTextBox == null)
-            {
                 return;
-            }
 
-            findTextBox.PreviewKeyDown += (object sender, KeyEventArgs e) =>
+            findTextBox.PreviewKeyDown += (sender, e) =>
             {
                 if (e == null || (e.Key != Key.Return && e.Key != Key.Execute))
-                {
                     return;
-                }
 
                 e.Handled = true;
                 _shimFindToolbarHost.Find();
@@ -187,10 +171,10 @@ namespace StylableFindFlowDocumentReader
                 _ = Keyboard.Focus(findTextBox);
             });
 
-        protected virtual void DoDispatch(Action action) 
+        protected virtual void DoDispatch(Action action)
             => _ = Dispatcher.BeginInvoke(action, DispatcherPriority.Background);
 
-        protected void CopyHostProperties(Decorator originalHost,Decorator replacementHost)
+        protected void CopyHostProperties(Decorator originalHost, Decorator replacementHost)
         {
             replacementHost.HorizontalAlignment = originalHost.HorizontalAlignment;
             replacementHost.VerticalAlignment = originalHost.VerticalAlignment;
@@ -208,10 +192,8 @@ namespace StylableFindFlowDocumentReader
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if (e.Handled)
-            {
                 return;
-            }
-            
+
             switch (e.Key)
             {
                 case Key.Escape:
@@ -229,20 +211,17 @@ namespace StylableFindFlowDocumentReader
             }
 
             if (e.Handled)
-            {
                 return;
-            }
 
             base.OnKeyDown(e);
-            if(e.Key == Key.F3 && _shimFindToolbarHost == null)
+            if (e.Key == Key.F3 && _shimFindToolbarHost == null)
             {
                 DoWork(false);
                 return;
             }
+
             if (e.Key != Key.Escape || _shimFindToolbarHost == null || !IsFindEnabled)
-            {
                 return;
-            }
 
             Restore();
         }
@@ -253,9 +232,7 @@ namespace StylableFindFlowDocumentReader
         {
             RestyleFindToolBar(findToolBar);
             if (!(findToolBar.FindName("FindTextBoxBorder") is Border findTextBorder))
-            {
                 return;
-            }
 
             RestyleFindTextBoxBorder(findTextBorder);
 
@@ -267,19 +244,13 @@ namespace StylableFindFlowDocumentReader
             var findPreviousButton = findTextBorder.FindName("FindPreviousButton") as Button;
             var findNextButton = findTextBorder.FindName("FindNextButton") as Button;
             if (findPreviousButton != null || findNextButton != null)
-            {
                 RestyleFindButtons(findNextButton, findPreviousButton);
-            }
 
             if (!(findTextBorder.FindName("OptionsMenu") is Menu menu))
-            {
                 return;
-            }
 
             if (!(menu.FindName("OptionsMenuItem") is MenuItem menuItem))
-            {
                 return;
-            }
 
             RestyleOptionsMenu(menu, menuItem);
         }
@@ -299,25 +270,18 @@ namespace StylableFindFlowDocumentReader
         protected virtual void RestyleFindTextControls(TextBox findTextBox, Label findLabel, Grid findGrid)
         {
             if (findTextBox != null)
-            {
                 RestyleFindTextBox(findTextBox);
-            }
 
             if (findLabel != null)
-            {
                 RestyleFindTextLabel(findLabel);
-            }
 
             if (findGrid == null)
-            {
                 return;
-            }
 
             RestyleFindGrid(findGrid);
         }
 
         protected virtual void RestyleFindGrid(Grid grid) => ApplyRestyle(grid);
-
 
         // this has BorderBrush "{DynamicResource {x:Static JetSystemColors.ControlDarkBrushKey}}"
         // and Background that is LinearGradient with GotFocus background gradient stop animations
@@ -373,15 +337,11 @@ namespace StylableFindFlowDocumentReader
         protected void ApplyRestyle(FrameworkElement element, string styleSuffix = null)
         {
             if (element == null)
-            {
                 return;
-            }
 
             styleSuffix = styleSuffix ?? element.GetType().Name;
             if (!(element.TryFindResource($"findToolBar{styleSuffix}Style") is Style style))
-            {
                 return;
-            }
 
             element.Style = style;
         }
@@ -389,10 +349,10 @@ namespace StylableFindFlowDocumentReader
         protected override void SwitchViewingModeCore(FlowDocumentReaderViewingMode viewingMode)
         {
             base.SwitchViewingModeCore(viewingMode);
-            if(viewingMode == FlowDocumentReaderViewingMode.Scroll)
-            {
-                TrySetVerticalScrollbarVisibility(VerticalScrollbarVisibility);
-            }
+            if (viewingMode != FlowDocumentReaderViewingMode.Scroll)
+                return;
+
+            TrySetVerticalScrollbarVisibility(VerticalScrollbarVisibility);
         }
     }
 }

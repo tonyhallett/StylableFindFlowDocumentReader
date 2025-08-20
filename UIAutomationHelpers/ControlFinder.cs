@@ -2,8 +2,9 @@
 
 namespace UIAutomationHelpers
 {
-    public static class ControlFinder {
-        public static Button FindFindButton(Window window) 
+    public static class ControlFinder
+    {
+        public static Button FindFindButton(Window window)
             => window.FindFirstDescendant(cf => cf.ByAutomationId("FindButton")).AsButton()!;
 
         public static AutomationElement? FindFindToolbar(Window window)

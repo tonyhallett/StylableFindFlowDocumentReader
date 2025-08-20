@@ -2,15 +2,15 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace StylableFindFlowDocumentReader
+namespace StylableFindFlowDocumentReader.Converters
 {
     internal class DifferenceConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var from = (double)value;
-            double difference = 0;
-            if(parameter is string strParam)
+            double from = (double)value;
+            double difference;
+            if (parameter is string strParam)
             {
                 if (!double.TryParse(strParam, out difference))
                 {
@@ -23,7 +23,7 @@ namespace StylableFindFlowDocumentReader
             }
             else if (parameter is int intParam)
             {
-                difference = (double)intParam;
+                difference = intParam;
             }
             else if (parameter == null)
             {
@@ -33,13 +33,11 @@ namespace StylableFindFlowDocumentReader
             {
                 throw new ArgumentException("Parameter must be a string, double, or int.", nameof(parameter));
             }
+
             return from - difference;
 
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }

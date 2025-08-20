@@ -4,15 +4,13 @@ namespace UITests
 {
     [TestFixture(false)]
     [TestFixture(true)]
-    public class ClosedFindToolbarTests : FindToolBarTestsBase
+    internal sealed class ClosedFindToolbarTests(bool isNormal) : FindToolBarTestsBase(isNormal)
     {
-        public ClosedFindToolbarTests(bool isNormal):base(isNormal) { }
-
         [RequiresThread(ApartmentState.STA)]
         [Test]
         public void Should_Show_Find_Toolbar_When_Click_Find_Button()
         {
-            var findButton = ControlFinder.FindFindButton(window!);
+            FlaUI.Core.AutomationElements.Button findButton = ControlFinder.FindFindButton(Window);
             findButton.Click();
             AssertShowsFindToolbar();
         }
@@ -21,7 +19,7 @@ namespace UITests
         [Test]
         public void Should_Show_Find_Toolbar_When_Press_F3()
         {
-            var fdr = ControlFinder.FindFlowDocument(window!);
+            FlaUI.Core.AutomationElements.AutomationElement? fdr = ControlFinder.FindFlowDocument(Window);
             // throws when try to focus...
             fdr!.Click();
             Typer.TypeF3();
@@ -31,9 +29,9 @@ namespace UITests
 
         private void AssertShowsFindToolbar()
         {
-            var findToolbar = ControlFinder.FindFindToolbar(window!);
+            FlaUI.Core.AutomationElements.AutomationElement? findToolbar = ControlFinder.FindFindToolbar(Window);
             Assert.That(findToolbar, Is.Not.Null, "Find toolbar should not be null");
-            var expectedAutomationId = _isNormal ? "FindToolbar" : "replacedfindToolBar";
+            string expectedAutomationId = IsNormal ? "FindToolbar" : "replacedfindToolBar";
             Assert.That(findToolbar.AutomationId, Is.EqualTo(expectedAutomationId));
         }
     }

@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using StylableFindFlowDocumentReader.Utils;
 
-namespace StylableFindFlowDocumentReader
+namespace StylableFindFlowDocumentReader.Reader
 {
     internal sealed class FindToolBarShimDecorator : Decorator
     {
@@ -10,7 +11,7 @@ namespace StylableFindFlowDocumentReader
         private readonly Decorator _originalDecorator;
         private readonly FindToolbarWrapper _findToolBarWrapper;
 
-        public FindToolBarShimDecorator(Decorator originalDecorator, FrameworkElement findToolbarContent,FindRestylingFlowDocumentReader findRestylingFlowDocumentReader)
+        public FindToolBarShimDecorator(Decorator originalDecorator, FrameworkElement findToolbarContent, FindRestylingFlowDocumentReader findRestylingFlowDocumentReader)
         {
             _findToolBar = originalDecorator.Child as ToolBar;
             _originalDecorator = originalDecorator;

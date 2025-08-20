@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
+using StylableFindFlowDocumentReader.Commands;
 
-namespace StylableFindFlowDocumentReader
+namespace StylableFindFlowDocumentReader.Reader
 {
     public class FindToolBarViewModel : INotifyPropertyChanged
     {
@@ -22,11 +22,11 @@ namespace StylableFindFlowDocumentReader
             get => _originalDataContext;
             set
             {
-                if (_originalDataContext != value)
-                {
-                    _originalDataContext = value;
-                    OnPropertyChanged(nameof(OriginalDataContext));
-                }
+                if (_originalDataContext == value)
+                    return;
+
+                _originalDataContext = value;
+                OnPropertyChanged(nameof(OriginalDataContext));
             }
         }
 
@@ -37,10 +37,7 @@ namespace StylableFindFlowDocumentReader
             PreviousCommand = new RelayCommand(ExecutePrevious, CanExecuteFind);
 
             OriginalDataContext = originalDataContextElement.DataContext;
-            originalDataContextElement.DataContextChanged += (s, e) =>
-            {
-                OriginalDataContext = originalDataContextElement.DataContext;
-            };
+            originalDataContextElement.DataContextChanged += (s, e) => OriginalDataContext = originalDataContextElement.DataContext;
         }
 
         public string FindText
@@ -49,9 +46,7 @@ namespace StylableFindFlowDocumentReader
             set
             {
                 if (_findText == value)
-                {
                     return;
-                }
 
                 _findText = value;
                 _wrapper.SetFindText(value);
@@ -66,9 +61,7 @@ namespace StylableFindFlowDocumentReader
             set
             {
                 if (_matchWholeWord == value)
-                {
                     return;
-                }
 
                 _matchWholeWord = value;
                 _wrapper.SelectMatchWholeWord(value);
@@ -81,9 +74,7 @@ namespace StylableFindFlowDocumentReader
             set
             {
                 if (_matchCase == value)
-                {
                     return;
-                }
 
                 _matchCase = value;
                 _wrapper.SelectMatchCase(value);
@@ -96,9 +87,7 @@ namespace StylableFindFlowDocumentReader
             set
             {
                 if (_matchDiacritic == value)
-                {
                     return;
-                }
 
                 _matchDiacritic = value;
                 _wrapper.SelectMatchDiacritic(value);
@@ -111,9 +100,7 @@ namespace StylableFindFlowDocumentReader
             set
             {
                 if (_matchKashida == value)
-                {
                     return;
-                }
 
                 _matchKashida = value;
                 _wrapper.SelectMatchKashida(value);
@@ -126,9 +113,7 @@ namespace StylableFindFlowDocumentReader
             set
             {
                 if (_matchAlefHamza == value)
-                {
                     return;
-                }
 
                 _matchAlefHamza = value;
                 _wrapper.SelectMatchAlefHamza(value);
@@ -141,9 +126,7 @@ namespace StylableFindFlowDocumentReader
             private set
             {
                 if (_isSearchUp == value)
-                {
                     return;
-                }
 
                 _isSearchUp = value;
                 OnPropertyChanged(nameof(IsSearchUp));
@@ -151,11 +134,7 @@ namespace StylableFindFlowDocumentReader
             }
         }
 
-        public bool IsSearchDown
-        {
-            get => !IsSearchUp;
-            
-        }
+        public bool IsSearchDown => !IsSearchUp;
 
         public ICommand NextCommand { get; }
 

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Input;
 using System.Windows;
+using System.Windows.Input;
 
-namespace StylableFindFlowDocumentReader
+namespace StylableFindFlowDocumentReader.KeyCommands
 {
     internal class KeyCommandHandler
     {
@@ -26,7 +26,7 @@ namespace StylableFindFlowDocumentReader
 
         private void OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
-            foreach (var keyCommand in _keyCommands)
+            foreach (KeyCommand keyCommand in _keyCommands)
             {
                 if (keyCommand.IsMatch(e, _target))
                 {
@@ -36,10 +36,6 @@ namespace StylableFindFlowDocumentReader
             }
         }
 
-        public void Detach()
-        {
-            _target.PreviewKeyDown -= OnPreviewKeyDown;
-        }
+        public void Detach() => _target.PreviewKeyDown -= OnPreviewKeyDown;
     }
-
 }

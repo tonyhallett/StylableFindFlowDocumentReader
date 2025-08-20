@@ -4,7 +4,7 @@
     {
         public static void Delete(params string?[] videoPaths)
         {
-            foreach (var videoPath in videoPaths)
+            foreach (string? videoPath in videoPaths)
             {
                 if (string.IsNullOrEmpty(videoPath) || !File.Exists(videoPath)) continue;
                 try

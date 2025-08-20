@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
-namespace StylableFindFlowDocumentReader
+namespace StylableFindFlowDocumentReader.Commands
 {
     public sealed class RelayCommand : ICommand
     {

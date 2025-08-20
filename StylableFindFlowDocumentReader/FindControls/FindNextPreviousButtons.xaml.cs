@@ -1,8 +1,7 @@
-﻿using System.Net;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace StylableFindFlowDocumentReader
+namespace StylableFindFlowDocumentReader.FindControls
 {
     /// <summary>
     /// Interaction logic for FindNextPreviousButtons.xaml
@@ -11,8 +10,8 @@ namespace StylableFindFlowDocumentReader
     {
         public bool ShowTooltips
         {
-            get { return (bool)GetValue(ShowTooltipsProperty); }
-            set { SetValue(ShowTooltipsProperty, value); }
+            get => (bool)GetValue(ShowTooltipsProperty);
+            set => SetValue(ShowTooltipsProperty, value);
         }
 
         public static readonly DependencyProperty ShowTooltipsProperty =
@@ -20,8 +19,8 @@ namespace StylableFindFlowDocumentReader
 
         public string FindNextTooltip
         {
-            get { return (string)GetValue(FindNextTooltipProperty); }
-            set { SetValue(FindNextTooltipProperty, value); }
+            get => (string)GetValue(FindNextTooltipProperty);
+            set => SetValue(FindNextTooltipProperty, value);
         }
 
         public static readonly DependencyProperty FindNextTooltipProperty =
@@ -29,16 +28,13 @@ namespace StylableFindFlowDocumentReader
 
         public string FindPreviousTooltip
         {
-            get { return (string)GetValue(FindPreviousTooltipProperty); }
-            set { SetValue(FindPreviousTooltipProperty, value); }
+            get => (string)GetValue(FindPreviousTooltipProperty);
+            set => SetValue(FindPreviousTooltipProperty, value);
         }
 
         public static readonly DependencyProperty FindPreviousTooltipProperty =
             DependencyProperty.Register(nameof(FindPreviousTooltip), typeof(string), typeof(FindNextPreviousButtons), new PropertyMetadata("Find Previous"));
 
-        public FindNextPreviousButtons()
-        {
-            InitializeComponent();
-        }
+        public FindNextPreviousButtons() => InitializeComponent();
     }
 }

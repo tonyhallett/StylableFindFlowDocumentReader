@@ -10,10 +10,11 @@ namespace Demo
         protected void OnPropertyChanged([CallerMemberName] string name = null)
     => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
-       public static PaletteSwitcher Instance { get; } = new PaletteSwitcher();
+        public static PaletteSwitcher Instance { get; } = new PaletteSwitcher();
 
         private Palette _selectedPalette;
-        private Palette leftPalette = new Palette {
+        private readonly Palette leftPalette = new Palette
+        {
             MainBackground = Brushes.DarkBlue,
             MainForeground = Brushes.LightBlue,
             Background = Brushes.LightBlue,
@@ -39,7 +40,8 @@ namespace Demo
             TooltipForeground = Brushes.DarkBlue,
             TooltipBorder = Brushes.DarkBlue,
         };
-        private Palette rightPalette = new Palette { 
+        private readonly Palette rightPalette = new Palette
+        {
             MainBackground = Brushes.DeepPink,
             MainForeground = Brushes.LightPink,
             Background = Brushes.Pink,
@@ -57,7 +59,7 @@ namespace Demo
             MenuItemForeground = Brushes.LightPink,
             MenuItemHighlightedBackground = Brushes.LightPink,
             MenuItemHighlightedForeground = Brushes.DeepPink,
-            MenuItemHighlightedBorderBrush= Brushes.DeepPink,
+            MenuItemHighlightedBorderBrush = Brushes.DeepPink,
             SelectedGlyphBrush = Brushes.MistyRose,
             SelectedGlyphBackground = Brushes.HotPink,
             SelectedGlyphBorderBrush = Brushes.LightPink,
@@ -65,10 +67,7 @@ namespace Demo
             TooltipForeground = Brushes.DeepPink,
             TooltipBorder = Brushes.DeepPink,
         };
-        private PaletteSwitcher()
-        {
-            _selectedPalette = leftPalette;
-        }
+        private PaletteSwitcher() => _selectedPalette = leftPalette;
 
         public Palette SelectedPalette
         {

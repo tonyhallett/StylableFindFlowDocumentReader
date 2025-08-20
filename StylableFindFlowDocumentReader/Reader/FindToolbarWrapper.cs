@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Windows.Controls;
 
-namespace StylableFindFlowDocumentReader
+namespace StylableFindFlowDocumentReader.Reader
 {
     public class FindToolbarWrapper
     {
@@ -10,7 +10,7 @@ namespace StylableFindFlowDocumentReader
         {
             public FieldInfo OptionsWholeWordMenuItem { get; }
 
-            public FieldInfo OptionsCaseMenuItem { get;}
+            public FieldInfo OptionsCaseMenuItem { get; }
 
             public FieldInfo OptionsDiacriticMenuItem { get; }
 
@@ -45,9 +45,7 @@ namespace StylableFindFlowDocumentReader
         public FindToolbarWrapper(ToolBar findToolbar)
         {
             if (s_reflectionMembers == null)
-            {
                 s_reflectionMembers = new ReflectionMembers(findToolbar);
-            }
 
             _findToolbar = findToolbar;
         }

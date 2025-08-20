@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace StylableFindFlowDocumentReader
+namespace StylableFindFlowDocumentReader.Utils
 {
     internal static class StackTraceExtensions
     {
@@ -10,9 +10,7 @@ namespace StylableFindFlowDocumentReader
             foreach (StackFrame frame in stackTrace.GetFrames() ?? Array.Empty<StackFrame>())
             {
                 if (frame.GetMethod()?.DeclaringType == typeof(T))
-                {
                     return true;
-                }
             }
 
             return false;

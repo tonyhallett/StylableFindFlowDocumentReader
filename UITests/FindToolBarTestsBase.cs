@@ -6,17 +6,18 @@ using UIAutomationHelpers;
 
 namespace UITests
 {
-    public abstract class FindToolBarTestsBase : FlaUITestBase
+    internal abstract class FindToolBarTestsBase : FlaUITestBase
     {
-        protected Window? window;
-        private string _projectName;
-        protected readonly bool _isNormal;
+        private Window? _window;
+        protected Window Window => _window!; // For derived classes to access the window directly
+        private readonly string _projectName;
+        protected bool IsNormal { get; }
 
         protected override VideoRecordingMode VideoRecordingMode => VideoRecordingMode.NoVideo;
 
         public FindToolBarTestsBase(bool isNormal)
         {
-            _isNormal = isNormal;
+            IsNormal = isNormal;
             _projectName = isNormal ? "Normal" : "Demo";
         }
 
@@ -24,8 +25,8 @@ namespace UITests
 
         protected override Application StartApplication()
         {
-            var application = ApplicationLauncher.Launch(_projectName);
-            window = application.GetMainWindow(Automation);
+            Application application = ApplicationLauncher.Launch(_projectName);
+            _window = application.GetMainWindow(Automation);
             return application;
         }
     }

@@ -2,7 +2,8 @@
 
 namespace Demo
 {
-    internal class Palette { 
+    internal class Palette
+    {
         public Brush MainBackground { get; set; }
         public Brush MainForeground { get; set; }
         public Brush Background { get; set; }

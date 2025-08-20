@@ -6,20 +6,16 @@ namespace UITests
 {
     [TestFixture(false)]
     [TestFixture(true)]
-    public class OpenedFindToolbarTests : FindToolBarTestsBase
+    internal sealed class OpenedFindToolbarTests(bool isNormal) : FindToolBarTestsBase(isNormal)
     {
-        private Button? findButton;
-
-        public OpenedFindToolbarTests(bool isNormal) : base(isNormal)
-        {
-        }
+        private Button? _findButton;
 
         protected override Application StartApplication()
         {
-            var application = base.StartApplication();
-            findButton = ControlFinder.FindFindButton(window!);
-            findButton.Click();
-            var findToolbar = ControlFinder.FindFindToolbar(window!);
+            Application application = base.StartApplication();
+            _findButton = ControlFinder.FindFindButton(Window);
+            _findButton.Click();
+            AutomationElement? findToolbar = ControlFinder.FindFindToolbar(Window);
             Assert.That(findToolbar, Is.Not.Null, "Find toolbar should not be null");
             return application;
         }
@@ -28,9 +24,9 @@ namespace UITests
         [Test]
         public void Should_Close_Find_Toolbar_When_Click_Find_Button()
         {
-            findButton!.Click();
+            _findButton!.Click();
 
-            var findToolbar = ControlFinder.FindFindToolbar(window!);
+            AutomationElement? findToolbar = ControlFinder.FindFindToolbar(Window);
             Assert.That(findToolbar, Is.Null, "Find toolbar should be null");
         }
 
@@ -53,7 +49,7 @@ namespace UITests
         public void Should_Find_Up_When_ShiftF3()
         {
             SelectMiddle();
-            FindsTest("s", "simple ", () => Typer.TypeShiftF3());
+            FindsTest("s", "simple ", Typer.TypeShiftF3);
         }
 
         private void SelectMiddle()
@@ -61,7 +57,7 @@ namespace UITests
             FocusFindTextAndSetText("FlowDocumentReader");
             Typer.TypeEnter();
 
-            AssertSelected("FlowDocumentReader ","FlowDocumentReader");
+            AssertSelected("FlowDocumentReader ", "FlowDocumentReader");
         }
 
         [RequiresThread(ApartmentState.STA)]
@@ -69,8 +65,8 @@ namespace UITests
         public void Should_Find_Down_When_F3()
         {
             SelectMiddle();
-            
-            FindsTest("s", "stylable ", () => Typer.TypeF3());
+
+            FindsTest("s", "stylable ", Typer.TypeF3);
         }
 
         [RequiresThread(ApartmentState.STA)]
@@ -99,7 +95,7 @@ namespace UITests
         [Test]
         // search down is the default
         public void Should_Find_Down_When_Enter_First_Pressed()
-            => FindsTest("s", "This ", () => Typer.TypeEnter());
+            => FindsTest("s", "This ", Typer.TypeEnter);
 
         [RequiresThread(ApartmentState.STA)]
         [Test]
@@ -110,16 +106,16 @@ namespace UITests
             Typer.TypeEnter();
 
             // switch from default
-            FindsTest("s", "stylable ", () => Typer.TypeShiftF3());
+            FindsTest("s", "stylable ", Typer.TypeShiftF3);
 
-            FindsTest("s", "simple ", () => Typer.TypeEnter());
+            FindsTest("s", "simple ", Typer.TypeEnter);
 
-            FindsTest("s", "is ", () => Typer.TypeEnter());
+            FindsTest("s", "is ", Typer.TypeEnter);
 
             // switch
-            FindsTest("s", "simple ", () => Typer.TypeF3());
+            FindsTest("s", "simple ", Typer.TypeF3);
 
-            FindsTest("s", "stylable ", () => Typer.TypeEnter());
+            FindsTest("s", "stylable ", Typer.TypeEnter);
         }
 
         [RequiresThread(ApartmentState.STA)]
@@ -127,23 +123,23 @@ namespace UITests
         public void Menu_Test()
         {
             FocusFindTextAndSetText("Area");
-            var findMenu = ControlFinder.FindFindMenu(window!);
-            var rootItem = findMenu.Items.First();
-            rootItem.Expand();
-            var matchCaseMenuItem = rootItem.Items[1];
-            matchCaseMenuItem.Invoke();
+            Menu findMenu = ControlFinder.FindFindMenu(Window);
+            MenuItem rootItem = findMenu.Items[0];
+            _ = rootItem.Expand();
+            MenuItem matchCaseMenuItem = rootItem.Items[1];
+            _ = matchCaseMenuItem.Invoke();
 
             Typer.TypeF3();
-            var findWindow = ControlFinder.FindCannotFindWindow(window!);
-            var message = findWindow!.FindFirstChild(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Text)).AsTextBox()!.Text;
+            Window? findWindow = ControlFinder.FindCannotFindWindow(Window);
+            string message = findWindow!.FindFirstChild(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Text)).AsTextBox()!.Text;
             Assert.That(message, Is.EqualTo("Searched to the end of this document. Cannot find 'Area'."));
             findWindow.Close();
         }
 
-        private void FindsTest(string findText,string expectedEnclosingWord,Action findAction)
+        private void FindsTest(string findText, string expectedEnclosingWord, Action findAction)
         {
             FocusFindTextAndSetText(findText);
-            
+
             findAction();
 
             AssertSelected(expectedEnclosingWord, findText);
@@ -151,17 +147,17 @@ namespace UITests
 
         private void FocusFindTextAndSetText(string text)
         {
-            var findTextBox = ControlFinder.FindFindTextBox(window!);
+            TextBox? findTextBox = ControlFinder.FindFindTextBox(Window);
             findTextBox!.Focus();
             findTextBox!.Text = text;
         }
 
-        private void AssertSelected(string expectedEnclosingWord,string expectedSelectedText)
+        private void AssertSelected(string expectedEnclosingWord, string expectedSelectedText)
         {
-            var document = ControlFinder.FindFlowDocument(window!);
-            var selectionTextRanges = document!.Patterns.Text.Pattern.GetSelection();
+            AutomationElement? document = ControlFinder.FindFlowDocument(Window);
+            ITextRange[] selectionTextRanges = document!.Patterns.Text.Pattern.GetSelection();
             Assert.That(selectionTextRanges.Count, Is.EqualTo(1));
-            var selectedTextRange = selectionTextRanges[0];
+            ITextRange selectedTextRange = selectionTextRanges[0];
             Assert.That(selectedTextRange.GetText(-1), Is.EqualTo(expectedSelectedText));
             selectedTextRange.ExpandToEnclosingUnit(FlaUI.Core.Definitions.TextUnit.Word);
             Assert.That(selectedTextRange.GetText(-1), Is.EqualTo(expectedEnclosingWord));
@@ -169,7 +165,7 @@ namespace UITests
 
         private void AssertClosed()
         {
-            var findToolbar = ControlFinder.FindFindToolbar(window!);
+            AutomationElement? findToolbar = ControlFinder.FindFindToolbar(Window);
             Assert.That(findToolbar, Is.Null, "Find toolbar should be null");
         }
     }

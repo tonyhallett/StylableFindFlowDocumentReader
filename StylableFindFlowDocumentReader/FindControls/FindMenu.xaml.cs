@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace StylableFindFlowDocumentReader
+namespace StylableFindFlowDocumentReader.FindControls
 {
     /// <summary>
     /// Interaction logic for FindMenu.xaml
@@ -22,8 +11,8 @@ namespace StylableFindFlowDocumentReader
     {
         public Brush MenuBackground
         {
-            get { return (Brush)GetValue(MenuBackgroundProperty); }
-            set { SetValue(MenuBackgroundProperty, value); }
+            get => (Brush)GetValue(MenuBackgroundProperty);
+            set => SetValue(MenuBackgroundProperty, value);
         }
 
         public static readonly DependencyProperty MenuBackgroundProperty =
@@ -31,8 +20,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush MenuBorderBrush
         {
-            get { return (Brush)GetValue(MenuBorderBrushProperty); }
-            set { SetValue(MenuBorderBrushProperty, value); }
+            get => (Brush)GetValue(MenuBorderBrushProperty);
+            set => SetValue(MenuBorderBrushProperty, value);
         }
 
         public static readonly DependencyProperty MenuBorderBrushProperty =
@@ -41,8 +30,8 @@ namespace StylableFindFlowDocumentReader
         #region Selected menu item
         public Brush SelectedGlyphBrush
         {
-            get { return (Brush)GetValue(SelectedGlyphBrushProperty); }
-            set { SetValue(SelectedGlyphBrushProperty, value); }
+            get => (Brush)GetValue(SelectedGlyphBrushProperty);
+            set => SetValue(SelectedGlyphBrushProperty, value);
         }
 
         public static readonly DependencyProperty SelectedGlyphBrushProperty =
@@ -50,8 +39,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush SelectedGlyphBackground
         {
-            get { return (Brush)GetValue(SelectedGlyphBackgroundProperty); }
-            set { SetValue(SelectedGlyphBackgroundProperty, value); }
+            get => (Brush)GetValue(SelectedGlyphBackgroundProperty);
+            set => SetValue(SelectedGlyphBackgroundProperty, value);
         }
 
         public static readonly DependencyProperty SelectedGlyphBackgroundProperty =
@@ -59,8 +48,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush SelectedGlyphBorderBrush
         {
-            get { return (Brush)GetValue(SelectedGlyphBorderBrushProperty); }
-            set { SetValue(SelectedGlyphBorderBrushProperty, value); }
+            get => (Brush)GetValue(SelectedGlyphBorderBrushProperty);
+            set => SetValue(SelectedGlyphBorderBrushProperty, value);
         }
 
         public static readonly DependencyProperty SelectedGlyphBorderBrushProperty =
@@ -70,8 +59,8 @@ namespace StylableFindFlowDocumentReader
         #region Menu item
         public Brush MenuItemBackground
         {
-            get { return (Brush)GetValue(MenuItemBackgroundProperty); }
-            set { SetValue(MenuItemBackgroundProperty, value); }
+            get => (Brush)GetValue(MenuItemBackgroundProperty);
+            set => SetValue(MenuItemBackgroundProperty, value);
         }
 
         public static readonly DependencyProperty MenuItemBackgroundProperty =
@@ -79,18 +68,16 @@ namespace StylableFindFlowDocumentReader
 
         public Brush MenuItemHighlightedBackground
         {
-            get { return (Brush)GetValue(MenuItemHighlightedBackgroundProperty); }
-            set { SetValue(MenuItemHighlightedBackgroundProperty, value); }
+            get => (Brush)GetValue(MenuItemHighlightedBackgroundProperty); set => SetValue(MenuItemHighlightedBackgroundProperty, value);
         }
 
         public static readonly DependencyProperty MenuItemHighlightedBackgroundProperty =
             DependencyProperty.Register(nameof(MenuItemHighlightedBackground), typeof(Brush), typeof(FindMenu));
 
-        
         public Brush MenuItemForeground
         {
-            get { return (Brush)GetValue(MenuItemForegroundProperty); }
-            set { SetValue(MenuItemForegroundProperty, value); }
+            get => (Brush)GetValue(MenuItemForegroundProperty);
+            set => SetValue(MenuItemForegroundProperty, value);
         }
 
         public static readonly DependencyProperty MenuItemForegroundProperty =
@@ -98,8 +85,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush MenuItemHighlightedForeground
         {
-            get { return (Brush)GetValue(MenuItemHighlightedForegroundProperty); }
-            set { SetValue(MenuItemHighlightedForegroundProperty, value); }
+            get => (Brush)GetValue(MenuItemHighlightedForegroundProperty);
+            set => SetValue(MenuItemHighlightedForegroundProperty, value);
         }
 
         public static readonly DependencyProperty MenuItemHighlightedForegroundProperty =
@@ -107,8 +94,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush MenuItemBorderBrush
         {
-            get { return (Brush)GetValue(MenuItemBorderBrushProperty); }
-            set { SetValue(MenuItemBorderBrushProperty, value); }
+            get => (Brush)GetValue(MenuItemBorderBrushProperty);
+            set => SetValue(MenuItemBorderBrushProperty, value);
         }
 
         public static readonly DependencyProperty MenuItemBorderBrushProperty =
@@ -116,8 +103,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush MenuItemHighlightedBorderBrush
         {
-            get { return (Brush)GetValue(MenuItemHighlightedBorderBrushProperty); }
-            set { SetValue(MenuItemHighlightedBorderBrushProperty, value); }
+            get => (Brush)GetValue(MenuItemHighlightedBorderBrushProperty);
+            set => SetValue(MenuItemHighlightedBorderBrushProperty, value);
         }
 
         public static readonly DependencyProperty MenuItemHighlightedBorderBrushProperty =
@@ -127,8 +114,8 @@ namespace StylableFindFlowDocumentReader
         #region Drop down
         public Brush DropDownGlyphBrush
         {
-            get { return (Brush)GetValue(DropDownGlyphBrushProperty); }
-            set { SetValue(DropDownGlyphBrushProperty, value); }
+            get => (Brush)GetValue(DropDownGlyphBrushProperty);
+            set => SetValue(DropDownGlyphBrushProperty, value);
         }
 
         public static readonly DependencyProperty DropDownGlyphBrushProperty =
@@ -136,8 +123,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush DropDownGlyphMouseOverBrush
         {
-            get { return (Brush)GetValue(DropDownGlyphMouseOverBrushProperty); }
-            set { SetValue(DropDownGlyphMouseOverBrushProperty, value); }
+            get => (Brush)GetValue(DropDownGlyphMouseOverBrushProperty);
+            set => SetValue(DropDownGlyphMouseOverBrushProperty, value);
         }
 
         public static readonly DependencyProperty DropDownGlyphMouseOverBrushProperty =
@@ -145,8 +132,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush DropDownGlyphFocusedBrush
         {
-            get { return (Brush)GetValue(DropDownGlyphFocusedBrushProperty); }
-            set { SetValue(DropDownGlyphFocusedBrushProperty, value); }
+            get => (Brush)GetValue(DropDownGlyphFocusedBrushProperty);
+            set => SetValue(DropDownGlyphFocusedBrushProperty, value);
         }
 
         public static readonly DependencyProperty DropDownGlyphFocusedBrushProperty =
@@ -154,8 +141,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush DropDownGlyphMouseOverFocusedBrush
         {
-            get { return (Brush)GetValue(DropDownGlyphMouseOverFocusedBrushProperty); }
-            set { SetValue(DropDownGlyphMouseOverFocusedBrushProperty, value); }
+            get => (Brush)GetValue(DropDownGlyphMouseOverFocusedBrushProperty);
+            set => SetValue(DropDownGlyphMouseOverFocusedBrushProperty, value);
         }
 
         public static readonly DependencyProperty DropDownGlyphMouseOverFocusedBrushProperty =
@@ -163,8 +150,7 @@ namespace StylableFindFlowDocumentReader
 
         public Brush DropDownGlyphPressedBrush
         {
-            get { return (Brush)GetValue(DropDownGlyphPressedBrushProperty); }
-            set { SetValue(DropDownGlyphPressedBrushProperty, value); }
+            get => (Brush)GetValue(DropDownGlyphPressedBrushProperty); set => SetValue(DropDownGlyphPressedBrushProperty, value);
         }
 
         public static readonly DependencyProperty DropDownGlyphPressedBrushProperty =
@@ -172,8 +158,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush DropDownStateGlyphBrush
         {
-            get { return (Brush)GetValue(DropDownStateGlyphBrushProperty); }
-            set { SetValue(DropDownStateGlyphBrushProperty, value); }
+            get => (Brush)GetValue(DropDownStateGlyphBrushProperty);
+            set => SetValue(DropDownStateGlyphBrushProperty, value);
         }
 
         public static readonly DependencyProperty DropDownStateGlyphBrushProperty =
@@ -181,20 +167,19 @@ namespace StylableFindFlowDocumentReader
 
         public Brush DropDownGlyphDisabledBrush
         {
-            get { return (Brush)GetValue(DropDownGlyphDisabledBrushProperty); }
-            set { SetValue(DropDownGlyphDisabledBrushProperty, value); }
+            get => (Brush)GetValue(DropDownGlyphDisabledBrushProperty); set => SetValue(DropDownGlyphDisabledBrushProperty, value);
         }
 
         public static readonly DependencyProperty DropDownGlyphDisabledBrushProperty =
             DependencyProperty.Register(nameof(DropDownGlyphDisabledBrush), typeof(Brush), typeof(FindMenu));
 
         /// <summary>
-        /// Considered as fallback for IsMouseOver, IsKeyboardFocused 
+        /// Considered as fallback for IsMouseOver, IsKeyboardFocused
         /// </summary>
         public Brush DropDownStateBackground
         {
-            get { return (Brush)GetValue(DropDownStateBackgroundProperty); }
-            set { SetValue(DropDownStateBackgroundProperty, value); }
+            get => (Brush)GetValue(DropDownStateBackgroundProperty);
+            set => SetValue(DropDownStateBackgroundProperty, value);
         }
 
         public static readonly DependencyProperty DropDownStateBackgroundProperty =
@@ -202,8 +187,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush DropDownBackgroundPressed
         {
-            get { return (Brush)GetValue(DropDownBackgroundPressedProperty); }
-            set { SetValue(DropDownBackgroundPressedProperty, value); }
+            get => (Brush)GetValue(DropDownBackgroundPressedProperty);
+            set => SetValue(DropDownBackgroundPressedProperty, value);
         }
 
         public static readonly DependencyProperty DropDownBackgroundPressedProperty =
@@ -211,8 +196,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush DropDownBackgroundMouseOver
         {
-            get { return (Brush)GetValue(DropDownBackgroundMouseOverProperty); }
-            set { SetValue(DropDownBackgroundMouseOverProperty, value); }
+            get => (Brush)GetValue(DropDownBackgroundMouseOverProperty);
+            set => SetValue(DropDownBackgroundMouseOverProperty, value);
         }
 
         public static readonly DependencyProperty DropDownBackgroundMouseOverProperty =
@@ -220,8 +205,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush DropDownBackgroundFocused
         {
-            get { return (Brush)GetValue(DropDownBackgroundFocusedProperty); }
-            set { SetValue(DropDownBackgroundFocusedProperty, value); }
+            get => (Brush)GetValue(DropDownBackgroundFocusedProperty);
+            set => SetValue(DropDownBackgroundFocusedProperty, value);
         }
 
         public static readonly DependencyProperty DropDownBackgroundFocusedProperty =
@@ -229,8 +214,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush DropDownBackgroundMouseOverFocused
         {
-            get { return (Brush)GetValue(DropDownBackgroundMouseOverFocusedProperty); }
-            set { SetValue(DropDownBackgroundMouseOverFocusedProperty, value); }
+            get => (Brush)GetValue(DropDownBackgroundMouseOverFocusedProperty);
+            set => SetValue(DropDownBackgroundMouseOverFocusedProperty, value);
         }
 
         public static readonly DependencyProperty DropDownBackgroundMouseOverFocusedProperty =
@@ -238,8 +223,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush DropDownStateBorderBrush
         {
-            get { return (Brush)GetValue(DropDownStateBorderBrushProperty); }
-            set { SetValue(DropDownStateBorderBrushProperty, value); }
+            get => (Brush)GetValue(DropDownStateBorderBrushProperty);
+            set => SetValue(DropDownStateBorderBrushProperty, value);
         }
 
         public static readonly DependencyProperty DropDownStateBorderBrushProperty =
@@ -247,8 +232,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush DropDownBorderPressedBrush
         {
-            get { return (Brush)GetValue(DropDownBorderPressedBrushProperty); }
-            set { SetValue(DropDownBorderPressedBrushProperty, value); }
+            get => (Brush)GetValue(DropDownBorderPressedBrushProperty);
+            set => SetValue(DropDownBorderPressedBrushProperty, value);
         }
 
         public static readonly DependencyProperty DropDownBorderPressedBrushProperty =
@@ -256,8 +241,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush DropDownBorderMouseOverBrush
         {
-            get { return (Brush)GetValue(DropDownBorderMouseOverBrushProperty); }
-            set { SetValue(DropDownBorderMouseOverBrushProperty, value); }
+            get => (Brush)GetValue(DropDownBorderMouseOverBrushProperty);
+            set => SetValue(DropDownBorderMouseOverBrushProperty, value);
         }
 
         public static readonly DependencyProperty DropDownBorderMouseOverBrushProperty =
@@ -265,8 +250,8 @@ namespace StylableFindFlowDocumentReader
 
         public Brush DropDownBorderFocusedBrush
         {
-            get { return (Brush)GetValue(DropDownBorderFocusedBrushProperty); }
-            set { SetValue(DropDownBorderFocusedBrushProperty, value); }
+            get => (Brush)GetValue(DropDownBorderFocusedBrushProperty);
+            set => SetValue(DropDownBorderFocusedBrushProperty, value);
         }
 
         public static readonly DependencyProperty DropDownBorderFocusedBrushProperty =
@@ -274,18 +259,17 @@ namespace StylableFindFlowDocumentReader
 
         public Style DropDownFocusVisualStyle
         {
-            get { return (Style)GetValue(DropDownFocusVisualStyleProperty); }
-            set { SetValue(DropDownFocusVisualStyleProperty, value); }
+            get => (Style)GetValue(DropDownFocusVisualStyleProperty);
+            set => SetValue(DropDownFocusVisualStyleProperty, value);
         }
 
         public static readonly DependencyProperty DropDownFocusVisualStyleProperty =
             DependencyProperty.Register(nameof(DropDownFocusVisualStyle), typeof(Style), typeof(FindMenu), new PropertyMetadata(null));
 
-
         public Brush DropDownBorderMouseOverFocusedBrush
         {
-            get { return (Brush)GetValue(DropDownBorderMouseOverFocusedBrushProperty); }
-            set { SetValue(DropDownBorderMouseOverFocusedBrushProperty, value); }
+            get => (Brush)GetValue(DropDownBorderMouseOverFocusedBrushProperty);
+            set => SetValue(DropDownBorderMouseOverFocusedBrushProperty, value);
         }
 
         public static readonly DependencyProperty DropDownBorderMouseOverFocusedBrushProperty =
@@ -294,8 +278,8 @@ namespace StylableFindFlowDocumentReader
         #region Tooltip
         public string DropDownTooltip
         {
-            get { return (string)GetValue(DropDownTooltipProperty); }
-            set { SetValue(DropDownTooltipProperty, value); }
+            get => (string)GetValue(DropDownTooltipProperty);
+            set => SetValue(DropDownTooltipProperty, value);
         }
 
         public static readonly DependencyProperty DropDownTooltipProperty =
@@ -303,17 +287,13 @@ namespace StylableFindFlowDocumentReader
 
         public bool ShowDropDownTooltip
         {
-            get { return (bool)GetValue(ShowDropDownTooltipProperty); }
-            set { SetValue(ShowDropDownTooltipProperty, value); }
+            get => (bool)GetValue(ShowDropDownTooltipProperty); set => SetValue(ShowDropDownTooltipProperty, value);
         }
 
         public static readonly DependencyProperty ShowDropDownTooltipProperty =
             DependencyProperty.Register(nameof(ShowDropDownTooltip), typeof(bool), typeof(FindMenu), new PropertyMetadata(true));
         #endregion
         #endregion
-        public FindMenu()
-        {
-            InitializeComponent();
-        }
+        public FindMenu() => InitializeComponent();
     }
 }

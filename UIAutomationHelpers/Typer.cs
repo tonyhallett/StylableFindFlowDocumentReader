@@ -19,36 +19,23 @@ namespace UIAutomationHelpers
         public static void TypeDown(int times = 1)
             => TypeRepeatedly(VirtualKeyShort.DOWN, times);
 
-        private static void TypeRepeatedly(VirtualKeyShort key,int times)
+        private static void TypeRepeatedly(VirtualKeyShort key, int times)
         {
-            for (var i = 0; i < times; i++)
+            for (int i = 0; i < times; i++)
             {
                 Keyboard.Type(key);
             }
         }
-
-
-        public static void TypeShiftTab()
-        {
-            Keyboard.TypeSimultaneously(VirtualKeyShort.SHIFT, VirtualKeyShort.TAB);
-        }
+        public static void TypeShiftTab() => Keyboard.TypeSimultaneously(VirtualKeyShort.SHIFT, VirtualKeyShort.TAB);
 
         public static IEnumerable<Action> TypeWord(string word)
-        {
-            return word.Select(ch =>
+            => word.Select(ch =>
             {
                 Action action;
                 // Map char to VirtualKeyShort
-                if (Enum.TryParse<VirtualKeyShort>($"KEY_{ch.ToString().ToUpper()}", out var key))
+                if (Enum.TryParse($"KEY_{ch.ToString().ToUpper()}", out VirtualKeyShort key))
                 {
-                    if (char.IsUpper(ch))
-                    {
-                        action = () => Keyboard.TypeSimultaneously(VirtualKeyShort.SHIFT, key);
-                    }
-                    else
-                    {
-                        action = () => Keyboard.Type(key);
-                    }
+                    action = char.IsUpper(ch) ? (() => Keyboard.TypeSimultaneously(VirtualKeyShort.SHIFT, key)) : (() => Keyboard.Type(key));
                     return action;
                 }
                 else
@@ -56,6 +43,5 @@ namespace UIAutomationHelpers
                     throw new NotSupportedException($"Character '{ch}' is not mapped to VirtualKeyShort");
                 }
             });
-        }
     }
 }

@@ -2,43 +2,38 @@
 
 namespace VideoRecorder
 {
-    internal class RecordSteps
+    internal sealed class RecordSteps
     {
-        private static int navigationDelay = 500;
+        private static readonly int s_navigationDelay = 500;
         public static List<Step> GetSteps()
         {
             List<Step> steps = [
-    ClickFindButtonStep(),
-        ..InputTextSteps("flowDocumentReader"),
-        ..NavigateAndToggleMatchCaseAndSearch(3),
-        CloseFindWindowStep(),
-        ..NavigateAndToggleMatchCaseAndSearch(4),
-        KeepAlive(2000)];
+              ClickFindButtonStep(),
+              ..InputTextSteps("flowDocumentReader"),
+              ..NavigateAndToggleMatchCaseAndSearch(3),
+              CloseFindWindowStep(),
+              ..NavigateAndToggleMatchCaseAndSearch(4),
+              KeepAlive(2000)];
             return steps;
         }
 
-        
-        private static Step KeepAlive(int duration)
-        {
-            return new Step(_ => { }, duration);
-        }
+        private static Step KeepAlive(int duration) => new(_ => { }, duration);
 
         private static Step ClickFindButtonStep()
-        {
-            return new Step(window =>
+            => new(window =>
             {
-                var findButton = ControlFinder.FindFindButton(window!);
+                FlaUI.Core.AutomationElements.Button findButton = ControlFinder.FindFindButton(window!);
                 findButton.Click();
             }, 1000);
-        }
         private static List<Step> InputTextSteps(string text)
         {
-            List<Step> steps = [ new Step(window =>
-    {
-        var findTextBox = ControlFinder.FindFindTextBox(window!);
-        findTextBox!.Focus();
-    }, 1000),
-    ..TypeWordSteps(text,100)
+            List<Step> steps = [
+                new Step(window =>
+                {
+                    FlaUI.Core.AutomationElements.TextBox? findTextBox = ControlFinder.FindFindTextBox(window!);
+                    findTextBox!.Focus();
+                }, 1000),
+                ..TypeWordSteps(text,100)
             ];
             return steps;
         }
@@ -56,61 +51,28 @@ namespace VideoRecorder
 
         }
 
-        private static List<Step> NavigateToSearchForwardAndPressSteps()
-        {
-            return new List<Step>
-    {
-        new Step(_ =>
-        {
-            Typer.TypeTab();
-        },navigationDelay),
-        new Step(_ =>
-        {
-            Typer.TypeTab();
-        },navigationDelay),
-        new Step(_ =>
-        {
-            Typer.TypeTab();
-        },navigationDelay),
-        new Step(_ =>
-        {
-            Typer.TypeEnter();
-        },navigationDelay)
-    };
-        }
+        private static List<Step> NavigateToSearchForwardAndPressSteps() => [
+            new(_ => Typer.TypeTab(),s_navigationDelay),
+            new(_ => Typer.TypeTab(),s_navigationDelay),
+            new(_ => Typer.TypeTab(),s_navigationDelay),
+            new(_ => Typer.TypeEnter(),s_navigationDelay)
+        ];
 
         private static List<Step> NavigateToMenuSelectMatchCaseSteps(int numTabs)
         {
             List<Step> steps =
             [
-            ..Enumerable.Range(0,numTabs).Select(_ =>
-            new Step(_ =>
-            {
-                Typer.TypeTab();
-            },navigationDelay)),
-        new Step(_ =>
-        {
-            Typer.TypeEnter();
-        },navigationDelay),
-        new Step(window =>
-        {
-            Typer.TypeDown();
-        },navigationDelay),
-        new Step(window =>
-        {
-            Typer.TypeEnter();
-        },navigationDelay)
+                ..Enumerable.Range(0,numTabs).Select(_ =>
+                    new Step(_ => Typer.TypeTab(),s_navigationDelay)
+                ),
+                new Step(_ => Typer.TypeEnter(),s_navigationDelay),
+                new Step(_ => Typer.TypeDown(),s_navigationDelay),
+                new Step(_ => Typer.TypeEnter(),s_navigationDelay)
             ];
 
             return steps;
         }
 
-        private static Step CloseFindWindowStep()
-        {
-            return new Step(window =>
-            {
-                ControlFinder.FindCannotFindWindow(window)!.Close();
-            }, 2000);
-        }
+        private static Step CloseFindWindowStep() => new(window => ControlFinder.FindCannotFindWindow(window)!.Close(), 2000);
     }
 }
