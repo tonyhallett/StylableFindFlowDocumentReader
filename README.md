@@ -31,9 +31,9 @@ FindToolbar.xaml obtained from PresentationUI ms/internal/documents/findtoolbar.
 
 There are two ways to use this control.
 
-1. Use the restyle functionality.
-   ... todo
-2. Set the FindToolbarContent property in xaml and bind to the properties of the FindToolBarViewModel.
+1. Set the FindToolbarContent property in xaml and bind to the properties of the FindToolBarViewModel.
+
+The DataContext of the FindRestylingFlowDocumentReader is the OriginalDataContext of the FindToolBarViewModel.
 
 Controls are provided for the parts of the find toolbar and are pretty much the same as the original.
 
@@ -116,43 +116,49 @@ IsPressed trigger.
 | DropDownTooltip                     | "Find..."     |
 | ShowDropDownTooltip                 | true          |
 
-The project Demo has the following - where the colours are bound to a blue or pink palette.
+The project Demo has the following - where the colours are bound to a blue or pink palette, via the OriginalDataContext.
+
+```xaml
+<Window
+    DataContext="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette}"
+```
 
 ```xaml
       <sfdr:FindRestylingFlowDocumentReader.FindToolbarContent>
-        <sfdr:FindToolBar AutomationProperties.AutomationId="replacedfindToolBar">
+        <sfdr:FindToolBar
+          AutomationProperties.AutomationId="replacedfindToolBar">
           <Border
             Margin="5,1,0,1"
             Padding="0"
-            Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Background}"
-            BorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Border}"
+            Background="{Binding OriginalDataContext.Background}"
+            BorderBrush="{Binding OriginalDataContext.Border}"
             BorderThickness="1"
             SnapsToDevicePixels="true">
             <StackPanel
               Orientation="Horizontal">
               <sfdr:FindTextBox
-                Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Background}"
-                Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Text}"
+                Background="{Binding OriginalDataContext.Background}"
+                Foreground="{Binding OriginalDataContext.Text}"
                 HintText="Do it"
-                SelectionBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainBackground}" />
+                SelectionBrush="{Binding OriginalDataContext.MainBackground}" />
               <sfdr:FindNextPreviousButtons
-                Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.PrevNext}" />
+                Foreground="{Binding OriginalDataContext.PrevNext}" />
               <sfdr:FindMenu
-                DropDownGlyphBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownGlyphBrush}"
-                DropDownStateBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateBackground}"
-                DropDownStateBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateBorderBrush}"
-                DropDownStateGlyphBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateGlyphBrush}"
-                MenuBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuBackground}"
-                MenuBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuBorderBrush}"
-                MenuItemBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemBackground}"
-                MenuItemBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemBorderBrush}"
-                MenuItemForeground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemForeground}"
-                MenuItemHighlightedBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHighlightedBackground}"
-                MenuItemHighlightedBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHighlightedBorderBrush}"
-                MenuItemHighlightedForeground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHighlightedForeground}"
-                SelectedGlyphBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBackground}"
-                SelectedGlyphBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBorderBrush}"
-                SelectedGlyphBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBrush}" />
+                DropDownGlyphBrush="{Binding OriginalDataContext.DropDownGlyphBrush}"
+                DropDownStateBackground="{Binding OriginalDataContext.DropDownStateBackground}"
+                DropDownStateBorderBrush="{Binding OriginalDataContext.DropDownStateBorderBrush}"
+                DropDownStateGlyphBrush="{Binding OriginalDataContext.DropDownStateGlyphBrush}"
+                MenuBackground="{Binding OriginalDataContext.MenuBackground}"
+                MenuBorderBrush="{Binding OriginalDataContext.MenuBorderBrush}"
+                MenuItemBackground="{Binding OriginalDataContext.MenuItemBackground}"
+                MenuItemBorderBrush="{Binding OriginalDataContext.MenuItemBorderBrush}"
+                MenuItemForeground="{Binding OriginalDataContext.MenuItemForeground}"
+                MenuItemHighlightedBackground="{Binding OriginalDataContext.MenuItemHighlightedBackground}"
+                MenuItemHighlightedBorderBrush="{Binding OriginalDataContext.MenuItemHighlightedBorderBrush}"
+                MenuItemHighlightedForeground="{Binding OriginalDataContext.MenuItemHighlightedForeground}"
+                SelectedGlyphBackground="{Binding OriginalDataContext.SelectedGlyphBackground}"
+                SelectedGlyphBorderBrush="{Binding OriginalDataContext.SelectedGlyphBorderBrush}"
+                SelectedGlyphBrush="{Binding OriginalDataContext.SelectedGlyphBrush}" />
             </StackPanel>
           </Border>
         </sfdr:FindToolBar>
@@ -164,6 +170,9 @@ The video below show the blue palette.
 
 By comparison a regular flow document reader.
 ![Normal](videos/Normal.gif)
+
+2. Use the restyle functionality.
+    Not recommended - view the source code for protected virtual "Restyle" methods.
 
 ## Key bindings
 

@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace StylableFindFlowDocumentReader
@@ -13,12 +15,32 @@ namespace StylableFindFlowDocumentReader
         private bool _matchDiacritic;
         private bool _matchKashida;
         private bool _matchAlefHamza;
+        private object _originalDataContext;
 
-        public FindToolBarViewModel(FindToolbarWrapper wrapper)
+        public object OriginalDataContext
+        {
+            get => _originalDataContext;
+            set
+            {
+                if (_originalDataContext != value)
+                {
+                    _originalDataContext = value;
+                    OnPropertyChanged(nameof(OriginalDataContext));
+                }
+            }
+        }
+
+        public FindToolBarViewModel(FindToolbarWrapper wrapper, FrameworkElement originalDataContextElement)
         {
             _wrapper = wrapper;
             NextCommand = new RelayCommand(ExecuteNext, CanExecuteFind);
             PreviousCommand = new RelayCommand(ExecutePrevious, CanExecuteFind);
+
+            OriginalDataContext = originalDataContextElement.DataContext;
+            originalDataContextElement.DataContextChanged += (s, e) =>
+            {
+                OriginalDataContext = originalDataContextElement.DataContext;
+            };
         }
 
         public string FindText

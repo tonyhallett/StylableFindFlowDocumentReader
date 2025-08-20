@@ -151,7 +151,7 @@ namespace StylableFindFlowDocumentReader
 
         private void SetShimFindToolBarHost()
         {
-            _shimFindToolbarHost = new FindToolBarShimDecorator(_originalFindToolBarHost, FindToolbarContent);
+            _shimFindToolbarHost = new FindToolBarShimDecorator(_originalFindToolBarHost, FindToolbarContent, this);
             FindToolBarHostField.SetValue(this, _shimFindToolbarHost);
             CopyHostProperties(_originalFindToolBarHost, _shimFindToolbarHost);
             MoveHostProperties(false);

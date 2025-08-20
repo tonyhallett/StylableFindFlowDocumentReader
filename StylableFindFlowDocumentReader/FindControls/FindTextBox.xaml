@@ -46,6 +46,6 @@
       FontStyle="{Binding ElementName=ftb, Path=HintFontStyle}"
       IsHitTestVisible="False"
       Opacity="{Binding ElementName=ftb, Path=HintOpacity}"
-      Visibility="{Binding FindText, Converter={StaticResource ResourceKey=HintTextVisibilityConverter}}" />
+      Visibility="{Binding FindText, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ResourceKey=HintTextVisibilityConverter}}" />
   </Grid>
 </UserControl>
