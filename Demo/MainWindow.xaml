@@ -9,6 +9,7 @@
   Title="Styled Find Toolbar Demo"
   Width="800"
   Height="450"
+  WindowStartupLocation="CenterScreen"
   Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainBackground}"
   Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
   FontFamily="{DynamicResource fontFamily}"

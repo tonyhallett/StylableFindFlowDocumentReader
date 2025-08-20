@@ -11,33 +11,36 @@ The FindRestylingFlowDocumentReader supports supplying your own Find toolbar and
 For reference the original FlowDocumentReader xaml, extracted with DotPeek, is available for viewing in the Xaml directory.
 
 The FlowDocumentReader is in generic.xaml obtained from PresentationUI Themes/generic.baml
+
 ```
   <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type MappingPIGen2:PresentationUIStyleResources}, ResourceId=PUIFlowDocumentReader}"
          x:Uid="Style_732" TargetType="{x:Type FlowDocumentReader}">
 ```
+
 For the find toolbar
 generic.xaml
+
 ```
   <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type MappingPIGen2:PresentationUIStyleResources}, ResourceId=PUIFlowViewers_FindToolBar}"
          x:Uid="Style_733" TargetType="{x:Type ToolBar}">
 ```
+
 FindToolbar.xaml obtained from PresentationUI ms/internal/documents/findtoolbar.baml
 
 # How to use.
 
 There are two ways to use this control.
+
 1. Use the restyle functionality.
-... todo
+   ... todo
 2. Set the FindToolbarContent property in xaml and bind to the properties of the FindToolBarViewModel.
 
 Controls are provided for the parts of the find toolbar and are pretty much the same as the original.
 
-FindToolbar - replicates the actual find toolbar.  Just add your controls inside.
+FindToolbar - replicates the actual find toolbar. Just add your controls inside.
 
-FindTextBox is a TextBox and a hint Label, both with Transparent Background.  If you provide your own you need to bind to the FindToolBarViewModel FindText as well as
+FindTextBox is a TextBox and a hint Label, both with Transparent Background. If you provide your own you need to bind to the FindToolBarViewModel FindText as well as
 setting `x:Name="findTextBox"`
-
-
 
 Dependency properties.
 | Property | Default value |
@@ -48,12 +51,12 @@ Dependency properties.
 | HintOpacity | 0.7 |
 | HintFontStyle | FontStyles.Italic |
 | TextBoxWidth | 183 |
-| Foreground | SystemColors.ControlTextBrush| 
+| Foreground | SystemColors.ControlTextBrush|
 | Background | null ( for the caret ) |
 | SelectionBrush | TextBox.SelectionBrushProperty |
 | SelectionOpacity | TextBox.SelectionOpacityProperty |
 
-FindNextPreviousButtons.  If you provide your own you need to bind to the FindToolBarViewModel NextCommand and PreviousCommand.
+FindNextPreviousButtons. If you provide your own you need to bind to the FindToolBarViewModel NextCommand and PreviousCommand.
 
 Dependency properties.
 | Property | Default value |
@@ -64,7 +67,6 @@ Dependency properties.
 | Foreground ( icon colour ) | Default |
 
 The FindToolBarViewModel also has IsSearchUp and IsSearchDown properties if you want to style your own buttons.
-
 
 FindMenu. If you provide your own your MenuItem options need to bind to the FindToolBarViewModel properties:
 MatchWholeWord
@@ -81,54 +83,102 @@ IsKeyboardFocused
 triggers and multi trigger
 IsPressed trigger.
 
+| Property                            | Default value |
+| ----------------------------------- | ------------- |
+| MenuBackground                      | null          |
+| MenuBorderBrush                     | null          |
+| MenuItemBackground                  | null          |
+| MenuItemHighlightedBackground       | null          |
+| MenuItemForeground                  | null          |
+| MenuItemHighlightedForeground       | null          |
+| MenuItemBorderBrush                 | null          |
+| MenuItemHighlightedBorderBrush      | null          |
+| SelectedGlyphBrush                  | null          |
+| SelectedGlyphBackground             | null          |
+| SelectedGlyphBorderBrush            | null          |
+| DropDownGlyphBrush                  | null          |
+| DropDownGlyphMouseOverBrush         | null          |
+| DropDownGlyphFocusedBrush           | null          |
+| DropDownGlyphMouseOverFocusedBrush  | null          |
+| DropDownGlyphPressedBrush           | null          |
+| DropDownStateGlyphBrush             | null          |
+| DropDownGlyphDisabledBrush          | null          |
+| DropDownStateBackground             | null          |
+| DropDownBackgroundPressed           | null          |
+| DropDownBackgroundMouseOver         | null          |
+| DropDownBackgroundFocused           | null          |
+| DropDownBackgroundMouseOverFocused  | null          |
+| DropDownStateBorderBrush            | null          |
+| DropDownBorderPressedBrush          | null          |
+| DropDownBorderMouseOverBrush        | null          |
+| DropDownBorderFocusedBrush          | null          |
+| DropDownBorderMouseOverFocusedBrush | null          |
+| DropDownTooltip                     | "Find..."     |
+| ShowDropDownTooltip                 | true          |
 
-| Property | Default value |
-| --- | --- |
-| MenuBackground | null |
-| MenuBorderBrush | null |
-| MenuItemBackground | null |
-| MenuItemHighlightedBackground | null |
-| MenuItemForeground | null |
-| MenuItemHighlightedForeground | null |
-| MenuItemBorderBrush | null |
-| MenuItemHighlightedBorderBrush | null |
-| SelectedGlyphBrush | null |
-| SelectedGlyphBackground | null |
-| SelectedGlyphBorderBrush | null |
-| DropDownGlyphBrush | null |
-| DropDownGlyphMouseOverBrush | null |
-| DropDownGlyphFocusedBrush | null |
-| DropDownGlyphMouseOverFocusedBrush | null |
-| DropDownGlyphPressedBrush | null |
-| DropDownStateGlyphBrush | null |
-| DropDownGlyphDisabledBrush | null |
-| DropDownStateBackground | null |
-| DropDownBackgroundPressed | null |
-| DropDownBackgroundMouseOver | null |
-| DropDownBackgroundFocused | null |
-| DropDownBackgroundMouseOverFocused | null |
-| DropDownStateBorderBrush | null |
-| DropDownBorderPressedBrush | null |
-| DropDownBorderMouseOverBrush | null |
-| DropDownBorderFocusedBrush | null |
-| DropDownBorderMouseOverFocusedBrush | null |
-| DropDownTooltip | "Find..." |
-| ShowDropDownTooltip | true |
+The project Demo has the following - where the colours are bound to a blue or pink palette.
 
+```xaml
+      <sfdr:FindRestylingFlowDocumentReader.FindToolbarContent>
+        <sfdr:FindToolBar AutomationProperties.AutomationId="replacedfindToolBar">
+          <Border
+            Margin="5,1,0,1"
+            Padding="0"
+            Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Background}"
+            BorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Border}"
+            BorderThickness="1"
+            SnapsToDevicePixels="true">
+            <StackPanel
+              Orientation="Horizontal">
+              <sfdr:FindTextBox
+                Background="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Background}"
+                Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.Text}"
+                HintText="Do it"
+                SelectionBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainBackground}" />
+              <sfdr:FindNextPreviousButtons
+                Foreground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.PrevNext}" />
+              <sfdr:FindMenu
+                DropDownGlyphBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownGlyphBrush}"
+                DropDownStateBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateBackground}"
+                DropDownStateBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateBorderBrush}"
+                DropDownStateGlyphBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.DropDownStateGlyphBrush}"
+                MenuBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuBackground}"
+                MenuBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuBorderBrush}"
+                MenuItemBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemBackground}"
+                MenuItemBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemBorderBrush}"
+                MenuItemForeground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemForeground}"
+                MenuItemHighlightedBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHighlightedBackground}"
+                MenuItemHighlightedBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHighlightedBorderBrush}"
+                MenuItemHighlightedForeground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MenuItemHighlightedForeground}"
+                SelectedGlyphBackground="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBackground}"
+                SelectedGlyphBorderBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBorderBrush}"
+                SelectedGlyphBrush="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.SelectedGlyphBrush}" />
+            </StackPanel>
+          </Border>
+        </sfdr:FindToolBar>
+      </sfdr:FindRestylingFlowDocumentReader.FindToolbarContent>
+```
+
+The video below show the blue palette.
+![Demo](videos/Demo.gif)
+
+By comparison a regular flow document reader.
+![Normal](videos/Normal.gif)
 
 ## Key bindings
+
 Note that there are some keys that are processed by the FlowDocumentReader
 
 Ctrl~M for cycling between the modes.
 
 Ctrl~ + and - for zooming in and out.
 
-F3 for showing the find toolbar.  Once shown will search. Shift key to search backwards.
+F3 for showing the find toolbar. Once shown will search. Shift key to search backwards.
 
 Enter key when text box has focus will search with current search direction.
 
-
 This fills the gap - specify a KeyBinding in the XAML - e.g
+
 ```xaml
 <FindRestylingFlowDocumentReader.InputBindings>
     <KeyBinding Command="ApplicationCommands.Find" Modifiers="Ctrl" Key="F" />
@@ -136,17 +186,20 @@ This fills the gap - specify a KeyBinding in the XAML - e.g
     <KeyBinding Command="NavigationCommands.PreviousPage" Modifiers="Ctrl" Key="P" />
 </FindRestylingFlowDocumentReader.InputBindings>
 ```
-Also supports ``NavigationCommands.LastPage`` and ``NavigationCommands.FirstPage``.
+
+Also supports `NavigationCommands.LastPage` and `NavigationCommands.FirstPage`.
 
 ## Protected methods
 
 The FindRestylingFlowDocumentReader has some protected methods that can be overridden.
 
-To function, the PART_FindToolBarHost, which by default is 
+To function, the PART_FindToolBarHost, which by default is
+
 ```xaml
 <Border x:Name="PART_FindToolBarHost" VerticalAlignment="Center"
         HorizontalAlignment="Left" Visibility="Collapsed"/>
 ```
+
 has to be replaced with another decorator that has a conditional `Child` property.
 When called for WPF rendering, the `Child` property is the original host with child the FindToolbarContent.
 If the wrapping decorator needs properties then override CopyHostProperties.

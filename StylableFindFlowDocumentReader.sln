@@ -16,6 +16,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Normal", "Normal\Normal.csproj", "{A92C4BB4-01F6-4F81-9307-AC36824CE208}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoRecorder", "VideoRecorder\VideoRecorder.csproj", "{00C8282A-FE09-401E-9085-0B7437305FD3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8EAADED9-F711-4371-A396-BA40EE590856} = {8EAADED9-F711-4371-A396-BA40EE590856}
+		{A92C4BB4-01F6-4F81-9307-AC36824CE208} = {A92C4BB4-01F6-4F81-9307-AC36824CE208}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIAutomationHelpers", "UIAutomationHelpers\UIAutomationHelpers.csproj", "{D3C89EB4-CD05-4688-B454-2BD9354E31F5}"
 EndProject

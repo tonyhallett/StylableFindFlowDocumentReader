@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Normal"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Background="DarkBlue"
+        Foreground="LightBlue"
         Title="Normal Find Toolbar Demo" Height="450" Width="800">
-    <FlowDocumentReader>
+    <FlowDocumentReader BorderThickness="1" BorderBrush="LightBlue" SelectionBrush="LightBlue">
         <FlowDocumentReader.Document>
             <FlowDocument>
                 <Paragraph>

@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using FlaUI.Core;
+﻿using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Capturing;
 using FlaUI.Core.Tools;
@@ -14,16 +13,18 @@ namespace VideoRecorder
         private static Window? _window;
         private static FlauVideoRecorder? _videoRecorder;
 
-        public static async Task Record(bool isDemo, List<Step> steps, AutomationBase automation)
+        public static async Task<string?> Record(bool isDemo, List<Step> steps, AutomationBase automation, CaptureSettings? captureSettings = null)
         {
             var projectName = isDemo ? "Demo" : "Normal";
             _application = ApplicationLauncher.Launch(projectName);
             try
             {
                 _window = _application.GetMainWindow(automation)!;
-                await StartRecording(projectName);
+                Thread.Sleep(1000);
+                var videoPath = await StartRecording(projectName,captureSettings);
                 ExecuteSteps(steps);
                 StopRecording();
+                return videoPath;
             }
             finally
             {
@@ -50,15 +51,9 @@ namespace VideoRecorder
 
         private static void StopRecording() => _videoRecorder!.Stop();
 
-        private static async Task StartRecording(string projectName)
+        private static async Task<string> StartRecording(string projectName, CaptureSettings? captureSettings)
         {
-            var directory = new DirectoryInfo(Assembly.GetExecutingAssembly().Location);
-            while(directory!.Name != "StylableFindFlowDocumentReader")
-            {
-                directory = directory.Parent;
-            }
-
-            var videosDirectory = Path.Combine(directory.FullName, "videos");
+            var videosDirectory = Path.Combine(ApplicationLauncher.GetSolutionPath(), "videos");
             if (!Directory.Exists(videosDirectory))
             {
                 Directory.CreateDirectory(videosDirectory);
@@ -68,30 +63,30 @@ namespace VideoRecorder
             {
                 VideoFormat = VideoFormat.xvid,
                 VideoQuality = 6,
-                TargetVideoPath = Path.Combine(videosDirectory,$"{projectName}.avi")
+                TargetVideoPath = Path.Combine(videosDirectory,$"{projectName}.avi"),
+                LogMissingFrames = false,
             };
            
-            var ffmpegPath = GetFfmpegPath();
-            if (ffmpegPath == null)
-            {
-                // it won't download again if ffmpeg.exe exists in the target folder 
-                // todo create directory in the solution
-                ffmpegPath = await FlauVideoRecorder.DownloadFFMpeg("C:\\temp");
-            }
-            videoRecorderSettings.ffmpegPath = ffmpegPath;
-            // check a directory for ffmpeg and download to it
-            // could check an xml file if present for it 
+            videoRecorderSettings.ffmpegPath = await FfmpegInstallationHelper.GetFfmpegPathAsync();
 
             _videoRecorder = new FlauVideoRecorder(videoRecorderSettings, (_) =>
             {
-                return Capture.MainScreen();
+                return Capture.Rectangle(AddSpaceForMenu(_window!.BoundingRectangle), captureSettings);
+                
             });
+            return videoRecorderSettings.TargetVideoPath;
         }
 
-        private static string? GetFfmpegPath()
+        private static System.Drawing.Rectangle AddSpaceForMenu(System.Drawing.Rectangle windowBounds)
         {
-            return null;
+            var space = 200;
+            return new System.Drawing.Rectangle
+            (
+                windowBounds.X - space,
+                windowBounds.Y - space,
+                windowBounds.Width + 2 * space,
+                windowBounds.Height + 2 * space
+            );
         }
-
     }
 }
