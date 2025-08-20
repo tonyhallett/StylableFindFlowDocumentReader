@@ -125,7 +125,7 @@ namespace UITests
             FocusFindTextAndSetText("Area");
             Menu? findMenu = ControlFinder.FindFindMenu(Window);
             Assert.That(findMenu, Is.Not.Null, "Find menu should not be null");
-            MenuItem rootItem = findMenu.Items[0];
+            MenuItem rootItem = findMenu!.Items[0];
             _ = rootItem.Expand();
             MenuItem matchCaseMenuItem = rootItem.Items[1];
             _ = matchCaseMenuItem.Invoke();
@@ -134,7 +134,7 @@ namespace UITests
             Window? findWindow = ControlFinder.FindCannotFindWindow(Window);
             TextBox? findWindowTextBox = findWindow!.FindFirstChild(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Text)).AsTextBox();
             Assert.That(findWindowTextBox, Is.Not.Null, "Find window text box should not be null");
-            Assert.That(findWindowTextBox.Text, Is.EqualTo("Searched to the end of this document. Cannot find 'Area'."));
+            Assert.That(findWindowTextBox!.Text, Is.EqualTo("Searched to the end of this document. Cannot find 'Area'."));
             findWindow.Close();
         }
 
