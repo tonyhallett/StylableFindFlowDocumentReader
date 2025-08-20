@@ -1,0 +1,10 @@
+﻿<Project>
+  <ItemGroup>
+    <PackageReference Include="Roslynator.Analyzers" Version="4.14.0" PrivateAssets="all" />
+    <PackageReference Include="Roslynator.CodeFixes" Version="4.14.0" PrivateAssets="all" />
+    <PackageReference Include="Roslynator.Refactorings" Version="4.14.0" PrivateAssets="all" />
+  </ItemGroup>
+  <PropertyGroup>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+</Project>
