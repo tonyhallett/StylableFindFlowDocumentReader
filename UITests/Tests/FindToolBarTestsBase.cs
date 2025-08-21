@@ -4,7 +4,9 @@ using FlaUI.TestUtilities;
 using FlaUI.UIA3;
 using UIAutomationHelpers;
 
-namespace UITests
+[assembly: RequiresThread(ApartmentState.STA)]
+
+namespace UITests.Tests
 {
     internal abstract class FindToolBarTestsBase(bool isNormal)
         : FlaUITestBase

@@ -1,12 +1,11 @@
 ﻿using UIAutomationHelpers;
-using UITests.NUnit;
 
-namespace UITests
+namespace UITests.Tests.Enhanced
 {
     internal sealed class KeyCommandsTests() : FindToolBarTestsBase(false)
     {
-        [UiTest]
-        public void Should_Execute_The_KeyBindings_In_InputBindings_WHen_Pressed()
+        [Test]
+        public void Should_Execute_The_KeyBindings_In_InputBindings_When_Pressed()
         {
             FlaUI.Core.AutomationElements.AutomationElement? flowDocument = ControlFinder.FindFlowDocument(Window);
             flowDocument!.Focus();

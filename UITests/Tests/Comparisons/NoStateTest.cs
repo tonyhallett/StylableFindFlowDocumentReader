@@ -1,15 +1,15 @@
 ﻿using FlaUI.Core.AutomationElements;
 using UIAutomationHelpers;
-using UITests.NUnit;
+using UITests.TestHelpers;
 
-namespace UITests
+namespace UITests.Tests.Comparisons
 {
     [TestFixture(false)]
     [TestFixture(true)]
     internal sealed class NoStateTest(bool isNormal)
         : FindToolBarTestsBase(isNormal)
     {
-        [UiTest]
+        [Test]
         public void Closing_Removes_Find_Toolbar_State()
         {
             ControlFinder.FindFindButton(Window).Click(); // open

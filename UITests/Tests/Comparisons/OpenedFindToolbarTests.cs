@@ -2,9 +2,9 @@
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
 using UIAutomationHelpers;
-using UITests.NUnit;
+using UITests.TestHelpers;
 
-namespace UITests
+namespace UITests.Tests.Comparisons
 {
     [TestFixture(false)]
     [TestFixture(true)]
@@ -23,7 +23,7 @@ namespace UITests
             return application;
         }
 
-        [UiTest]
+        [Test]
         public void Should_Focus_The_TextBox()
         {
             RetryResult<TextBox?> findTextBoxResult = Retry.WhileNull(() =>
@@ -34,7 +34,7 @@ namespace UITests
             Assert.That(findTextBoxResult.Result, Is.Not.Null, "Find text box should not be null");
         }
 
-        [UiTest]
+        [Test]
         public void Should_Close_Find_Toolbar_When_Click_Find_Button()
         {
             _findButton!.Click();
@@ -43,7 +43,7 @@ namespace UITests
             Assert.That(findToolbar, Is.Null, "Find toolbar should be null");
         }
 
-        [UiTest]
+        [Test]
         public void Should_Close_Find_Toolbar_When_Press_Escape()
         {
             Typer.TypeEsc();
@@ -56,7 +56,7 @@ namespace UITests
             This is a simple example of a FlowDocumentReader with a stylable Find area.
         */
 
-        [UiTest]
+        [Test]
         public void Should_Find_Up_When_ShiftF3()
         {
             SelectMiddle();
@@ -71,7 +71,7 @@ namespace UITests
             AssertSelected("FlowDocumentReader ", "FlowDocumentReader");
         }
 
-        [UiTest]
+        [Test]
         public void Should_Find_Down_When_F3()
         {
             SelectMiddle();
@@ -79,7 +79,7 @@ namespace UITests
             FindsTest("s", "stylable ", Typer.TypeF3);
         }
 
-        [UiTest]
+        [Test]
         public void Should_Find_Down_When_FindDown_Button_Is_Clicked()
             => FindsTest("s", "This ", () =>
             {
@@ -87,7 +87,7 @@ namespace UITests
                 Typer.TypeEnter();
             });
 
-        [UiTest]
+        [Test]
         public void Should_Find_Up_When_FindUp_Button_Is_Clicked()
         {
             SelectMiddle();
@@ -99,11 +99,11 @@ namespace UITests
             });
         }
 
-        [UiTest]
+        [Test]
         public void Should_Find_Down_When_Enter_First_Pressed() // search down is the default
             => FindsTest("s", "This ", Typer.TypeEnter);
 
-        [UiTest]
+        [Test]
         public void Should_Find_Last_Searched_Direction_When_Press_Enter()
         {
             // start at the far right
@@ -123,7 +123,7 @@ namespace UITests
             FindsTest("s", "stylable ", Typer.TypeEnter);
         }
 
-        [UiTest]
+        [Test]
         public void Menu_Test()
         {
             const string cannotFindText = "Area";

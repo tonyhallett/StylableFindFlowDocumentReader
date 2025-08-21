@@ -1,7 +1,7 @@
 ﻿using FlaUI.Core.AutomationElements;
 using UIAutomationHelpers;
 
-namespace UITests
+namespace UITests.TestHelpers
 {
     internal static class MenuHelper
     {
