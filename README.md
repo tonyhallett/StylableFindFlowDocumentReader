@@ -12,7 +12,7 @@ For reference the original FlowDocumentReader xaml, extracted with DotPeek, is a
 
 The FlowDocumentReader is in generic.xaml obtained from PresentationUI Themes/generic.baml
 
-```
+```xaml
   <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type MappingPIGen2:PresentationUIStyleResources}, ResourceId=PUIFlowDocumentReader}"
          x:Uid="Style_732" TargetType="{x:Type FlowDocumentReader}">
 ```
@@ -20,7 +20,7 @@ The FlowDocumentReader is in generic.xaml obtained from PresentationUI Themes/ge
 For the find toolbar
 generic.xaml
 
-```
+```xaml
   <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type MappingPIGen2:PresentationUIStyleResources}, ResourceId=PUIFlowViewers_FindToolBar}"
          x:Uid="Style_733" TargetType="{x:Type ToolBar}">
 ```
@@ -123,7 +123,7 @@ The project Demo has the following - where the colours are bound to a blue or pi
     DataContext="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette}"
 ``` xmlns:findControls="clr-namespace:StylableFindFlowDocumentReader.FindControls;assembly=StylableFindFlowDocumentReader"
     xmlns:sfdr="clr-namespace:StylableFindFlowDocumentReader.Reader;assembly=StylableFindFlowDocumentReader"
-```xaml
+```
 
 ```xaml
       <sfdr:FindRestylingFlowDocumentReader.FindToolbarContent>
