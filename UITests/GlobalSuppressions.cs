@@ -5,4 +5,8 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "Underscores are acceptable in this project.")]
+[assembly: SuppressMessage(
+    "Naming",
+    "CA1707:Identifiers should not contain underscores",
+    Scope = "member",
+    Justification = "Underscores are acceptable in this project.")]

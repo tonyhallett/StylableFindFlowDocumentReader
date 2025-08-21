@@ -5,9 +5,7 @@ namespace UIAutomationHelpers
     public static class ControlFinder
     {
         public static Button FindFindButton(Window window)
-#pragma warning disable SA1009 // Closing parenthesis should be spaced correctly - https://github.com/DotNetAnalyzers/StyleCopAnalyzers/issues/3515
             => window.FindFirstDescendant(cf => cf.ByAutomationId("FindButton")).AsButton()!;
-#pragma warning restore SA1009 // Closing parenthesis should be spaced correctly
 
         public static AutomationElement? FindFindToolbar(Window window)
             => window.FindFirstDescendant(cf => cf.ByClassName("ToolBar"));
