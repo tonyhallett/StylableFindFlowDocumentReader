@@ -128,7 +128,7 @@ The project Demo has the following - where the colours are bound to a blue or pi
 ```xaml
       <sfdr:FindRestylingFlowDocumentReader.FindToolbarContent>
         <findControls:FindToolBar
-          AutomationProperties.AutomationId="replacedfindToolBar">
+          AutomationProperties.AutomationId="replacedFindToolBar">
           <Border
             Margin="5,1,0,1"
             Padding="0"

@@ -1,4 +1,5 @@
 ﻿using UIAutomationHelpers;
+using UITests.NUnit;
 
 namespace UITests
 {
@@ -7,8 +8,7 @@ namespace UITests
     internal sealed class ClosedFindToolbarTests(bool isNormal)
         : FindToolBarTestsBase(isNormal)
     {
-        [RequiresThread(ApartmentState.STA)]
-        [Test]
+        [UiTest]
         public void Should_Show_Find_Toolbar_When_Click_Find_Button()
         {
             FlaUI.Core.AutomationElements.Button findButton = ControlFinder.FindFindButton(Window);
@@ -16,24 +16,15 @@ namespace UITests
             AssertShowsFindToolbar();
         }
 
-        [RequiresThread(ApartmentState.STA)]
-        [Test]
+        [UiTest]
         public void Should_Show_Find_Toolbar_When_Press_F3()
         {
-            FlaUI.Core.AutomationElements.AutomationElement? fdr = ControlFinder.FindFlowDocument(Window);
+            FlaUI.Core.AutomationElements.AutomationElement? flowDocument = ControlFinder.FindFlowDocument(Window);
 
-            fdr!.Click();
+            flowDocument!.Click();
             Typer.TypeF3();
 
             AssertShowsFindToolbar();
-        }
-
-        private void AssertShowsFindToolbar()
-        {
-            FlaUI.Core.AutomationElements.AutomationElement? findToolbar = ControlFinder.FindFindToolbar(Window);
-            Assert.That(findToolbar, Is.Not.Null, "Find toolbar should not be null");
-            string expectedAutomationId = IsNormal ? "FindToolbar" : "replacedfindToolBar";
-            Assert.That(findToolbar!.AutomationId, Is.EqualTo(expectedAutomationId));
         }
     }
 }

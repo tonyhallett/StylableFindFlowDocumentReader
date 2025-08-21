@@ -27,5 +27,13 @@ namespace UITests
             _window = application.GetMainWindow(Automation);
             return application;
         }
+
+        protected void AssertShowsFindToolbar()
+        {
+            AutomationElement? findToolbar = ControlFinder.FindFindToolbar(Window);
+            Assert.That(findToolbar, Is.Not.Null, "Find toolbar should not be null");
+            string expectedAutomationId = IsNormal ? "FindToolbar" : "replacedFindToolBar";
+            Assert.That(findToolbar!.AutomationId, Is.EqualTo(expectedAutomationId));
+        }
     }
 }

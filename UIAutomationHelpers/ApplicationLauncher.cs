@@ -52,6 +52,6 @@ namespace UIAutomationHelpers
         }
 
         private static string GetExePath(string binDirectory, string projectName, bool isDebug)
-            => Path.Combine(binDirectory, isDebug ? "Debug" : "Release", $"{projectName}.exe");
+            => Path.Combine(binDirectory, isDebug ? "Debug" : "Release", "net472", $"{projectName}.exe");
     }
 }

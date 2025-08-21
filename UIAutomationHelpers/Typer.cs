@@ -44,5 +44,7 @@ namespace UIAutomationHelpers
                     throw new NotSupportedException($"Character '{ch}' is not mapped to VirtualKeyShort");
                 }
             });
+
+        public static void TypeCtrlF() => Keyboard.TypeSimultaneously(VirtualKeyShort.CONTROL, VirtualKeyShort.KEY_F);
     }
 }

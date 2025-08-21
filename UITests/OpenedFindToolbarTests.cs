@@ -1,6 +1,8 @@
 ﻿using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Tools;
 using UIAutomationHelpers;
+using UITests.NUnit;
 
 namespace UITests
 {
@@ -21,8 +23,18 @@ namespace UITests
             return application;
         }
 
-        [RequiresThread(ApartmentState.STA)]
-        [Test]
+        [UiTest]
+        public void Should_Focus_The_TextBox()
+        {
+            RetryResult<TextBox?> findTextBoxResult = Retry.WhileNull(() =>
+            {
+                TextBox? findTextBox = ControlFinder.FindFindTextBox(Window);
+                return findTextBox?.Properties.HasKeyboardFocus ? findTextBox : null;
+            });
+            Assert.That(findTextBoxResult.Result, Is.Not.Null, "Find text box should not be null");
+        }
+
+        [UiTest]
         public void Should_Close_Find_Toolbar_When_Click_Find_Button()
         {
             _findButton!.Click();
@@ -31,8 +43,7 @@ namespace UITests
             Assert.That(findToolbar, Is.Null, "Find toolbar should be null");
         }
 
-        [RequiresThread(ApartmentState.STA)]
-        [Test]
+        [UiTest]
         public void Should_Close_Find_Toolbar_When_Press_Escape()
         {
             Typer.TypeEsc();
@@ -45,8 +56,7 @@ namespace UITests
             This is a simple example of a FlowDocumentReader with a stylable Find area.
         */
 
-        [RequiresThread(ApartmentState.STA)]
-        [Test]
+        [UiTest]
         public void Should_Find_Up_When_ShiftF3()
         {
             SelectMiddle();
@@ -61,8 +71,7 @@ namespace UITests
             AssertSelected("FlowDocumentReader ", "FlowDocumentReader");
         }
 
-        [RequiresThread(ApartmentState.STA)]
-        [Test]
+        [UiTest]
         public void Should_Find_Down_When_F3()
         {
             SelectMiddle();
@@ -70,8 +79,7 @@ namespace UITests
             FindsTest("s", "stylable ", Typer.TypeF3);
         }
 
-        [RequiresThread(ApartmentState.STA)]
-        [Test]
+        [UiTest]
         public void Should_Find_Down_When_FindDown_Button_Is_Clicked()
             => FindsTest("s", "This ", () =>
             {
@@ -79,8 +87,7 @@ namespace UITests
                 Typer.TypeEnter();
             });
 
-        [RequiresThread(ApartmentState.STA)]
-        [Test]
+        [UiTest]
         public void Should_Find_Up_When_FindUp_Button_Is_Clicked()
         {
             SelectMiddle();
@@ -92,13 +99,11 @@ namespace UITests
             });
         }
 
-        [RequiresThread(ApartmentState.STA)]
-        [Test]
+        [UiTest]
         public void Should_Find_Down_When_Enter_First_Pressed() // search down is the default
             => FindsTest("s", "This ", Typer.TypeEnter);
 
-        [RequiresThread(ApartmentState.STA)]
-        [Test]
+        [UiTest]
         public void Should_Find_Last_Searched_Direction_When_Press_Enter()
         {
             // start at the far right
@@ -118,23 +123,23 @@ namespace UITests
             FindsTest("s", "stylable ", Typer.TypeEnter);
         }
 
-        [RequiresThread(ApartmentState.STA)]
-        [Test]
+        [UiTest]
         public void Menu_Test()
         {
-            FocusFindTextAndSetText("Area");
-            Menu? findMenu = ControlFinder.FindFindMenu(Window);
-            Assert.That(findMenu, Is.Not.Null, "Find menu should not be null");
-            MenuItem rootItem = findMenu!.Items[0];
-            _ = rootItem.Expand();
-            MenuItem matchCaseMenuItem = rootItem.Items[1];
-            _ = matchCaseMenuItem.Invoke();
-
+            const string cannotFindText = "Area";
+            FocusFindTextAndSetText(cannotFindText);
+            _ = MenuHelper.SelectMatchCase(Window);
             Typer.TypeF3();
+
+            AssertCannotFind(cannotFindText);
+        }
+
+        private void AssertCannotFind(string findText)
+        {
             Window? findWindow = ControlFinder.FindCannotFindWindow(Window);
             TextBox? findWindowTextBox = findWindow!.FindFirstChild(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Text)).AsTextBox();
             Assert.That(findWindowTextBox, Is.Not.Null, "Find window text box should not be null");
-            Assert.That(findWindowTextBox!.Text, Is.EqualTo("Searched to the end of this document. Cannot find 'Area'."));
+            Assert.That(findWindowTextBox!.Text, Is.EqualTo($"Searched to the end of this document. Cannot find '{findText}'."));
             findWindow.Close();
         }
 
