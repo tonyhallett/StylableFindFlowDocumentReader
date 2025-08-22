@@ -160,7 +160,7 @@ namespace StylableFindFlowDocumentReader.Reader
 
         private void ExecutePrevious() => Find(true);
 
-        internal void Find(bool searchUp)
+        private void Find(bool searchUp)
         {
             _wrapper.SetSearchUp(searchUp);
             IsSearchUp = searchUp;

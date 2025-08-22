@@ -215,6 +215,8 @@ Regardless of the solution, executing find should probably be with OnFindInvoked
 private FindToolBar FindToolBar => this._findToolBarHost == null ? (FindToolBar) null : this._findToolBarHost.Child as FindToolBar;
 ```
 
+with a `FindToolBar` that has had the find properties set based upon the provided replacement find tool bar.
+
 1. Solution 1
 
 Showing a custom toolbar
