@@ -9,26 +9,22 @@ namespace StylableFindFlowDocumentReader.Reader
     {
         private readonly ToolBar _findToolBar;
         private readonly Decorator _originalDecorator;
-        private readonly FindToolbarWrapper _findToolBarWrapper;
+        private readonly FindToolBarViewModel _findToolBarViewModel;
 
         public FindToolBarShimDecorator(Decorator originalDecorator, FrameworkElement findToolbarContent, FindRestylingFlowDocumentReader findRestylingFlowDocumentReader)
         {
             _findToolBar = originalDecorator.Child as ToolBar;
             _originalDecorator = originalDecorator;
-            _findToolBarWrapper = new FindToolbarWrapper(_findToolBar);
-            findToolbarContent.DataContext = new FindToolBarViewModel(_findToolBarWrapper, findRestylingFlowDocumentReader);
+            _findToolBarViewModel = new FindToolBarViewModel(new FindToolbarWrapper(_findToolBar), findRestylingFlowDocumentReader);
+            findToolbarContent.DataContext = _findToolBarViewModel;
             _originalDecorator.Child = findToolbarContent;
             originalDecorator.Replace(this);
             base.Child = _originalDecorator;
         }
 
-        public void Find(bool searchUp)
-        {
-            _findToolBarWrapper.SetSearchUp(searchUp);
-            _findToolBarWrapper.Find();
-        }
+        public void Find(bool searchUp) => _findToolBarViewModel.Find(searchUp);
 
-        public void Find() => _findToolBarWrapper.Find();
+        public void Find() => _findToolBarViewModel.Find();
 
         public override UIElement Child
         {
