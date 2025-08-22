@@ -5,9 +5,9 @@ using StylableFindFlowDocumentReader.Commands;
 
 namespace StylableFindFlowDocumentReader.Reader
 {
-    public class FindToolBarViewModel : INotifyPropertyChanged
+    public class FindToolBarViewModel : INotifyPropertyChanged, IFindParameters
     {
-        private readonly FindToolbarWrapper _wrapper;
+        private readonly IFinder _finder;
         private string _findText;
         private bool _isSearchUp;
         private bool _matchWholeWord;
@@ -32,9 +32,9 @@ namespace StylableFindFlowDocumentReader.Reader
             }
         }
 
-        public FindToolBarViewModel(FindToolbarWrapper wrapper, FrameworkElement originalDataContextElement)
+        public FindToolBarViewModel(IFinder finder, FrameworkElement originalDataContextElement)
         {
-            _wrapper = wrapper;
+            _finder = finder;
             NextCommand = new RelayCommand(ExecuteNext, CanExecuteFind);
             PreviousCommand = new RelayCommand(ExecutePrevious, CanExecuteFind);
 
@@ -53,7 +53,6 @@ namespace StylableFindFlowDocumentReader.Reader
                 }
 
                 _findText = value;
-                _wrapper.SetFindText(value);
                 OnPropertyChanged(nameof(FindText));
                 RaiseCommandCanExecuteChanged();
             }
@@ -70,7 +69,6 @@ namespace StylableFindFlowDocumentReader.Reader
                 }
 
                 _matchWholeWord = value;
-                _wrapper.SelectMatchWholeWord(value);
             }
         }
 
@@ -85,7 +83,6 @@ namespace StylableFindFlowDocumentReader.Reader
                 }
 
                 _matchCase = value;
-                _wrapper.SelectMatchCase(value);
             }
         }
 
@@ -100,7 +97,6 @@ namespace StylableFindFlowDocumentReader.Reader
                 }
 
                 _matchDiacritic = value;
-                _wrapper.SelectMatchDiacritic(value);
             }
         }
 
@@ -115,7 +111,6 @@ namespace StylableFindFlowDocumentReader.Reader
                 }
 
                 _matchKashida = value;
-                _wrapper.SelectMatchKashida(value);
             }
         }
 
@@ -130,7 +125,6 @@ namespace StylableFindFlowDocumentReader.Reader
                 }
 
                 _matchAlefHamza = value;
-                _wrapper.SelectMatchAlefHamza(value);
             }
         }
 
@@ -162,12 +156,11 @@ namespace StylableFindFlowDocumentReader.Reader
 
         internal void Find(bool searchUp)
         {
-            _wrapper.SetSearchUp(searchUp);
             IsSearchUp = searchUp;
-            _wrapper.Find();
+            Find();
         }
 
-        internal void Find() => _wrapper.Find();
+        internal void Find() => _finder.Find(this);
 
         private bool CanExecuteFind() => !string.IsNullOrWhiteSpace(FindText);
 

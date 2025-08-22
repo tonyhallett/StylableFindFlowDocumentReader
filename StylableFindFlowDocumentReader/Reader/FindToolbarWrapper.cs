@@ -4,7 +4,7 @@ using System.Windows.Controls;
 
 namespace StylableFindFlowDocumentReader.Reader
 {
-    public class FindToolbarWrapper
+    public class FindToolbarWrapper : IFinder
     {
         private sealed class ReflectionMembers
         {
@@ -52,21 +52,31 @@ namespace StylableFindFlowDocumentReader.Reader
             _findToolbar = findToolbar;
         }
 
-        public void SelectMatchWholeWord(bool isChecked) => SelectOption(s_reflectionMembers.OptionsWholeWordMenuItem, isChecked);
+        private void SelectMatchWholeWord(bool isChecked) => SelectOption(s_reflectionMembers.OptionsWholeWordMenuItem, isChecked);
 
-        public void SelectMatchCase(bool isChecked) => SelectOption(s_reflectionMembers.OptionsCaseMenuItem, isChecked);
+        private void SelectMatchCase(bool isChecked) => SelectOption(s_reflectionMembers.OptionsCaseMenuItem, isChecked);
 
-        public void SelectMatchDiacritic(bool isChecked) => SelectOption(s_reflectionMembers.OptionsDiacriticMenuItem, isChecked);
+        private void SelectMatchDiacritic(bool isChecked) => SelectOption(s_reflectionMembers.OptionsDiacriticMenuItem, isChecked);
 
-        public void SelectMatchKashida(bool isChecked) => SelectOption(s_reflectionMembers.OptionsKashidaMenuItem, isChecked);
+        private void SelectMatchKashida(bool isChecked) => SelectOption(s_reflectionMembers.OptionsKashidaMenuItem, isChecked);
 
-        public void SelectMatchAlefHamza(bool isChecked) => SelectOption(s_reflectionMembers.OptionsAlefHamzaMenuItem, isChecked);
+        private void SelectMatchAlefHamza(bool isChecked) => SelectOption(s_reflectionMembers.OptionsAlefHamzaMenuItem, isChecked);
 
-        public void SetSearchUp(bool isSearchUp) => s_reflectionMembers.SearchUp.SetValue(_findToolbar, isSearchUp);
+        private void SetSearchUp(bool isSearchUp) => s_reflectionMembers.SearchUp.SetValue(_findToolbar, isSearchUp);
 
-        public void SetFindText(string findText) => (s_reflectionMembers.FindTextBox.GetValue(_findToolbar) as TextBox).Text = findText;
+        private void SetFindText(string findText) => (s_reflectionMembers.FindTextBox.GetValue(_findToolbar) as TextBox).Text = findText;
 
-        public void Find() => s_reflectionMembers.OnFindClick.Invoke(_findToolbar, null);
+        public void Find(IFindParameters findParameters)
+        {
+            SetFindText(findParameters.FindText);
+            SetSearchUp(findParameters.IsSearchUp);
+            SelectMatchWholeWord(findParameters.MatchWholeWord);
+            SelectMatchCase(findParameters.MatchCase);
+            SelectMatchDiacritic(findParameters.MatchDiacritic);
+            SelectMatchKashida(findParameters.MatchKashida);
+            SelectMatchAlefHamza(findParameters.MatchAlefHamza);
+            _ = s_reflectionMembers.OnFindClick.Invoke(_findToolbar, null);
+        }
 
         private bool SelectOption(FieldInfo menuField, bool isChecked)
         {
