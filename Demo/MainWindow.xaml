@@ -127,19 +127,19 @@
         Content="Pink"
         IsChecked="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=RightPaletteSelected}" />
     </StackPanel>
-    <sfdr:FindRestylingFlowDocumentReader x:Name="FindRestylingFlowDocumentReader"
+    <sfdr:EnhancedFlowDocumentReader x:Name="FindRestylingFlowDocumentReader"
       Grid.Row="1"
       BorderBrush="{Binding MainForeground}"
       BorderThickness="1"
       SelectionBrush="{Binding MainForeground}"
       VerticalScrollbarVisibility="Hidden">
-      <sfdr:FindRestylingFlowDocumentReader.Resources>
+      <sfdr:EnhancedFlowDocumentReader.Resources>
         <Style
           TargetType="FlowDocumentScrollViewer">
           <Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
         </Style>
-      </sfdr:FindRestylingFlowDocumentReader.Resources>
-      <sfdr:FindRestylingFlowDocumentReader.InputBindings>
+      </sfdr:EnhancedFlowDocumentReader.Resources>
+      <sfdr:EnhancedFlowDocumentReader.InputBindings>
         <KeyBinding
           Key="F"
           Command="ApplicationCommands.Find"
@@ -152,8 +152,8 @@
           Key="P"
           Command="NavigationCommands.PreviousPage"
           Modifiers="Ctrl" />
-      </sfdr:FindRestylingFlowDocumentReader.InputBindings>
-      <sfdr:FindRestylingFlowDocumentReader.Document>
+      </sfdr:EnhancedFlowDocumentReader.InputBindings>
+      <sfdr:EnhancedFlowDocumentReader.Document>
         <FlowDocument
           FontFamily="{StaticResource fontFamily}">
           <Paragraph>
@@ -161,8 +161,8 @@
               Text="This is a simple example of a FlowDocumentReader with a stylable Find area." />
           </Paragraph>
         </FlowDocument>
-      </sfdr:FindRestylingFlowDocumentReader.Document>
-      <sfdr:FindRestylingFlowDocumentReader.FindToolbarContent>
+      </sfdr:EnhancedFlowDocumentReader.Document>
+      <sfdr:EnhancedFlowDocumentReader.FindToolbarContent>
         <findControls:FindToolBar
           AutomationProperties.AutomationId="replacedFindToolBar">
           <Border
@@ -200,7 +200,7 @@
             </StackPanel>
           </Border>
         </findControls:FindToolBar>
-      </sfdr:FindRestylingFlowDocumentReader.FindToolbarContent>
-    </sfdr:FindRestylingFlowDocumentReader>
+      </sfdr:EnhancedFlowDocumentReader.FindToolbarContent>
+    </sfdr:EnhancedFlowDocumentReader>
   </DockPanel>
 </Window>
