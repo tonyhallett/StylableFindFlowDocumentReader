@@ -7,7 +7,7 @@
   xmlns:local="clr-namespace:Demo"
   xmlns:findControls="clr-namespace:StylableFindFlowDocumentReader.FindControls;assembly=StylableFindFlowDocumentReader"
   xmlns:sfdr="clr-namespace:StylableFindFlowDocumentReader.Reader;assembly=StylableFindFlowDocumentReader"
-  Title="Styled Find Toolbar Demo"
+  Title="Enhanced FlowDocumentReader Demo"
   DataContext="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette}"
   Width="800"
   Height="450"

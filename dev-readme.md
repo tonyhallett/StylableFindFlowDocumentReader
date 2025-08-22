@@ -182,7 +182,7 @@ public bool MatchAlefHamza => this.OptionsAlefHamzaMenuItem.IsChecked;
 
 The two flow document viewer classes, `FlowDocumentPageViewer` and `FlowDocumentScrollViewer` are similar. `DocumentViewerHelper.Find` is invoked by the same actions.
 
-`DocumentViewerHelper.ToggleFindToolBar` is invoked the same except there is no IsFindEnabled.
+`DocumentViewerHelper.ToggleFindToolBar` is invoked the same except there is no IsFindEnabled ( and no find button to invoke ApplicationCommands.Find).
 The FlowDocumentScrollViewer also will `ToggleFindToolBar(false)` when `AttachTextEditor()`
 
 ```C#

@@ -1,0 +1,26 @@
+﻿<Window x:Class="NormalFlowDocumentPageViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NormalFlowDocumentPageViewer"
+        mc:Ignorable="d"
+        Background="DarkBlue"
+        Foreground="LightBlue"
+        WindowStartupLocation="CenterScreen"
+        Title="Normal FlowDocumentPageViewer Demo" Height="450" Width="800">
+    <FlowDocumentPageViewer
+BorderBrush="LightBlue"
+BorderThickness="1"
+SelectionBrush="LightBlue"
+    >
+        <FlowDocumentPageViewer.Document>
+            <FlowDocument>
+                <Paragraph>
+                    <Run
+        Text="This is a simple example of a FlowDocumentPageViewer without a stylable Find area." />
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentPageViewer.Document>
+    </FlowDocumentPageViewer>
+</Window>
