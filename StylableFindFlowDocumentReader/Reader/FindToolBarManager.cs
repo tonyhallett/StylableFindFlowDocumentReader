@@ -83,6 +83,7 @@ namespace StylableFindFlowDocumentReader.Reader
             _flowControlReflector.SetFindToolBarHost(flowControl, shimFindToolBarHost);
         }
 
+        // includes relevant parts of DocumentViewerHelper.ToggleFindToolBar
         private void ShimFindToolBarHost_CloseToolBarEvent(object sender, EventArgs e)
         {
             _findToolBarViewModel = null;
@@ -92,6 +93,7 @@ namespace StylableFindFlowDocumentReader.Reader
             _originalFindToolBarHost.ClearValue(FocusManager.IsFocusScopeProperty);
         }
 
+        // includes relevant parts of DocumentViewerHelper.ToggleFindToolBar
         private void ShimFindToolBarHost_ShowToolBarEvent(object sender, ToolBar findToolBar)
         {
             _findToolBarViewModel = new FindToolBarViewModel(new FindToolbarWrapper(findToolBar), _flowControl as FrameworkElement);
