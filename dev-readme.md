@@ -192,7 +192,7 @@ The FlowDocumentScrollViewer also will `ToggleFindToolBar(false)` when `AttachTe
 ```
 
 ```C#
-this._findToolBarHost = this.GetTemplateChild("PART_FindToolBarHost") as Decorator;
+this._findToolBarHost = this.GetTemplateChild("PART_FindToolBarHost") as Decorator; // again by default is a Border
 
 private FindToolBar FindToolBar => this._findToolBarHost == null ? (FindToolBar) null : this._findToolBarHost.Child as FindToolBar;
 ```
