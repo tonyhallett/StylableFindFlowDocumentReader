@@ -66,7 +66,7 @@ namespace StylableFindFlowDocumentReader.Reader
         private IEnhancedFlowControl _flowControl;
         private FindToolBarViewModel _findToolBarViewModel;
 
-        public FindToolBarManager(Action<Action> dispatcher = null) => _dispatcher = dispatcher;
+        internal FindToolBarManager(Action<Action> dispatcher = null) => _dispatcher = dispatcher;
 
         private bool IsShowingFindToolbar => _originalFindToolBarHost.Child != null;
 
