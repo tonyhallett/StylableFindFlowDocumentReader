@@ -1,15 +1,18 @@
 ﻿using System.Drawing;
 using FlaUI.Core.AutomationElements;
 using UIAutomationHelpers;
+using UITests.NUnit;
 
 namespace UITests.Tests.Enhanced
 {
-    internal sealed class OriginalDataContextTest() : FindToolBarTestsBase(false)
+    [EnhancedTest]
+    internal sealed class OriginalDataContextTest(FrameworkVersion frameworkVersion)
+        : FindToolBarTestsBase(false, frameworkVersion)
     {
         [Test]
         public void Should_Be_What_Would_Have_Inherited()
         {
-            ControlFinder.FindFindButton(Window).Click();
+            ControlFinder.FindFindButton(Window)!.Click();
 
             TextBox? findTextBox = ControlFinder.FindFindTextBox(Window);
 

@@ -32,6 +32,84 @@
       TargetType="MenuItem">
       <Setter Property="FontFamily" Value="Bauhaus 93" />
     </Style>
+    <Style
+      x:Key="radioButtonFocusVisualStryle">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate>
+            <Rectangle
+              Margin="19,0,0,0"
+              SnapsToDevicePixels="true"
+              Stroke="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
+              StrokeDashArray="1 2"
+              StrokeThickness="1" />
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style
+      TargetType="{x:Type RadioButton}">
+      <Setter Property="Control.Background" Value="Transparent" />
+      <Setter Property="Control.BorderBrush" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}" />
+      <Setter Property="Control.Foreground" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}" />
+      <Setter Property="Control.BorderThickness" Value="2" />
+      <Setter Property="Control.FocusVisualStyle" Value="{StaticResource radioButtonFocusVisualStryle}" />
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate
+            TargetType="{x:Type RadioButton}">
+            <Grid x:Name="templateRoot"
+              Background="Transparent"
+              SnapsToDevicePixels="true">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                  Width="Auto" />
+                <ColumnDefinition
+                  Width="*" />
+              </Grid.ColumnDefinitions>
+              <Border x:Name="radioButtonBorder"
+                Margin="1,1,2,1"
+                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                Background="{TemplateBinding Control.Background}"
+                BorderBrush="{TemplateBinding Control.BorderBrush}"
+                BorderThickness="{TemplateBinding Control.BorderThickness}"
+                CornerRadius="100">
+                <Grid x:Name="markGrid"
+                  Margin="2">
+                  <Ellipse x:Name="optionMark"
+                    MinWidth="6"
+                    MinHeight="6"
+                    Fill="{TemplateBinding Control.Foreground}"
+                    Opacity="0" />
+                </Grid>
+              </Border>
+              <ContentPresenter x:Name="contentPresenter"
+                Grid.Column="1"
+                Margin="{TemplateBinding Control.Padding}"
+                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                Focusable="false"
+                RecognizesAccessKey="true"
+                SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="ContentControl.HasContent" Value="true">
+
+                <Setter Property="Control.Padding" Value="4,-1,0,0" />
+              </Trigger>
+
+              <Trigger Property="ToggleButton.IsChecked" Value="true">
+                <Setter TargetName="optionMark" Property="UIElement.Opacity" Value="1" />
+              </Trigger>
+              <Trigger Property="ToggleButton.IsChecked" Value="{x:Null}">
+                <Setter TargetName="optionMark" Property="UIElement.Opacity" Value="0.56" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
   </Window.Resources>
   <DockPanel
     LastChildFill="True">
@@ -39,86 +117,6 @@
       DockPanel.Dock="Top"
       Margin="5"
       Orientation="Horizontal">
-      <StackPanel.Resources>
-        <Style
-          x:Key="radioButtonFocusVisualStryle">
-          <Setter Property="Control.Template">
-            <Setter.Value>
-              <ControlTemplate>
-                <Rectangle
-                  Margin="19,0,0,0"
-                  SnapsToDevicePixels="true"
-                  Stroke="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
-                  StrokeDashArray="1 2"
-                  StrokeThickness="1" />
-              </ControlTemplate>
-            </Setter.Value>
-          </Setter>
-        </Style>
-        <Style
-          TargetType="{x:Type RadioButton}">
-          <Setter Property="Control.Background" Value="Transparent" />
-          <Setter Property="Control.BorderBrush" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}" />
-          <Setter Property="Control.Foreground" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}" />
-          <Setter Property="Control.BorderThickness" Value="2" />
-          <Setter Property="Control.FocusVisualStyle" Value="{StaticResource radioButtonFocusVisualStryle}" />
-          <Setter Property="Control.Template">
-            <Setter.Value>
-              <ControlTemplate
-                TargetType="{x:Type RadioButton}">
-                <Grid x:Name="templateRoot"
-                  Background="Transparent"
-                  SnapsToDevicePixels="true">
-                  <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                      Width="Auto" />
-                    <ColumnDefinition
-                      Width="*" />
-                  </Grid.ColumnDefinitions>
-                  <Border x:Name="radioButtonBorder"
-                    Margin="1,1,2,1"
-                    HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
-                    VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
-                    Background="{TemplateBinding Control.Background}"
-                    BorderBrush="{TemplateBinding Control.BorderBrush}"
-                    BorderThickness="{TemplateBinding Control.BorderThickness}"
-                    CornerRadius="100">
-                    <Grid x:Name="markGrid"
-                      Margin="2">
-                      <Ellipse x:Name="optionMark"
-                        MinWidth="6"
-                        MinHeight="6"
-                        Fill="{TemplateBinding Control.Foreground}"
-                        Opacity="0" />
-                    </Grid>
-                  </Border>
-                  <ContentPresenter x:Name="contentPresenter"
-                    Grid.Column="1"
-                    Margin="{TemplateBinding Control.Padding}"
-                    HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
-                    VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
-                    Focusable="false"
-                    RecognizesAccessKey="true"
-                    SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
-                </Grid>
-                <ControlTemplate.Triggers>
-                  <Trigger Property="ContentControl.HasContent" Value="true">
-
-                    <Setter Property="Control.Padding" Value="4,-1,0,0" />
-                  </Trigger>
-
-                  <Trigger Property="ToggleButton.IsChecked" Value="true">
-                    <Setter TargetName="optionMark" Property="UIElement.Opacity" Value="1" />
-                  </Trigger>
-                  <Trigger Property="ToggleButton.IsChecked" Value="{x:Null}">
-                    <Setter TargetName="optionMark" Property="UIElement.Opacity" Value="0.56" />
-                  </Trigger>
-                </ControlTemplate.Triggers>
-              </ControlTemplate>
-            </Setter.Value>
-          </Setter>
-        </Style>
-      </StackPanel.Resources>
       <RadioButton
         Content="Blue"
         IsChecked="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=LeftPaletteSelected}" />
@@ -127,18 +125,24 @@
         Content="Pink"
         IsChecked="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=RightPaletteSelected}" />
     </StackPanel>
+    <StackPanel
+      DockPanel.Dock="Top"
+      Margin="5"
+      Orientation="Horizontal">
+      <RadioButton x:Name="IsFindEnabledRadioButton"
+        Content="Find Enabled"
+        IsChecked="true" />
+      <RadioButton
+        Margin="5,0,0,0"
+        Content="Find Disabled" />
+    </StackPanel>
     <sfdr:EnhancedFlowDocumentReader x:Name="FindRestylingFlowDocumentReader"
       Grid.Row="1"
       BorderBrush="{Binding MainForeground}"
       BorderThickness="1"
+      IsFindEnabled="{Binding ElementName=IsFindEnabledRadioButton, Path=IsChecked}"
       SelectionBrush="{Binding MainForeground}"
       VerticalScrollbarVisibility="Hidden">
-      <sfdr:EnhancedFlowDocumentReader.Resources>
-        <Style
-          TargetType="FlowDocumentScrollViewer">
-          <Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
-        </Style>
-      </sfdr:EnhancedFlowDocumentReader.Resources>
       <sfdr:EnhancedFlowDocumentReader.InputBindings>
         <KeyBinding
           Key="F"

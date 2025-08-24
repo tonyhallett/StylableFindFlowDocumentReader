@@ -12,17 +12,32 @@
   Background="DarkBlue"
   Foreground="LightBlue"
   mc:Ignorable="d">
-  <FlowDocumentReader
-    BorderBrush="LightBlue"
-    BorderThickness="1"
-    SelectionBrush="LightBlue">
-    <FlowDocumentReader.Document>
-      <FlowDocument>
-        <Paragraph>
-          <Run
-            Text="This is a simple example of a FlowDocumentReader without a stylable Find area." />
-        </Paragraph>
-      </FlowDocument>
-    </FlowDocumentReader.Document>
-  </FlowDocumentReader>
+  <DockPanel
+    LastChildFill="True">
+    <StackPanel
+      DockPanel.Dock="Top"
+      Margin="5"
+      Orientation="Horizontal">
+      <RadioButton x:Name="IsFindEnabledRadioButton"
+        Content="Find Enabled"
+        IsChecked="true" />
+      <RadioButton
+        Margin="5,0,0,0"
+        Content="Find Disabled" />
+    </StackPanel>
+    <FlowDocumentReader
+      BorderBrush="LightBlue"
+      BorderThickness="1"
+      IsFindEnabled="{Binding ElementName=IsFindEnabledRadioButton, Path=IsChecked}"
+      SelectionBrush="LightBlue">
+      <FlowDocumentReader.Document>
+        <FlowDocument>
+          <Paragraph>
+            <Run
+              Text="This is a simple example of a FlowDocumentReader without a stylable Find area." />
+          </Paragraph>
+        </FlowDocument>
+      </FlowDocumentReader.Document>
+    </FlowDocumentReader>
+  </DockPanel>
 </Window>

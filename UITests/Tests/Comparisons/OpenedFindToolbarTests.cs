@@ -2,14 +2,14 @@
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
 using UIAutomationHelpers;
+using UITests.NUnit;
 using UITests.TestHelpers;
 
 namespace UITests.Tests.Comparisons
 {
-    [TestFixture(false)]
-    [TestFixture(true)]
-    internal sealed class OpenedFindToolbarTests(bool isNormal)
-        : FindToolBarTestsBase(isNormal)
+    [ComparisonTest]
+    internal sealed class OpenedFindToolbarTests(bool isNormal, FrameworkVersion frameworkVersion)
+        : FindToolBarTestsBase(isNormal, frameworkVersion)
     {
         private Button? _findButton;
 
@@ -17,7 +17,7 @@ namespace UITests.Tests.Comparisons
         {
             Application application = base.StartApplication();
             _findButton = ControlFinder.FindFindButton(Window);
-            _findButton.Click();
+            _findButton!.Click();
             AutomationElement? findToolbar = ControlFinder.FindFindToolbar(Window);
             Assert.That(findToolbar, Is.Not.Null, "Find toolbar should not be null");
             return application;
@@ -134,9 +134,35 @@ namespace UITests.Tests.Comparisons
             AssertCannotFind(cannotFindText);
         }
 
+        [Test]
+        public void Should_Respect_IsFindEnabled()
+        {
+            FocusFindTextAndSetText("abc");
+
+            RadioButton? findDisabledRadioButton = ControlFinder.FindFindDisabledRadioButton(Window);
+            findDisabledRadioButton!.IsChecked = true;
+
+            _ = Retry.WhileNotNull(() => ControlFinder.FindFindToolbar(Window), throwOnTimeout: true);
+
+            RadioButton? findEnabledRadioButton = ControlFinder.FindFindEnabledRadioButton(Window);
+            findEnabledRadioButton!.IsChecked = true;
+
+            RetryResult<Button?> findButtonResult = Retry.WhileNull(() => ControlFinder.FindFindButton(Window));
+            findButtonResult.Result!.Click();
+
+            AssertShowsFindToolbar();
+
+            TextBox? findTextBox = ControlFinder.FindFindTextBox(Window);
+            Assert.That(findTextBox!.Text, Is.Empty);
+        }
+
+        [Test]
+        public void Should_Hide_ToolBar_When_Document_Is_Set_To_Null() => throw new System.NotImplementedException();
+
         private void AssertCannotFind(string findText)
         {
-            Window? findWindow = ControlFinder.FindCannotFindWindow(Window);
+            RetryResult<Window?> findWindowResult = Retry.WhileNull(() => ControlFinder.FindCannotFindWindow(Window));
+            Window? findWindow = findWindowResult.Result;
             TextBox? findWindowTextBox = findWindow!.FindFirstChild(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Text)).AsTextBox();
             Assert.That(findWindowTextBox, Is.Not.Null, "Find window text box should not be null");
             Assert.That(findWindowTextBox!.Text, Is.EqualTo($"Searched to the end of this document. Cannot find '{findText}'."));

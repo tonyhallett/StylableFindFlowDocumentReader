@@ -1,8 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace VideoRecorder
+namespace UIAutomationHelpers
 {
-    internal static class NativeMethods
+    public static class NativeMethods
     {
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool SetProcessDPIAware();

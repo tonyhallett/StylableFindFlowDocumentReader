@@ -1,8 +1,10 @@
 ﻿using UIAutomationHelpers;
+using UITests.NUnit;
 
 namespace UITests.Tests.Enhanced
 {
-    internal sealed class KeyCommandsTests() : FindToolBarTestsBase(false)
+    [EnhancedTest]
+    internal sealed class KeyCommandsTests(FrameworkVersion frameworkVersion) : FindToolBarTestsBase(false, frameworkVersion)
     {
         [Test]
         public void Should_Execute_The_KeyBindings_In_InputBindings_When_Pressed()

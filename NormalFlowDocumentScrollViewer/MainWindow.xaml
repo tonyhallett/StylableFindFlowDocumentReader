@@ -1,27 +1,29 @@
-﻿<Window x:Class="NormalFlowDocumentScrollViewer.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:NormalFlowDocumentScrollViewer"
-        mc:Ignorable="d"
-        Background="DarkBlue"
-        Foreground="LightBlue"
-        WindowStartupLocation="CenterScreen"
-        Title="Normal FlowDocumentScrollViewer Demo" Height="450" Width="800">
-    <FlowDocumentScrollViewer
+﻿<Window
+  x:Class="NormalFlowDocumentScrollViewer.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:local="clr-namespace:NormalFlowDocumentScrollViewer"
+  Title="Normal FlowDocumentScrollViewer Demo"
+  Width="800"
+  Height="450"
+  WindowStartupLocation="CenterScreen"
+  Background="DarkBlue"
+  Foreground="LightBlue"
+  mc:Ignorable="d">
+  <FlowDocumentScrollViewer
     BorderBrush="LightBlue"
     BorderThickness="1"
     SelectionBrush="LightBlue"
-    VerticalScrollBarVisibility="Auto"
-        >
-        <FlowDocumentScrollViewer.Document>
-            <FlowDocument>
-                <Paragraph>
-                    <Run
+    VerticalScrollBarVisibility="Auto">
+    <FlowDocumentScrollViewer.Document>
+      <FlowDocument>
+        <Paragraph>
+          <Run
             Text="This is a simple example of a FlowDocumentScrollViewer without a stylable Find area." />
-                </Paragraph>
-            </FlowDocument>
-        </FlowDocumentScrollViewer.Document>
-    </FlowDocumentScrollViewer>
+        </Paragraph>
+      </FlowDocument>
+    </FlowDocumentScrollViewer.Document>
+  </FlowDocumentScrollViewer>
 </Window>

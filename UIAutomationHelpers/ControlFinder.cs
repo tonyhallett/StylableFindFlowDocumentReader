@@ -4,8 +4,8 @@ namespace UIAutomationHelpers
 {
     public static class ControlFinder
     {
-        public static Button FindFindButton(Window window)
-            => window.FindFirstDescendant(cf => cf.ByAutomationId("FindButton")).AsButton()!;
+        public static Button? FindFindButton(Window window)
+            => window.FindFirstDescendant(cf => cf.ByAutomationId("FindButton")).AsButton();
 
         public static AutomationElement? FindFindToolbar(Window window)
             => window.FindFirstDescendant(cf => cf.ByClassName("ToolBar"));
@@ -24,5 +24,11 @@ namespace UIAutomationHelpers
 
         public static Window? FindCannotFindWindow(Window window)
             => window.FindFirstDescendant(cf => cf.ByName("Find")).AsWindow();
+
+        public static RadioButton? FindFindEnabledRadioButton(Window window)
+            => window.FindFirstDescendant(cf => cf.ByName("Find Enabled")).AsRadioButton();
+
+        public static RadioButton? FindFindDisabledRadioButton(Window window)
+            => window.FindFirstDescendant(cf => cf.ByName("Find Disabled")).AsRadioButton();
     }
 }

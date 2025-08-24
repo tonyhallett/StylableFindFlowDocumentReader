@@ -1,5 +1,6 @@
 ﻿using FlaUI.Core.Capturing;
 using FlaUI.UIA3;
+using UIAutomationHelpers;
 using VideoRecorder;
 
 // https://github.com/FlaUI/FlaUI/issues/359

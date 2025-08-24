@@ -16,7 +16,7 @@ namespace VideoRecorder
         public static async Task<string?> Record(bool isDemo, List<Step> steps, AutomationBase automation, CaptureSettings? captureSettings = null)
         {
             string projectName = isDemo ? "Demo" : "Normal";
-            s_application = ApplicationLauncher.Launch(projectName);
+            s_application = ApplicationLauncher.Launch(projectName, FrameworkVersion.Net472);
             try
             {
                 Window? mainWindow = s_application.GetMainWindow(automation);

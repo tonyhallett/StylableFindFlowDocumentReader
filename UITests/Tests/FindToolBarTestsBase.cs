@@ -1,5 +1,6 @@
 ﻿using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Tools;
 using FlaUI.TestUtilities;
 using FlaUI.UIA3;
 using UIAutomationHelpers;
@@ -8,7 +9,7 @@ using UIAutomationHelpers;
 
 namespace UITests.Tests
 {
-    internal abstract class FindToolBarTestsBase(bool isNormal)
+    internal abstract class FindToolBarTestsBase(bool isNormal, FrameworkVersion frameworkVersion = FrameworkVersion.Net472)
         : FlaUITestBase
     {
         private Window? _window;
@@ -25,14 +26,16 @@ namespace UITests.Tests
 
         protected override Application StartApplication()
         {
-            Application application = ApplicationLauncher.Launch(_projectName);
+            _ = NativeMethods.SetProcessDPIAware();
+            Application application = ApplicationLauncher.Launch(_projectName, frameworkVersion);
             _window = application.GetMainWindow(Automation);
             return application;
         }
 
         protected void AssertShowsFindToolbar()
         {
-            AutomationElement? findToolbar = ControlFinder.FindFindToolbar(Window);
+            RetryResult<AutomationElement?> findToolBarResult = Retry.WhileNull(() => ControlFinder.FindFindToolbar(Window));
+            AutomationElement? findToolbar = findToolBarResult.Result;
             Assert.That(findToolbar, Is.Not.Null, "Find toolbar should not be null");
             string expectedAutomationId = IsNormal ? "FindToolbar" : "replacedFindToolBar";
             Assert.That(findToolbar!.AutomationId, Is.EqualTo(expectedAutomationId));

@@ -24,7 +24,7 @@ namespace VideoRecorder
             => new(
                 window =>
                 {
-                    FlaUI.Core.AutomationElements.Button findButton = ControlFinder.FindFindButton(window!);
+                    FlaUI.Core.AutomationElements.Button findButton = ControlFinder.FindFindButton(window!)!;
                     findButton.Click();
                 },
                 1000);

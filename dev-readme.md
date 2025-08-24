@@ -1,3 +1,11 @@
+# EnhancedFlowControls
+
+Adds behaviour to `FlowDocumentReader`, `FlowDocumentPageViewer` and `FlowDocumentScrollViewer`.
+
+The main feature is to allow consumers to provide their own find toolbar and this is the purpose of this readme.
+`FlowDocumentReader` is discussed in detail. `FlowDocumentPageViewer` and `FlowDocumentScrollViewer` behave similarly
+and leads to a common solution.
+
 # For a derived FlowDocumentReader to provide its own find toolbar it is necessary to know
 
 a. When and how the original find toolbar is added and removed from the wpf tree.
@@ -180,7 +188,41 @@ public bool MatchAlefHamza => this.OptionsAlefHamzaMenuItem.IsChecked;
 
 ---
 
-The two flow document viewer classes, `FlowDocumentPageViewer` and `FlowDocumentScrollViewer` are similar. `DocumentViewerHelper.Find` is invoked by the same actions.
+# Additional framework code to consider
+
+`FlowDocumentReader` registers a class key down handler. Logic provided by the `DocumentViewerHelper`.
+
+````C#
+EventManager.RegisterClassHandler(typeof (FlowDocumentReader), Keyboard.KeyDownEvent, (Delegate) new KeyEventHandler(FlowDocumentReader.KeyDownHandler), true);
+'''
+
+```C#
+private static void KeyDownHandler(object sender, KeyEventArgs e) => DocumentViewerHelper.KeyDownHelper(e, (DependencyObject) ((FlowDocumentReader) sender)._findToolBarHost);
+````
+
+Note that this code has access to framework internal members.
+
+```C#
+internal static void KeyDownHelper(KeyEventArgs e, DependencyObject findToolBarHost)
+{
+    if (e.Handled || findToolBarHost == null || e.Key != Key.Left && e.Key != Key.Right && e.Key != Key.Up && e.Key != Key.Down || !(Keyboard.FocusedElement is DependencyObject focusedElement) || !(focusedElement is Visual) || !VisualTreeHelper.IsAncestorOf(findToolBarHost, focusedElement))
+        return;
+    FocusNavigationDirection traversalDirection = KeyboardNavigation.KeyToTraversalDirection(e.Key);
+    DependencyObject dependencyObject = KeyboardNavigation.Current.PredictFocusedElement(focusedElement, traversalDirection);
+    if (dependencyObject == null || !(dependencyObject is IInputElement) || !VisualTreeHelper.IsAncestorOf(findToolBarHost, focusedElement))
+        return;
+    ((IInputElement) dependencyObject).Focus();
+    e.Handled = true;
+}
+```
+
+# The two flow document viewer classes, `FlowDocumentPageViewer` and `FlowDocumentScrollViewer` are similar.
+
+They use the same `KeyDownHelper.KeyDownHelper`.
+
+They have the same Decorator PART_FindToolBarHost and the FindToolBar variable retrieves from it.
+
+`DocumentViewerHelper.Find` is invoked by the same actions.
 
 `DocumentViewerHelper.ToggleFindToolBar` is invoked the same except there is no IsFindEnabled ( and no find button to invoke ApplicationCommands.Find).
 The FlowDocumentScrollViewer also will `ToggleFindToolBar(false)` when `AttachTextEditor()`
@@ -205,7 +247,7 @@ internal bool CanShowFindToolBar => this._findToolBarHost != null && this.Docume
 
 ---
 
-## Possible solutions
+# Solution
 
 Regardless of the solution, executing find should probably be with OnFindInvoked.
 
@@ -216,9 +258,3 @@ private FindToolBar FindToolBar => this._findToolBarHost == null ? (FindToolBar)
 ```
 
 with a `FindToolBar` that has had the find properties set based upon the provided replacement find tool bar.
-
-1. Solution 1
-
-Showing a custom toolbar
-
-Invoking find
