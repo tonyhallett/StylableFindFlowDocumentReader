@@ -34,6 +34,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NormalFlowDocumentScrollVie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NormalFlowDocumentPageViewer", "NormalFlowDocumentPageViewer\NormalFlowDocumentPageViewer.csproj", "{0DC04499-0890-48C1-A820-342EDF9280D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoCommon", "DemoCommon\DemoCommon.csproj", "{720B6917-ED60-459C-998D-E3141E29E8D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Temp", "Temp\Temp.csproj", "{FDF7DAFD-D3D7-4FD4-B3A6-AF94B13464C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +76,14 @@ Global
 		{0DC04499-0890-48C1-A820-342EDF9280D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DC04499-0890-48C1-A820-342EDF9280D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DC04499-0890-48C1-A820-342EDF9280D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{720B6917-ED60-459C-998D-E3141E29E8D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{720B6917-ED60-459C-998D-E3141E29E8D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{720B6917-ED60-459C-998D-E3141E29E8D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{720B6917-ED60-459C-998D-E3141E29E8D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDF7DAFD-D3D7-4FD4-B3A6-AF94B13464C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDF7DAFD-D3D7-4FD4-B3A6-AF94B13464C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDF7DAFD-D3D7-4FD4-B3A6-AF94B13464C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDF7DAFD-D3D7-4FD4-B3A6-AF94B13464C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

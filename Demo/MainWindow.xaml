@@ -23,9 +23,9 @@
     </FontFamily>
     <Style
       TargetType="ToolTip">
-      <Setter Property="Background" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.TooltipBackground}" />
-      <Setter Property="Foreground" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.TooltipForeground}" />
-      <Setter Property="BorderBrush" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.TooltipBorder}" />
+      <Setter Property="Background" Value="{Binding TooltipBackground}" />
+      <Setter Property="Foreground" Value="{Binding TooltipForeground}" />
+      <Setter Property="BorderBrush" Value="{Binding TooltipBorder}" />
       <Setter Property="FontFamily" Value="Bauhaus 93" />
     </Style>
     <Style
@@ -33,14 +33,14 @@
       <Setter Property="FontFamily" Value="Bauhaus 93" />
     </Style>
     <Style
-      x:Key="radioButtonFocusVisualStryle">
+      x:Key="radioButtonFocusVisualStyle">
       <Setter Property="Control.Template">
         <Setter.Value>
           <ControlTemplate>
             <Rectangle
               Margin="19,0,0,0"
               SnapsToDevicePixels="true"
-              Stroke="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}"
+              Stroke="{Binding MainForeground}"
               StrokeDashArray="1 2"
               StrokeThickness="1" />
           </ControlTemplate>
@@ -50,10 +50,10 @@
     <Style
       TargetType="{x:Type RadioButton}">
       <Setter Property="Control.Background" Value="Transparent" />
-      <Setter Property="Control.BorderBrush" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}" />
-      <Setter Property="Control.Foreground" Value="{Binding Source={x:Static local:PaletteSwitcher.Instance}, Path=SelectedPalette.MainForeground}" />
+      <Setter Property="Control.BorderBrush" Value="{Binding MainForeground}" />
+      <Setter Property="Control.Foreground" Value="{Binding MainForeground}" />
       <Setter Property="Control.BorderThickness" Value="2" />
-      <Setter Property="Control.FocusVisualStyle" Value="{StaticResource radioButtonFocusVisualStryle}" />
+      <Setter Property="Control.FocusVisualStyle" Value="{StaticResource radioButtonFocusVisualStyle}" />
       <Setter Property="Control.Template">
         <Setter.Value>
           <ControlTemplate
@@ -137,7 +137,6 @@
         Content="Find Disabled" />
     </StackPanel>
     <sfdr:EnhancedFlowDocumentReader x:Name="FindRestylingFlowDocumentReader"
-      Grid.Row="1"
       BorderBrush="{Binding MainForeground}"
       BorderThickness="1"
       IsFindEnabled="{Binding ElementName=IsFindEnabledRadioButton, Path=IsChecked}"

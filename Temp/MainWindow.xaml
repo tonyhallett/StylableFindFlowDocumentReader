@@ -1,0 +1,24 @@
+﻿<demoCommon:DemoWindow x:Class="Temp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:demoCommon="clr-namespace:DemoCommon;assembly=DemoCommon"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Temp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <demoCommon:FlowDocumentReaderDemo>
+        <demoCommon:FlowDocumentReaderDemo.FlowDocumentReader>
+            <FlowDocumentReader>
+                <FlowDocumentReader.Document>
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run
+						              Text="This is a simple example of a FlowDocumentReader." />
+                        </Paragraph>
+                    </FlowDocument>
+                </FlowDocumentReader.Document>
+            </FlowDocumentReader>
+        </demoCommon:FlowDocumentReaderDemo.FlowDocumentReader>
+    </demoCommon:FlowDocumentReaderDemo>
+</demoCommon:DemoWindow>
