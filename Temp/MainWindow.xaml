@@ -7,18 +7,18 @@
         xmlns:local="clr-namespace:Temp"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <demoCommon:FlowDocumentReaderDemo>
-        <demoCommon:FlowDocumentReaderDemo.FlowDocumentReader>
-            <FlowDocumentReader>
-                <FlowDocumentReader.Document>
+    <demoCommon:NonFlowDocumentReaderDemo>
+        <demoCommon:NonFlowDocumentReaderDemo.FlowControl>
+            <FlowDocumentScrollViewer>
+                <FlowDocumentScrollViewer.Document>
                     <FlowDocument>
                         <Paragraph>
                             <Run
-						              Text="This is a simple example of a FlowDocumentReader." />
+						              Text="This is a simple example of a FlowDocumentScrollViewer." />
                         </Paragraph>
                     </FlowDocument>
-                </FlowDocumentReader.Document>
-            </FlowDocumentReader>
-        </demoCommon:FlowDocumentReaderDemo.FlowDocumentReader>
-    </demoCommon:FlowDocumentReaderDemo>
+                </FlowDocumentScrollViewer.Document>
+            </FlowDocumentScrollViewer>
+        </demoCommon:NonFlowDocumentReaderDemo.FlowControl>
+    </demoCommon:NonFlowDocumentReaderDemo>
 </demoCommon:DemoWindow>
